@@ -11,4 +11,25 @@ class BtTextStyles {
     color: BtColors.BLACK,
     letterSpacing: 2.5,
   );
+
+  static final nameDeputyList = GoogleFonts.questrial(
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: BtColors.BLACK,
+    letterSpacing: 1,
+  );
+
+  static final stateDeputyList = GoogleFonts.questrial(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    color: BtColors.TUNDORA,
+    letterSpacing: 1,
+  );
+
+  static final politicalPartyDeputyList = GoogleFonts.questrial(
+    fontSize: 13,
+    fontWeight: FontWeight.w700,
+    color: BtColors.BLACK,
+    letterSpacing: 1.5,
+  );
 }
