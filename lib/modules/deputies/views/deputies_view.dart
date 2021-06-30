@@ -12,11 +12,7 @@ import 'package:brasil_transparente_flutter/resources/strings.dart';
 import 'package:brasil_transparente_flutter/themes/texts_styles.dart';
 import 'package:brasil_transparente_flutter/themes/colors.dart';
 
-class DeputiesView extends StatelessWidget {
-  final DeputiesController _controller;
-
-  const DeputiesView(this._controller, {Key? key}) : super(key: key);
-
+class DeputiesView extends GetView<DeputiesController> {
   Widget _renderHeader() {
     return BtHeaderWidget(
       rightIcon: Icons.search,
@@ -39,7 +35,7 @@ class DeputiesView extends StatelessWidget {
   }
 
   Widget _renderList() {
-    if (_controller.isLoading) {
+    if (controller.isLoading) {
       return Center(
         child: SizedBox(
           height: 30,
@@ -49,16 +45,16 @@ class DeputiesView extends StatelessWidget {
       );
     }
 
-    if (_controller.isError) {
+    if (controller.isError) {
       return BtNotificationWidget(
         icon: Icons.error_outline,
         text: BtStrings.SOMETHING_WRONG_HAS_HAPPENED,
         textButton: BtStrings.TRY_AGAIN,
-        onPress: _controller.reload,
+        onPress: controller.reload,
       );
     }
 
-    if (_controller.deputies.length == 0) {
+    if (controller.deputies.length == 0) {
       return BtNotificationWidget(
         icon: Icons.sentiment_very_dissatisfied,
         text: BtStrings.NO_RESULTS_AVAILABLE,
@@ -66,16 +62,16 @@ class DeputiesView extends StatelessWidget {
     }
 
     return LazyLoadScrollView(
-      onEndOfPage: _controller.nextPage,
-      isLoading: _controller.lastPage,
+      onEndOfPage: controller.nextPage,
+      isLoading: controller.lastPage,
       child: RefreshIndicator(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return DeputyWidget(deputy: _controller.deputies[index]);
+            return DeputyWidget(deputy: controller.deputies[index]);
           },
-          itemCount: _controller.deputies.length,
+          itemCount: controller.deputies.length,
         ),
-        onRefresh: _controller.refresh,
+        onRefresh: controller.refresh,
       ),
     );
   }
@@ -88,7 +84,7 @@ class DeputiesView extends StatelessWidget {
           children: <Widget>[
             _renderHeader(),
             _renderTitle(),
-            Expanded(child: Obx(() => _renderList()))
+            Expanded(child: _renderList())
           ],
         ),
       ),
@@ -98,7 +94,7 @@ class DeputiesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _renderContent(),
+      body: Obx(() => _renderContent()),
     );
   }
 }

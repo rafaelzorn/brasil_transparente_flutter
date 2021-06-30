@@ -9,7 +9,7 @@ class BtPages {
   static final List<GetPage> routes = [
     GetPage(
       name: BtRoutes.DEPUTIES,
-      page: () => DeputiesView(Get.find()),
+      page: () => DeputiesView(),
       binding: DeputiesBinding(),
     )
   ];

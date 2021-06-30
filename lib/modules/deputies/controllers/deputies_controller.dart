@@ -7,6 +7,8 @@ import 'package:brasil_transparente_flutter/helpers/pagination_helper.dart';
 
 class DeputiesController extends GetxController {
   final DeputyRepository _deputyRepository;
+  
+  final int _itemsPerPage = 15;
 
   final _deputies = <DeputyModel>[].obs;
   final _pagination = PaginationHelper().obs;
@@ -20,7 +22,6 @@ class DeputiesController extends GetxController {
   bool get isLoading => _isLoading();
   bool get isError => _isError();
 
-  int get _items => _pagination().items;
   int get _page => _pagination().page;
 
   DeputiesController(this._deputyRepository);
@@ -30,7 +31,7 @@ class DeputiesController extends GetxController {
     super.onInit();
 
     ever(_pagination, (_) => _findDeputies());
-    _changePagination(1, 15, loading: true);
+    _changePagination(1, showLoading: true);
   }
 
   Future<void> _findDeputies() async {
@@ -38,7 +39,7 @@ class DeputiesController extends GetxController {
       final deputies = await _deputyRepository.findDeputies(_pagination());
 
       if (_resetList()) {
-        _deputies([]);
+        _deputies.clear();
       }
 
       _deputies.addAll(deputies);
@@ -53,22 +54,22 @@ class DeputiesController extends GetxController {
     }
   }
 
-  void _changePagination(int page, int items, {bool loading = false}) {
-    _isLoading(loading);
+  void _changePagination(int page, {bool showLoading = false}) {
+    _isLoading(showLoading);
 
     _pagination.update((val) {
       val!.page = page;
-      val.items = items;
+      val.items = _itemsPerPage;
     });
   }
 
-  void nextPage() => _changePagination(_page + 1, _items);
+  void nextPage() => _changePagination(_page + 1);
 
-  void reload() => _changePagination(_page, _items, loading: true);
+  void reload() => _changePagination(_page, showLoading: true);
 
   Future<void> refresh() async {
     _resetList(true);
 
-    _changePagination(1, _items);
+    _changePagination(1);
   }
 }
