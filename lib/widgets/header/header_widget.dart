@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Bt
-import 'package:brasil_transparente_flutter/app/theme/colors.dart';
+import 'package:brasil_transparente_flutter/themes/colors.dart';
 
 class BtHeaderWidget extends StatelessWidget {
   final IconData? rightIcon;
@@ -12,13 +12,14 @@ class BtHeaderWidget extends StatelessWidget {
   final Function? leftOnPress;
 
   BtHeaderWidget({
+    Key? key,
     this.rightIcon,
-    this.rightIconColor = BtColors.TUNDORA,
+    this.rightIconColor: BtColors.TUNDORA,
     this.rightOnPress,
     this.leftIcon,
-    this.leftIconColor = BtColors.TUNDORA,
+    this.leftIconColor: BtColors.TUNDORA,
     this.leftOnPress,
-  });
+  }) : super(key: key);
 
   Widget _renderIconButton(IconData icon, Color iconColor, Function onPress) {
     return IconButton(

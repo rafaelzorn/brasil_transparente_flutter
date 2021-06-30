@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 
 // Bt
-import 'package:brasil_transparente_flutter/app/routes/routes.dart';
-import 'package:brasil_transparente_flutter/app/routes/pages.dart';
-import 'package:brasil_transparente_flutter/app/resources/strings.dart';
-import 'package:brasil_transparente_flutter/app/theme/theme.dart';
-import 'package:brasil_transparente_flutter/app/theme/colors.dart';
+import 'package:brasil_transparente_flutter/bindings/application_binding.dart';
+import 'package:brasil_transparente_flutter/resources/strings.dart';
+import 'package:brasil_transparente_flutter/themes/colors.dart';
+import 'package:brasil_transparente_flutter/themes/theme.dart';
+import 'package:brasil_transparente_flutter/routes/pages.dart';
+import 'package:brasil_transparente_flutter/routes/routes.dart';
 
 void main() {
   runApp(Main());
@@ -21,8 +22,9 @@ class Main extends StatelessWidget {
     );
 
     return GetMaterialApp(
-      title: BtStrings.APP_NAME,
       debugShowCheckedModeBanner: false,
+      initialBinding: ApplicationBinding(),
+      title: BtStrings.APP_NAME,
       theme: btTheme,
       initialRoute: BtRoutes.DEPUTIES,
       getPages: BtPages.routes,
