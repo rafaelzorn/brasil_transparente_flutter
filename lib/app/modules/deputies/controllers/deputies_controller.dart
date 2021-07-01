@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/data/repositories/deputy_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
-import 'package:brasil_transparente_flutter/app/helpers/pagination_filter_helper.dart';
+import 'package:brasil_transparente_flutter/app/helpers/pagination_helper.dart';
 
 class DeputiesController extends GetxController {
   final DeputyRepository _deputyRepository;
@@ -11,7 +11,7 @@ class DeputiesController extends GetxController {
   final int _itemsPerPage = 15;
 
   final _deputies = <DeputyModel>[].obs;
-  final _paginationFilter = PaginationFilterHelper().obs;
+  final _paginationFilter = PaginationHelper().obs;
   final _lastPage = false.obs;
   final _isLoading = false.obs;
   final _isError = false.obs;

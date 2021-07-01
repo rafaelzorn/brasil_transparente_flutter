@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
-import 'package:brasil_transparente_flutter/app/helpers/pagination_filter_helper.dart';
+import 'package:brasil_transparente_flutter/app/helpers/pagination_helper.dart';
 
 class DeputyRepository {
   Dio _dio;
@@ -10,7 +10,7 @@ class DeputyRepository {
   DeputyRepository(this._dio);
 
   Future<List<DeputyModel>> findDeputies(
-      PaginationFilterHelper paginationFilter) async {
+      PaginationHelper paginationFilter) async {
     try {
       Response response = await _dio.get('/deputados', queryParameters: {
         'pagina': paginationFilter.page,
