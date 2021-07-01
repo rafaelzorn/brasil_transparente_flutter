@@ -1,4 +1,4 @@
-class PaginationHelper {
+class PaginationSupport {
   late int page;
   late int items;
 
@@ -8,7 +8,7 @@ class PaginationHelper {
       return true;
     }
 
-    return o is PaginationHelper && o.page == page && o.items == items;
+    return o is PaginationSupport && o.page == page && o.items == items;
   }
 
   @override
