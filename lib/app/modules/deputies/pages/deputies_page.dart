@@ -5,21 +5,22 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/deputies/controllers/deputies_controller.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputies/pages/widgets/deputy_widget.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputies/pages/widgets/filter_modal_widget/filter_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_notification_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
-import 'package:brasil_transparente_flutter/app/themes/bt_text_theme.dart';
-import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
-import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
+import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 class DeputiesPage extends GetView<DeputiesController> {
   Widget _renderHeader() {
     return BtHeaderWidget(
       rightIcon: Icons.search,
-      rightIconColor: BtColorTheme.TUNDORA,
       rightOnPress: () => {
-        Get.toNamed(BtRoutes.SEARCH),
+        BtModalWidget.bottomSheet(
+          content: FilterModalWidget(),
+        )
       },
     );
   }
@@ -31,7 +32,7 @@ class DeputiesPage extends GetView<DeputiesController> {
         width: double.infinity,
         child: Text(
           StringResource.DEPUTIES,
-          style: BtTextTheme.titleDeputies,
+          style: TextHelper.style(fontSize: 30, letterSpacing: 2.5),
         ),
       ),
     );

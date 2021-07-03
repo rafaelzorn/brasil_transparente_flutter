@@ -5,27 +5,28 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 
 class BtHeaderWidget extends StatelessWidget {
   final IconData? rightIcon;
-  final Color rightIconColor;
   final Function? rightOnPress;
   final IconData? leftIcon;
-  final Color leftIconColor;
   final Function? leftOnPress;
 
   BtHeaderWidget({
     Key? key,
     this.rightIcon,
-    this.rightIconColor: BtColorTheme.TUNDORA,
     this.rightOnPress,
     this.leftIcon,
-    this.leftIconColor: BtColorTheme.TUNDORA,
     this.leftOnPress,
   }) : super(key: key);
 
-  Widget _renderIconButton(IconData icon, Color iconColor, Function onPress) {
-    return IconButton(
-      padding: EdgeInsets.zero,
-      constraints: BoxConstraints(),
-      icon: Icon(icon, size: 30, color: iconColor),
+  Widget _renderIconButton(IconData icon, Function onPress) {
+    return RawMaterialButton(
+      elevation: 0,
+      focusElevation: 0,
+      highlightElevation: 0,
+      constraints: BoxConstraints(minWidth: 0, minHeight: 0),
+      fillColor: BtColorTheme.CARARRA,
+      child: Icon(icon, size: 25, color: BtColorTheme.BLACK),
+      padding: EdgeInsets.all(10),
+      shape: CircleBorder(),
       onPressed: () => onPress(),
     );
   }
@@ -35,11 +36,7 @@ class BtHeaderWidget extends StatelessWidget {
       return Container();
     }
 
-    return _renderIconButton(
-      this.leftIcon!,
-      this.rightIconColor,
-      this.leftOnPress!,
-    );
+    return _renderIconButton(this.leftIcon!, this.leftOnPress!);
   }
 
   Widget _renderRight() {
@@ -47,11 +44,7 @@ class BtHeaderWidget extends StatelessWidget {
       return Container();
     }
 
-    return _renderIconButton(
-      this.rightIcon!,
-      this.rightIconColor,
-      this.rightOnPress!,
-    );
+    return _renderIconButton(this.rightIcon!, this.rightOnPress!);
   }
 
   @override

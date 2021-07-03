@@ -4,9 +4,9 @@ import 'package:transparent_image/transparent_image.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
-import 'package:brasil_transparente_flutter/app/themes/bt_text_theme.dart';
 import 'package:brasil_transparente_flutter/app/resources/image_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/string_helper.dart';
+import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 class DeputyWidget extends StatelessWidget {
   final DeputyModel deputy;
@@ -52,14 +52,23 @@ class DeputyWidget extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 8),
         child: Text(
           StringHelper.capitalize(deputy.name, allWords: true),
-          style: BtTextTheme.nameDeputyList,
+          style: TextHelper.style(
+            fontSize: 14,
+            fontWeight: FontWeight.w900,
+          ), // BtTextTheme.nameDeputyList,
         ),
       ),
       subtitle: Row(
         children: <Widget>[
           Icon(Icons.location_on, size: 15),
           SizedBox(width: 5),
-          Text(deputy.state, style: BtTextTheme.stateDeputyList),
+          Text(
+            deputy.state,
+            style: TextHelper.style(
+              fontSize: 12,
+              color: BtColorTheme.TUNDORA,
+            ),
+          ),
         ],
       ),
       trailing: Container(
@@ -71,7 +80,11 @@ class DeputyWidget extends StatelessWidget {
         ),
         child: Text(
           deputy.politicalParty,
-          style: BtTextTheme.politicalPartyDeputyList,
+          style: TextHelper.style(
+            fontSize: 10,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.5,
+          ),
           textAlign: TextAlign.center,
         ),
       ),

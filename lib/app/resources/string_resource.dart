@@ -5,4 +5,5 @@ class StringResource {
   static const String SOMETHING_WRONG_HAS_HAPPENED =
       'Aconteceu algo errado, por favor, tente novamente mais tarde';
   static const String TRY_AGAIN = 'Tente novamente';
+  static const String FILTERS = 'Filtros';
 }

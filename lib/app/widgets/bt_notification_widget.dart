@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // bt
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
-import 'package:brasil_transparente_flutter/app/themes/bt_text_theme.dart';
+import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 class BtNotificationWidget extends StatelessWidget {
   final IconData icon;
@@ -37,7 +37,11 @@ class BtNotificationWidget extends StatelessWidget {
             child: Text(
               this.textButton!,
               textAlign: TextAlign.center,
-              style: BtTextTheme.notificationButton,
+              style: TextHelper.style(
+                fontSize: 14,
+                letterSpacing: 1.5,
+                height: 1.5,
+              ), //BtTextTheme.notificationButton,
             ),
           ),
         ),
@@ -58,7 +62,11 @@ class BtNotificationWidget extends StatelessWidget {
             child: Text(
               this.text,
               textAlign: TextAlign.center,
-              style: BtTextTheme.notification,
+              style: TextHelper.style(
+                fontSize: 14,
+                letterSpacing: 1.5,
+                height: 1.5,
+              ),
             ),
           ),
           _renderButton(),
