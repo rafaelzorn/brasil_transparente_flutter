@@ -6,4 +6,6 @@ class StringResource {
       'Aconteceu algo errado, por favor, tente novamente mais tarde';
   static const String TRY_AGAIN = 'Tente novamente';
   static const String FILTERS = 'Filtros';
+  static const String CLEAN = 'Limpar';
+  static const String APPLY_FILTERS = 'Aplicar filtros';
 }

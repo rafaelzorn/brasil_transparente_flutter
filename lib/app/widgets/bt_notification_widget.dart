@@ -32,14 +32,13 @@ class BtNotificationWidget extends StatelessWidget {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(100)),
-              border: Border.all(color: BtColorTheme.BLACK),
+              border: Border.all(color: BtColorTheme.COD_GRAY),
             ),
             child: Text(
               this.textButton!,
               textAlign: TextAlign.center,
               style: TextHelper.style(
                 fontSize: 14,
-                letterSpacing: 1.5,
                 height: 1.5,
               ), //BtTextTheme.notificationButton,
             ),
@@ -56,17 +55,13 @@ class BtNotificationWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(this.icon, size: 90, color: BtColorTheme.DARK_GRAY),
+          Icon(this.icon, size: 90, color: BtColorTheme.COD_GRAY),
           Container(
             padding: EdgeInsets.only(top: 15, bottom: 10),
             child: Text(
               this.text,
               textAlign: TextAlign.center,
-              style: TextHelper.style(
-                fontSize: 14,
-                letterSpacing: 1.5,
-                height: 1.5,
-              ),
+              style: TextHelper.style(fontSize: 14, height: 1.5),
             ),
           ),
           _renderButton(),

@@ -21,7 +21,10 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: BtColorTheme.TRANSPARENT),
+      SystemUiOverlayStyle(
+        statusBarColor: BtColorTheme.WHITE,
+        statusBarIconBrightness: Brightness.dark,
+      ),
     );
 
     return GetMaterialApp(

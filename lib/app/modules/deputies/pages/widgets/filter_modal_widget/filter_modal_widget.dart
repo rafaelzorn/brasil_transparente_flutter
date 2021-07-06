@@ -15,22 +15,19 @@ class FilterModalWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(right: 5),
         child: TextButton(
-          child: Text('Limpar'),
+          child: Text(StringResource.CLEAN),
           onPressed: () => {},
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
-            primary: BtColorTheme.BLACK,
+            primary: BtColorTheme.COD_GRAY,
             backgroundColor: BtColorTheme.WHITE,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(
-                color: BtColorTheme.BLACK,
-              ),
+              side: BorderSide(color: BtColorTheme.COD_GRAY),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 1.5,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -44,22 +41,19 @@ class FilterModalWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(left: 5),
         child: TextButton(
-          child: Text('Aplicar Filtros'),
+          child: Text(StringResource.APPLY_FILTERS),
           onPressed: () => Get.back(),
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
             primary: BtColorTheme.WHITE,
-            backgroundColor: BtColorTheme.BLACK,
+            backgroundColor: BtColorTheme.COD_GRAY,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(
-                color: BtColorTheme.BLACK,
-              ),
+              side: BorderSide(color: BtColorTheme.COD_GRAY),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 1.5,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -73,10 +67,7 @@ class FilterModalWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          _renderButtonClose(),
-          _renderButtonApplyFilters(),
-        ],
+        children: <Widget>[_renderButtonClose(), _renderButtonApplyFilters()],
       ),
     );
   }
@@ -88,11 +79,7 @@ class FilterModalWidget extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(22, 22, 22, 18),
           child: Text(
             StringResource.FILTERS,
-            style: TextHelper.style(
-              fontSize: 22,
-              letterSpacing: 2.3,
-              fontWeight: FontWeight.w800,
-            ),
+            style: TextHelper.style(fontSize: 20, fontWeight: FontWeight.w800),
           ),
         ),
         Expanded(child: Container()),

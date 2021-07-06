@@ -19,14 +19,12 @@ class BtHeaderWidget extends StatelessWidget {
 
   Widget _renderIconButton(IconData icon, Function onPress) {
     return RawMaterialButton(
-      elevation: 0,
-      focusElevation: 0,
-      highlightElevation: 0,
       constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-      fillColor: BtColorTheme.CARARRA,
-      child: Icon(icon, size: 25, color: BtColorTheme.BLACK),
+      child: Icon(icon, size: 23, color: BtColorTheme.COD_GRAY),
       padding: EdgeInsets.all(10),
-      shape: CircleBorder(),
+      shape: CircleBorder(
+        side: BorderSide(width: 0.5, color: BtColorTheme.SILVER_CHALICE),
+      ),
       onPressed: () => onPress(),
     );
   }
@@ -54,10 +52,7 @@ class BtHeaderWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          _renderLeft(),
-          _renderRight(),
-        ],
+        children: <Widget>[_renderLeft(), _renderRight()],
       ),
     );
   }

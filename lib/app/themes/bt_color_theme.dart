@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class BtColorTheme {
   static const Color WHITE = Color(0XFFFFFFFF);
-  static const Color TRANSPARENT = Color(0X00000000);
-  static const Color BLACK = Color(0XFF000000);
-  static const Color TUNDORA = Color(0XFF424242);
-  static const Color DARK_GRAY = Color(0XFFA1A1A4);
-  static const Color CARARRA = Color(0XFFE6E6E6);
+  static const Color COD_GRAY = Color(0XFF0E0E0E);
+  static const Color SILVER_CHALICE = Color(0XFFADABAB);
+  static const Color LINK_WATER = Color(0XFFE8ECF9);
 }

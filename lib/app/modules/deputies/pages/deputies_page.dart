@@ -18,9 +18,7 @@ class DeputiesPage extends GetView<DeputiesController> {
     return BtHeaderWidget(
       rightIcon: Icons.search,
       rightOnPress: () => {
-        BtModalWidget.bottomSheet(
-          content: FilterModalWidget(),
-        )
+        BtModalWidget.bottomSheet(content: FilterModalWidget()),
       },
     );
   }
@@ -32,7 +30,7 @@ class DeputiesPage extends GetView<DeputiesController> {
         width: double.infinity,
         child: Text(
           StringResource.DEPUTIES,
-          style: TextHelper.style(fontSize: 30, letterSpacing: 2.5),
+          style: TextHelper.style(fontSize: 28, fontWeight: FontWeight.w800),
         ),
       ),
     );
@@ -42,8 +40,8 @@ class DeputiesPage extends GetView<DeputiesController> {
     if (controller.isLoading) {
       return Center(
         child: SizedBox(
-          height: 30,
-          width: 30,
+          height: 40,
+          width: 40,
           child: BtSpinnerWidget(),
         ),
       );

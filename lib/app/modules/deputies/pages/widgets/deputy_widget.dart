@@ -14,30 +14,21 @@ class DeputyWidget extends StatelessWidget {
   DeputyWidget({Key? key, required this.deputy}) : super(key: key);
 
   Widget _renderListImage() {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: BtColorTheme.TUNDORA,
-        border: Border.all(color: BtColorTheme.TUNDORA),
-        shape: BoxShape.circle,
-      ),
-      child: ClipOval(
-        child: FadeInImage.memoryNetwork(
-          imageErrorBuilder: (context, error, stackTrace) {
-            return Image.asset(
-              ImageResource.notFound,
-              fit: BoxFit.cover,
-              height: 40,
-              width: 40,
-            );
-          },
-          placeholder: kTransparentImage,
-          image: deputy.photo,
-          width: 40,
-          height: 40,
-          fit: BoxFit.cover,
-        ),
+    return ClipOval(
+      child: FadeInImage.memoryNetwork(
+        imageErrorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            ImageResource.notFound,
+            fit: BoxFit.cover,
+            height: 40,
+            width: 40,
+          );
+        },
+        placeholder: kTransparentImage,
+        image: deputy.photo,
+        width: 40,
+        height: 40,
+        fit: BoxFit.cover,
       ),
     );
   }
@@ -54,36 +45,41 @@ class DeputyWidget extends StatelessWidget {
           StringHelper.capitalize(deputy.name, allWords: true),
           style: TextHelper.style(
             fontSize: 14,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w700,
           ), // BtTextTheme.nameDeputyList,
         ),
       ),
       subtitle: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Icon(Icons.location_on, size: 15),
+          Icon(
+            Icons.location_on,
+            size: 15,
+            color: BtColorTheme.SILVER_CHALICE,
+          ),
           SizedBox(width: 5),
           Text(
             deputy.state,
             style: TextHelper.style(
               fontSize: 12,
-              color: BtColorTheme.TUNDORA,
+              color: BtColorTheme.SILVER_CHALICE,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],
       ),
       trailing: Container(
-        width: 115,
-        padding: EdgeInsets.symmetric(vertical: 2),
+        width: 100,
+        padding: EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
-          border: Border.all(color: BtColorTheme.BLACK),
+          color: BtColorTheme.LINK_WATER,
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Text(
           deputy.politicalParty,
           style: TextHelper.style(
             fontSize: 10,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.5,
+            fontWeight: FontWeight.w700,
           ),
           textAlign: TextAlign.center,
         ),
@@ -94,11 +90,6 @@ class DeputyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 0.1, color: BtColorTheme.TUNDORA),
-        ),
-      ),
       child: _renderListTitle(),
     );
   }

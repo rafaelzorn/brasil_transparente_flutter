@@ -36,14 +36,15 @@ class DeputiesController extends GetxController {
 
   Future<void> _findDeputies() async {
     try {
-      final deputies = await _deputyRepository.findDeputies(_paginationSupport());
+      final deputies =
+          await _deputyRepository.findDeputies(_paginationSupport());
 
       if (_resetList()) {
         _deputies.clear();
       }
 
       _deputies.addAll(deputies);
-      
+
       _isLoading(false);
       _resetList(false);
       _isError(false);

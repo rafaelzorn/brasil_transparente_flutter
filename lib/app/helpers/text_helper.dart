@@ -7,16 +7,14 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 class TextHelper {
   static TextStyle style({
     required double fontSize,
-    double letterSpacing = 1,
-    FontWeight fontWeight = FontWeight.w700,
-    Color color = BtColorTheme.BLACK,
-    double height = 1
+    FontWeight fontWeight = FontWeight.w400,
+    Color color = BtColorTheme.COD_GRAY,
+    double height = 1,
   }) {
-    return GoogleFonts.questrial(
+    return GoogleFonts.openSans(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
-      letterSpacing: letterSpacing,
       height: height,
     );
   }
