@@ -14,21 +14,29 @@ class DeputyWidget extends StatelessWidget {
   DeputyWidget({Key? key, required this.deputy}) : super(key: key);
 
   Widget _renderListImage() {
-    return ClipOval(
-      child: FadeInImage.memoryNetwork(
-        imageErrorBuilder: (context, error, stackTrace) {
-          return Image.asset(
-            ImageResource.notFound,
-            fit: BoxFit.cover,
-            height: 40,
-            width: 40,
-          );
-        },
-        placeholder: kTransparentImage,
-        image: deputy.photo,
-        width: 40,
-        height: 40,
-        fit: BoxFit.cover,
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        color: BtColorTheme.LINK_WATER,
+        shape: BoxShape.circle,
+      ),
+      child: ClipOval(
+        child: FadeInImage.memoryNetwork(
+          imageErrorBuilder: (context, error, stackTrace) {
+            return Image.asset(
+              ImageResource.notFound,
+              fit: BoxFit.cover,
+              height: 40,
+              width: 40,
+            );
+          },
+          placeholder: kTransparentImage,
+          image: deputy.photo,
+          width: 40,
+          height: 40,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
