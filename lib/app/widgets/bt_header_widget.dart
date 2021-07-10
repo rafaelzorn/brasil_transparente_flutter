@@ -8,6 +8,7 @@ class BtHeaderWidget extends StatelessWidget {
   final Function? rightOnPress;
   final IconData? leftIcon;
   final Function? leftOnPress;
+  final double bottom;
 
   BtHeaderWidget({
     Key? key,
@@ -15,6 +16,7 @@ class BtHeaderWidget extends StatelessWidget {
     this.rightOnPress,
     this.leftIcon,
     this.leftOnPress,
+    this.bottom: 20,
   }) : super(key: key);
 
   Widget _renderIconButton(IconData icon, Function onPress) {
@@ -48,7 +50,13 @@ class BtHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.only(bottom: this.bottom),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: BtColorTheme.SILVER_CHALICE, width: 0.5),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,

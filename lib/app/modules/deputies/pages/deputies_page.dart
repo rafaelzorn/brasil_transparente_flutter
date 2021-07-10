@@ -5,27 +5,25 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/deputies/controllers/deputies_controller.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputies/pages/widgets/deputy_widget.dart';
-import 'package:brasil_transparente_flutter/app/modules/deputies/pages/widgets/filter_modal_widget/filter_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_notification_widget.dart';
-import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
+import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 
 class DeputiesPage extends GetView<DeputiesController> {
   Widget _renderHeader() {
     return BtHeaderWidget(
       rightIcon: Icons.search,
-      rightOnPress: () => {
-        BtModalWidget.bottomSheet(content: FilterModalWidget()),
-      },
+      rightOnPress: () => Get.toNamed(BtRoutes.SEARCH),
+      bottom: 30,
     );
   }
 
   Widget _renderTitle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 25),
+      margin: EdgeInsets.only(bottom: 20),
       child: SizedBox(
         width: double.infinity,
         child: Text(
@@ -80,15 +78,21 @@ class DeputiesPage extends GetView<DeputiesController> {
 
   Widget _renderContent() {
     return SafeArea(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: <Widget>[
-            _renderHeader(),
-            _renderTitle(),
-            Expanded(child: _renderList())
-          ],
-        ),
+      child: Column(
+        children: <Widget>[
+          _renderHeader(),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                children: [
+                  _renderTitle(),
+                  Expanded(child: _renderList()),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

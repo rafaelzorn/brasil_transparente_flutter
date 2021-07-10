@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:get/get.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
+import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
+import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/input_search_widget.dart';
 
-class FilterModalWidget extends StatelessWidget {
-  FilterModalWidget({Key? key}) : super(key: key);
+class SearchPage extends GetView<SearchController> {
+  Widget _renderHeader() {
+    return BtHeaderWidget(
+      leftIcon: Icons.chevron_left,
+      leftOnPress: () => Get.toNamed(BtRoutes.DEPUTIES),
+    );
+  }
 
-  Widget _renderButtonClose() {
+  Widget _renderButtonCleanFilter() {
     return Expanded(
       flex: 1,
       child: Padding(
@@ -42,7 +51,7 @@ class FilterModalWidget extends StatelessWidget {
         padding: EdgeInsets.only(left: 5),
         child: TextButton(
           child: Text(StringResource.APPLY_FILTERS),
-          onPressed: () => Get.back(),
+          onPressed: () => {},
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
             primary: BtColorTheme.WHITE,
@@ -63,36 +72,50 @@ class FilterModalWidget extends StatelessWidget {
 
   Widget _renderButtons() {
     return Container(
-      padding: EdgeInsets.all(15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[_renderButtonClose(), _renderButtonApplyFilters()],
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: BtColorTheme.SILVER_CHALICE, width: 0.5),
+        ),
+      ),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            _renderButtonCleanFilter(),
+            _renderButtonApplyFilters(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _renderContent() {
-    return Column(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.fromLTRB(22, 22, 22, 18),
-          child: Text(
-            StringResource.FILTERS,
-            style: TextHelper.style(fontSize: 20, fontWeight: FontWeight.w800),
+    return SafeArea(
+      child: Column(
+        children: <Widget>[
+          _renderHeader(),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                children: [
+                  InputSearchWidget(),
+                ],
+              ),
+            ),
           ),
-        ),
-        Expanded(child: Container()),
-        _renderButtons(),
-      ],
+          _renderButtons(),
+        ],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: (MediaQuery.of(context).size.height * 0.8),
-      child: _renderContent(),
+    return Scaffold(
+      body: _renderContent(),
     );
   }
 }
