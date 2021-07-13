@@ -91,6 +91,22 @@ class SearchPage extends GetView<SearchController> {
     );
   }
 
+  Widget _renderTitle() {
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      child: SizedBox(
+        width: double.infinity,
+        child: Text(
+          StringResource.FILTERS,
+          style: TextHelper.style(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _renderContent() {
     return SafeArea(
       child: Column(
@@ -102,6 +118,7 @@ class SearchPage extends GetView<SearchController> {
               child: Column(
                 children: [
                   InputSearchWidget(),
+                  _renderTitle(),
                 ],
               ),
             ),
@@ -114,8 +131,11 @@ class SearchPage extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _renderContent(),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: _renderContent(),
+      ),
     );
   }
 }

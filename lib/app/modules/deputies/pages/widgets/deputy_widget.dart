@@ -82,6 +82,10 @@ class DeputyWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: BtColorTheme.LINK_WATER,
           borderRadius: BorderRadius.all(Radius.circular(20)),
+          border: Border.all(
+            color: BtColorTheme.COD_GRAY,
+            width: 0.2,
+          ),
         ),
         child: Text(
           deputy.politicalParty,

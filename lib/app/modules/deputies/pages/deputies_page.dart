@@ -28,7 +28,10 @@ class DeputiesPage extends GetView<DeputiesController> {
         width: double.infinity,
         child: Text(
           StringResource.DEPUTIES,
-          style: TextHelper.style(fontSize: 28, fontWeight: FontWeight.w800),
+          style: TextHelper.style(
+            fontSize: 28,
+            fontWeight: FontWeight.w800,
+          ),
         ),
       ),
     );
