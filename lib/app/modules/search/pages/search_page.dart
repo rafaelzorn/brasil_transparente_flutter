@@ -14,7 +14,7 @@ class SearchPage extends GetView<SearchController> {
   Widget _renderHeader() {
     return BtHeaderWidget(
       leftIcon: Icons.chevron_left,
-      leftOnPress: () => Get.toNamed(BtRoutes.DEPUTIES),
+      leftOnPress: () => Get.offNamed(BtRoutes.DEPUTIES),
     );
   }
 
@@ -51,7 +51,7 @@ class SearchPage extends GetView<SearchController> {
         padding: EdgeInsets.only(left: 5),
         child: TextButton(
           child: Text(StringResource.APPLY_FILTERS),
-          onPressed: () => {},
+          onPressed: controller.search,
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
             primary: BtColorTheme.WHITE,
@@ -107,23 +107,40 @@ class SearchPage extends GetView<SearchController> {
     );
   }
 
+  Widget _renderForm() {
+    return Form(
+      key: controller.formKey,
+      child: Expanded(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    InputSearchWidget(
+                      controller: controller.searchController,
+                    ),
+                    _renderTitle(),
+                  ],
+                ),
+              ),
+            ),
+            _renderButtons(),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _renderContent() {
     return SafeArea(
       child: Column(
         children: <Widget>[
           _renderHeader(),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  InputSearchWidget(),
-                  _renderTitle(),
-                ],
-              ),
-            ),
-          ),
-          _renderButtons(),
+          _renderForm(),
         ],
       ),
     );
@@ -134,6 +151,7 @@ class SearchPage extends GetView<SearchController> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: _renderContent(),
       ),
     );

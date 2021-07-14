@@ -6,12 +6,19 @@ import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 
 class InputSearchWidget extends StatelessWidget {
-  InputSearchWidget({Key? key}) : super(key: key);
+  final TextEditingController controller;
+
+  InputSearchWidget({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   Widget _renderContent() {
     return Stack(
       children: <Widget>[
         TextField(
+          controller: this.controller,
+          keyboardType: TextInputType.text,
           style: TextHelper.style(
             fontSize: 15,
             color: BtColorTheme.COD_GRAY,

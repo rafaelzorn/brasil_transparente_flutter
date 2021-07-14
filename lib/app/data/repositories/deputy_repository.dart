@@ -10,7 +10,8 @@ class DeputyRepository {
   DeputyRepository(this._dio);
 
   Future<List<DeputyModel>> findDeputies(
-      PaginationSupport paginationSupport) async {
+    PaginationSupport paginationSupport,
+  ) async {
     try {
       Response response = await _dio.get('/deputados', queryParameters: {
         'pagina': paginationSupport.page,

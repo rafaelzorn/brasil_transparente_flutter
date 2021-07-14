@@ -9,13 +9,14 @@ class DeputiesController extends GetxController {
   final DeputyRepository _deputyRepository;
 
   final int _itemsPerPage = 15;
+  final int _initialPage = 1;
 
-  final _deputies = <DeputyModel>[].obs;
-  final _paginationSupport = PaginationSupport().obs;
-  final _lastPage = false.obs;
-  final _isLoading = false.obs;
-  final _isError = false.obs;
-  final _resetList = false.obs;
+  final RxList<DeputyModel> _deputies = <DeputyModel>[].obs;
+  final Rx<PaginationSupport> _paginationSupport = PaginationSupport().obs;  
+  final RxBool _lastPage = false.obs;
+  final RxBool _isLoading = false.obs;
+  final RxBool _isError = false.obs;
+  final RxBool _resetList = false.obs;
 
   List<DeputyModel> get deputies => _deputies.toList();
   bool get lastPage => _lastPage();
@@ -25,7 +26,7 @@ class DeputiesController extends GetxController {
   int get _page => _paginationSupport().page;
 
   DeputiesController(this._deputyRepository);
-
+  
   @override
   void onInit() {
     super.onInit();
@@ -36,8 +37,9 @@ class DeputiesController extends GetxController {
 
   Future<void> _findDeputies() async {
     try {
-      final deputies =
-          await _deputyRepository.findDeputies(_paginationSupport());
+      final deputies = await _deputyRepository.findDeputies(
+        _paginationSupport(),
+      );
 
       if (_resetList()) {
         _deputies.clear();
@@ -67,10 +69,10 @@ class DeputiesController extends GetxController {
   Future<void> refresh() async {
     _resetList(true);
 
-    _changePagination(1);
+    _changePagination(_initialPage);
   }
 
-  void nextPage() => _changePagination(_page + 1);
+  void nextPage() => _changePagination(_page + _initialPage);
 
   void reload() => _changePagination(_page, showLoading: true);
 }
