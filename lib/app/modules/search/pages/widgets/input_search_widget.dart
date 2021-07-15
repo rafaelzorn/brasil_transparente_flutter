@@ -14,44 +14,40 @@ class InputSearchWidget extends StatelessWidget {
   }) : super(key: key);
 
   Widget _renderContent() {
-    return Stack(
-      children: <Widget>[
-        TextField(
-          controller: this.controller,
-          keyboardType: TextInputType.text,
-          style: TextHelper.style(
-            fontSize: 15,
-            color: BtColorTheme.COD_GRAY,
-          ),
-          textCapitalization: TextCapitalization.sentences,
-          textInputAction: TextInputAction.done,
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: BtColorTheme.COD_GRAY,
-                width: 0.2,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: BtColorTheme.COD_GRAY,
-                width: 0.2,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-            ),
-            suffixIcon: Icon(Icons.search, color: BtColorTheme.COD_GRAY),
-            contentPadding: EdgeInsets.fromLTRB(20, 15, 8, 15),
-            hintText: StringResource.SEARCH_FOR_THE_DEPUTY_NAME,
-            hintStyle: TextHelper.style(
-              fontSize: 15,
-              color: BtColorTheme.SILVER_CHALICE,
-            ),
-            filled: true,
-            fillColor: BtColorTheme.LINK_WATER,
-          ),
+    return TextField(
+      autocorrect: false,
+      controller: this.controller,
+      keyboardType: TextInputType.text,
+      textCapitalization: TextCapitalization.sentences,
+      textInputAction: TextInputAction.done,
+      style: TextHelper.style(
+        fontSize: 15,
+        color: BtColorTheme.COD_GRAY,
+        height: 1.3,
+      ),
+      decoration: InputDecoration(
+        hintText: StringResource.SEARCH_FOR_THE_DEPUTY_NAME,
+        hintStyle: TextHelper.style(
+          fontSize: 15,
+          color: BtColorTheme.SILVER_CHALICE,
         ),
-      ],
+        suffixIcon: Icon(
+          Icons.search,
+          color: BtColorTheme.COD_GRAY,
+          size: 28,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: BtColorTheme.COD_GRAY, width: 0.2),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: BtColorTheme.COD_GRAY, width: 0.2),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+        ),
+        filled: true,
+        fillColor: BtColorTheme.LINK_WATER,
+        contentPadding: EdgeInsets.fromLTRB(15, 15, 8, 15),        
+      ),
     );
   }
 
