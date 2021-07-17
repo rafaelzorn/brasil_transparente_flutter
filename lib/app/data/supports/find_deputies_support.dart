@@ -1,7 +1,7 @@
 class FindDeputiesSupport {
   late int page;
   late int items;
-  late String name;
+  late Map<String, String> filters;
 
   @override
   bool operator ==(Object o) {
@@ -12,11 +12,11 @@ class FindDeputiesSupport {
     return o is FindDeputiesSupport &&
         o.page == page &&
         o.items == items &&
-        o.name == name;
+        o.filters == filters;
   }
 
   @override
   int get hashCode {
-    return page.hashCode ^ items.hashCode ^ name.hashCode;
+    return page.hashCode ^ items.hashCode ^ filters.hashCode;
   }
 }

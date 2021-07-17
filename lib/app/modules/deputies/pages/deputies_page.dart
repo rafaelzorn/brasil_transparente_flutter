@@ -17,19 +17,19 @@ class DeputiesPage extends GetView<DeputiesController> {
     return BtHeaderWidget(
       rightIcon: Icons.search,
       rightOnPress: () => Get.toNamed(BtRoutes.SEARCH),
-      bottom: 30,
+      bottom: 20,
     );
   }
 
   Widget _renderTitle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 15),
       child: SizedBox(
         width: double.infinity,
         child: Text(
           StringResource.DEPUTIES,
           style: TextHelper.style(
-            fontSize: 28,
+            fontSize: 25,
             fontWeight: FontWeight.w800,
           ),
         ),

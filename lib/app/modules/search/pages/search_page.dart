@@ -121,7 +121,7 @@ class SearchPage extends GetView<SearchController> {
                 child: Column(
                   children: <Widget>[
                     InputSearchWidget(
-                      controller: controller.searchController,
+                      controller: controller.nameController,
                     ),
                     _renderTitle(),
                   ],

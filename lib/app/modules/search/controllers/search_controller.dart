@@ -5,12 +5,10 @@ import 'package:get/get.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputies/controllers/deputies_controller.dart';
 import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 
-class SearchController extends GetxController {
+class SearchController extends GetxController {  
   final formKey = GlobalKey<FormState>();
-  final TextEditingController searchController = TextEditingController(
-    text: DeputiesController.to.name,
-  );
-
+  final TextEditingController nameController = TextEditingController();
+  
   void search() {
     Get.offNamed(BtRoutes.DEPUTIES);
 
@@ -18,18 +16,11 @@ class SearchController extends GetxController {
       page: 1,
       resetList: true,
       showLoading: true,
-      name: searchController.text,
+      filters: {'name': nameController.text},
     );
   }
 
   void clear() {
-    searchController.text = '';
-
-    DeputiesController.to.handleFindDeputies(
-      page: 1,
-      resetList: true,
-      showLoading: true,
-      name: searchController.text,
-    );
+    nameController.clear();
   }
 }

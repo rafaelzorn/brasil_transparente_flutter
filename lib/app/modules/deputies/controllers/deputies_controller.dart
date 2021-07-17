@@ -27,7 +27,7 @@ class DeputiesController extends GetxController {
   bool get isError => _isError();
 
   int get _page => _findDeputiesSupport().page;
-  String get name => _findDeputiesSupport().name;
+  Map<String, String> get filters => _findDeputiesSupport().filters;
 
   DeputiesController(this._deputyRepository);
 
@@ -65,7 +65,7 @@ class DeputiesController extends GetxController {
     required int page,
     bool showLoading = false,
     resetList = false,
-    String name = '',
+    Map<String, String> filters = const {}
   }) {
     _resetList(resetList);
     _isLoading(showLoading);
@@ -73,17 +73,17 @@ class DeputiesController extends GetxController {
     _findDeputiesSupport.update((val) {
       val!.page = page;
       val.items = _itemsPerPage;
-      val.name = name;
+      val.filters = filters;
     });
   }
 
   Future<void> refresh() async {
-    handleFindDeputies(page: _initialPage, resetList: true, name: name);
+    handleFindDeputies(page: _initialPage, resetList: true, filters: filters);
   }
 
-  void nextPage() => handleFindDeputies(page: _page + _initialPage, name: name);
+  void nextPage() => handleFindDeputies(page: _page + _initialPage, filters: filters);
 
   void reload() {
-    handleFindDeputies(page: _page, showLoading: true, name: name);
+    handleFindDeputies(page: _page, showLoading: true, filters: filters);
   }
 }

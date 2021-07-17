@@ -16,7 +16,7 @@ class DeputyRepository {
       Response response = await _dio.get('/deputados', queryParameters: {
         'pagina': findDeputiesSupport.page,
         'itens': findDeputiesSupport.items,
-        'nome': findDeputiesSupport.name,
+        'nome': findDeputiesSupport.filters['name'] ?? '',
       });
 
       return response.data['dados']

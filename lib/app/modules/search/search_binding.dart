@@ -6,6 +6,6 @@ import 'package:brasil_transparente_flutter/app/modules/search/controllers/searc
 class SearchBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => SearchController());
+    Get.put(SearchController(), permanent: true);
   }
 }
