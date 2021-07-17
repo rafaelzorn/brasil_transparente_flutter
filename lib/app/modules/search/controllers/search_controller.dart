@@ -21,4 +21,15 @@ class SearchController extends GetxController {
       name: searchController.text,
     );
   }
+
+  void clear() {
+    searchController.text = '';
+
+    DeputiesController.to.handleFindDeputies(
+      page: 1,
+      resetList: true,
+      showLoading: true,
+      name: searchController.text,
+    );
+  }
 }

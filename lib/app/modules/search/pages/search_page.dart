@@ -25,7 +25,7 @@ class SearchPage extends GetView<SearchController> {
         padding: EdgeInsets.only(right: 5),
         child: TextButton(
           child: Text(StringResource.CLEAN),
-          onPressed: () => {},
+          onPressed: controller.clear,
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
             primary: BtColorTheme.BLACK,
