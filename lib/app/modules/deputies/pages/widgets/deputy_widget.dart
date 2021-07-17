@@ -32,7 +32,7 @@ class DeputyWidget extends StatelessWidget {
             );
           },
           placeholder: kTransparentImage,
-          image: deputy.photo,
+          image: deputy.photo ?? '',
           width: 40,
           height: 40,
           fit: BoxFit.cover,
@@ -50,7 +50,7 @@ class DeputyWidget extends StatelessWidget {
       title: Container(
         margin: EdgeInsets.only(bottom: 8),
         child: Text(
-          StringHelper.capitalize(deputy.name, allWords: true),
+          StringHelper.capitalize(deputy.name ?? '-', allWords: true),
           style: TextHelper.style(
             fontSize: 14,
             fontWeight: FontWeight.w700,
@@ -65,11 +65,11 @@ class DeputyWidget extends StatelessWidget {
             size: 15,
             color: BtColorTheme.SILVER_CHALICE,
           ),
-          SizedBox(width: 5),
+          SizedBox(width: 3),
           Text(
-            deputy.state,
+            deputy.state ?? '-',
             style: TextHelper.style(
-              fontSize: 12,
+              fontSize: 11,
               color: BtColorTheme.SILVER_CHALICE,
               fontWeight: FontWeight.w600,
             ),
@@ -83,14 +83,14 @@ class DeputyWidget extends StatelessWidget {
           color: BtColorTheme.LINK_WATER,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           border: Border.all(
-            color: BtColorTheme.COD_GRAY,
-            width: 0.2,
+            color: BtColorTheme.BLACK,
+            width: 0.1,
           ),
         ),
         child: Text(
-          deputy.politicalParty,
+          deputy.politicalParty ?? '-',
           style: TextHelper.style(
-            fontSize: 10,
+            fontSize: 9,
             fontWeight: FontWeight.w700,
           ),
           textAlign: TextAlign.center,

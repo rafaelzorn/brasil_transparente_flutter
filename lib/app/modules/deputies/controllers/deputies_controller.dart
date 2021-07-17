@@ -3,16 +3,19 @@ import 'package:get/get.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/data/repositories/deputy_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
-import 'package:brasil_transparente_flutter/app/data/supports/pagination_support.dart';
+import 'package:brasil_transparente_flutter/app/data/supports/find_deputies_support.dart';
 
 class DeputiesController extends GetxController {
+  static DeputiesController get to => Get.find();
+
   final DeputyRepository _deputyRepository;
 
   final int _itemsPerPage = 15;
   final int _initialPage = 1;
 
   final RxList<DeputyModel> _deputies = <DeputyModel>[].obs;
-  final Rx<PaginationSupport> _paginationSupport = PaginationSupport().obs;  
+  final Rx<FindDeputiesSupport> _findDeputiesSupport =
+      FindDeputiesSupport().obs;
   final RxBool _lastPage = false.obs;
   final RxBool _isLoading = false.obs;
   final RxBool _isError = false.obs;
@@ -23,22 +26,23 @@ class DeputiesController extends GetxController {
   bool get isLoading => _isLoading();
   bool get isError => _isError();
 
-  int get _page => _paginationSupport().page;
+  int get _page => _findDeputiesSupport().page;
+  String get name => _findDeputiesSupport().name;
 
   DeputiesController(this._deputyRepository);
-  
+
   @override
   void onInit() {
     super.onInit();
 
-    ever(_paginationSupport, (_) => _findDeputies());
-    _changePagination(1, showLoading: true);
+    ever(_findDeputiesSupport, (_) => _findDeputies());
+    handleFindDeputies(page: _initialPage, showLoading: true);
   }
 
   Future<void> _findDeputies() async {
     try {
       final deputies = await _deputyRepository.findDeputies(
-        _paginationSupport(),
+        _findDeputiesSupport(),
       );
 
       if (_resetList()) {
@@ -57,22 +61,29 @@ class DeputiesController extends GetxController {
     }
   }
 
-  void _changePagination(int page, {bool showLoading = false}) {
+  void handleFindDeputies({
+    required int page,
+    bool showLoading = false,
+    resetList = false,
+    String name = '',
+  }) {
+    _resetList(resetList);
     _isLoading(showLoading);
 
-    _paginationSupport.update((val) {
+    _findDeputiesSupport.update((val) {
       val!.page = page;
       val.items = _itemsPerPage;
+      val.name = name;
     });
   }
 
   Future<void> refresh() async {
-    _resetList(true);
-
-    _changePagination(_initialPage);
+    handleFindDeputies(page: _initialPage, resetList: true, name: name);
   }
 
-  void nextPage() => _changePagination(_page + _initialPage);
+  void nextPage() => handleFindDeputies(page: _page + _initialPage, name: name);
 
-  void reload() => _changePagination(_page, showLoading: true);
+  void reload() {
+    handleFindDeputies(page: _page, showLoading: true, name: name);
+  }
 }

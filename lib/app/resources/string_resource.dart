@@ -8,5 +8,6 @@ class StringResource {
   static const String FILTERS = 'Filtros';
   static const String CLEAN = 'Limpar';
   static const String APPLY_FILTERS = 'Aplicar filtros';
-  static const String SEARCH_FOR_THE_DEPUTY_NAME = 'Procure pelo nome do deputado';
+  static const String SEARCH_FOR_THE_DEPUTY_NAME =
+      'Procure pelo nome do deputado';
 }

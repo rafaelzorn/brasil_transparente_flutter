@@ -8,7 +8,7 @@ class TextHelper {
   static TextStyle style({
     required double fontSize,
     FontWeight fontWeight = FontWeight.w400,
-    Color color = BtColorTheme.COD_GRAY,
+    Color color = BtColorTheme.BLACK,
     double height = 1,
   }) {
     return GoogleFonts.openSans(

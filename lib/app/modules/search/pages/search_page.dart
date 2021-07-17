@@ -28,11 +28,11 @@ class SearchPage extends GetView<SearchController> {
           onPressed: () => {},
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
-            primary: BtColorTheme.COD_GRAY,
+            primary: BtColorTheme.BLACK,
             backgroundColor: BtColorTheme.WHITE,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(color: BtColorTheme.COD_GRAY),
+              side: BorderSide(color: BtColorTheme.BLACK, width: 0.5),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
@@ -55,10 +55,10 @@ class SearchPage extends GetView<SearchController> {
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
             primary: BtColorTheme.WHITE,
-            backgroundColor: BtColorTheme.COD_GRAY,
+            backgroundColor: BtColorTheme.BLACK,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(color: BtColorTheme.COD_GRAY),
+              side: BorderSide(color: BtColorTheme.BLACK),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
@@ -74,7 +74,7 @@ class SearchPage extends GetView<SearchController> {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: BtColorTheme.SILVER_CHALICE, width: 0.5),
+          top: BorderSide(color: BtColorTheme.BLACK, width: 0.1),
         ),
       ),
       child: Container(

@@ -7,7 +7,7 @@ class BtSpinnerWidget extends StatelessWidget {
   final double strokeWidth;
   final Color color;
 
-  BtSpinnerWidget({this.strokeWidth: 2, this.color: BtColorTheme.COD_GRAY});
+  BtSpinnerWidget({this.strokeWidth: 2, this.color: BtColorTheme.BLACK});
 
   @override
   Widget build(BuildContext context) {

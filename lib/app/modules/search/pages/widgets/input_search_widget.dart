@@ -22,7 +22,7 @@ class InputSearchWidget extends StatelessWidget {
       textInputAction: TextInputAction.done,
       style: TextHelper.style(
         fontSize: 15,
-        color: BtColorTheme.COD_GRAY,
+        color: BtColorTheme.BLACK,
         height: 1.3,
       ),
       decoration: InputDecoration(
@@ -33,20 +33,20 @@ class InputSearchWidget extends StatelessWidget {
         ),
         suffixIcon: Icon(
           Icons.search,
-          color: BtColorTheme.COD_GRAY,
+          color: BtColorTheme.BLACK,
           size: 28,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: BtColorTheme.COD_GRAY, width: 0.2),
+          borderSide: BorderSide(color: BtColorTheme.BLACK, width: 0.2),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: BtColorTheme.COD_GRAY, width: 0.2),
+          borderSide: BorderSide(color: BtColorTheme.BLACK, width: 0.2),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         filled: true,
         fillColor: BtColorTheme.LINK_WATER,
-        contentPadding: EdgeInsets.fromLTRB(15, 15, 8, 15),        
+        contentPadding: EdgeInsets.fromLTRB(15, 15, 8, 15),
       ),
     );
   }
