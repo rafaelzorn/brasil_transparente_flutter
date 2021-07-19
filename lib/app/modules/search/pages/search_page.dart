@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
-import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
@@ -14,7 +13,7 @@ class SearchPage extends GetView<SearchController> {
   Widget _renderHeader() {
     return BtHeaderWidget(
       leftIcon: Icons.chevron_left,
-      leftOnPress: () => Get.offNamed(BtRoutes.DEPUTIES),
+      leftOnPress: () => Get.back(),
     );
   }
 
