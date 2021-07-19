@@ -22,30 +22,30 @@ class InputSearchWidget extends StatelessWidget {
       textInputAction: TextInputAction.done,
       style: TextHelper.style(
         fontSize: 15,
-        color: BtColorTheme.BLACK,
+        color: BtColorTheme.WHITE,
         height: 1.3,
       ),
       decoration: InputDecoration(
         hintText: StringResource.SEARCH_FOR_THE_DEPUTY_NAME,
         hintStyle: TextHelper.style(
           fontSize: 15,
-          color: BtColorTheme.SILVER_CHALICE,
+          color: BtColorTheme.WHITE,
         ),
         suffixIcon: Icon(
           Icons.search,
-          color: BtColorTheme.BLACK,
+          color: BtColorTheme.WHITE,
           size: 28,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: BtColorTheme.BLACK, width: 0.2),
+          borderSide: BorderSide(color: BtColorTheme.WHITE, width: 0.2),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: BtColorTheme.BLACK, width: 0.2),
+          borderSide: BorderSide(color: BtColorTheme.WHITE, width: 0.2),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         filled: true,
-        fillColor: BtColorTheme.LINK_WATER,
+        fillColor: BtColorTheme.CINDER,
         contentPadding: EdgeInsets.fromLTRB(15, 15, 8, 15),
       ),
     );

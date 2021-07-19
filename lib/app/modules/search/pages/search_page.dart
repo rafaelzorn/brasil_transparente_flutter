@@ -27,11 +27,11 @@ class SearchPage extends GetView<SearchController> {
           onPressed: controller.clear,
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
-            primary: BtColorTheme.BLACK,
-            backgroundColor: BtColorTheme.WHITE,
+            primary: BtColorTheme.WHITE,
+            backgroundColor: BtColorTheme.CINDER,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(color: BtColorTheme.BLACK, width: 0.5),
+              side: BorderSide(color: BtColorTheme.WHITE, width: 0.5),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
@@ -54,10 +54,9 @@ class SearchPage extends GetView<SearchController> {
           style: TextButton.styleFrom(
             padding: EdgeInsets.all(15),
             primary: BtColorTheme.WHITE,
-            backgroundColor: BtColorTheme.BLACK,
+            backgroundColor: BtColorTheme.DODGER_BLUE,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(color: BtColorTheme.BLACK),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
@@ -71,21 +70,14 @@ class SearchPage extends GetView<SearchController> {
 
   Widget _renderButtons() {
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: BtColorTheme.BLACK, width: 0.1),
-        ),
-      ),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            _renderButtonCleanFilter(),
-            _renderButtonApplyFilters(),
-          ],
-        ),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          _renderButtonCleanFilter(),
+          _renderButtonApplyFilters(),
+        ],
       ),
     );
   }

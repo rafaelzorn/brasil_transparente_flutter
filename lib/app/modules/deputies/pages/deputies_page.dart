@@ -30,7 +30,7 @@ class DeputiesPage extends GetView<DeputiesController> {
           StringResource.DEPUTIES,
           style: TextHelper.style(
             fontSize: 25,
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),

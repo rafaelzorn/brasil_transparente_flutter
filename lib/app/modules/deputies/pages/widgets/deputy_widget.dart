@@ -15,10 +15,10 @@ class DeputyWidget extends StatelessWidget {
 
   Widget _renderListImage() {
     return Container(
-      width: 40,
-      height: 40,
+      width: 45,
+      height: 45,
       decoration: BoxDecoration(
-        color: BtColorTheme.LINK_WATER,
+        color: BtColorTheme.WHITE,
         shape: BoxShape.circle,
       ),
       child: ClipOval(
@@ -27,14 +27,14 @@ class DeputyWidget extends StatelessWidget {
             return Image.asset(
               ImageResource.notFound,
               fit: BoxFit.cover,
-              height: 40,
-              width: 40,
+              height: 45,
+              width: 45,
             );
           },
           placeholder: kTransparentImage,
           image: deputy.photo ?? '',
-          width: 40,
-          height: 40,
+          width: 45,
+          height: 45,
           fit: BoxFit.cover,
         ),
       ),
@@ -53,7 +53,7 @@ class DeputyWidget extends StatelessWidget {
           StringHelper.capitalize(deputy.name ?? '-', allWords: true),
           style: TextHelper.style(
             fontSize: 14,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ), // BtTextTheme.nameDeputyList,
         ),
       ),
@@ -63,14 +63,14 @@ class DeputyWidget extends StatelessWidget {
           Icon(
             Icons.location_on,
             size: 15,
-            color: BtColorTheme.SILVER_CHALICE,
+            color: BtColorTheme.WHITE,
           ),
           SizedBox(width: 3),
           Text(
             deputy.state ?? '-',
             style: TextHelper.style(
               fontSize: 11,
-              color: BtColorTheme.SILVER_CHALICE,
+              color: BtColorTheme.WHITE,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -80,10 +80,9 @@ class DeputyWidget extends StatelessWidget {
         width: 100,
         padding: EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
-          color: BtColorTheme.LINK_WATER,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           border: Border.all(
-            color: BtColorTheme.BLACK,
+            color: BtColorTheme.WHITE,
             width: 0.1,
           ),
         ),
@@ -91,7 +90,7 @@ class DeputyWidget extends StatelessWidget {
           deputy.politicalParty ?? '-',
           style: TextHelper.style(
             fontSize: 9,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ),
           textAlign: TextAlign.center,
         ),
