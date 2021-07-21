@@ -63,14 +63,14 @@ class DeputyWidget extends StatelessWidget {
           Icon(
             Icons.location_on,
             size: 15,
-            color: BtColorTheme.WHITE,
+            color: BtColorTheme.SILVER,
           ),
           SizedBox(width: 3),
           Text(
             deputy.state ?? '-',
             style: TextHelper.style(
               fontSize: 11,
-              color: BtColorTheme.WHITE,
+              color: BtColorTheme.SILVER,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -82,8 +82,8 @@ class DeputyWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           border: Border.all(
-            color: BtColorTheme.WHITE,
-            width: 0.1,
+            color: BtColorTheme.SILVER,
+            width: 0.3,
           ),
         ),
         child: Text(
@@ -91,6 +91,7 @@ class DeputyWidget extends StatelessWidget {
           style: TextHelper.style(
             fontSize: 9,
             fontWeight: FontWeight.w600,
+            color: BtColorTheme.SILVER,
           ),
           textAlign: TextAlign.center,
         ),

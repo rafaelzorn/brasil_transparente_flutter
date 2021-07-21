@@ -31,7 +31,7 @@ class SearchPage extends GetView<SearchController> {
             backgroundColor: BtColorTheme.CINDER,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(color: BtColorTheme.WHITE, width: 0.5),
+              side: BorderSide(color: BtColorTheme.SILVER, width: 0.5),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
