@@ -8,6 +8,7 @@ import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/input_search_widget.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/selectable_widget.dart';
 
 class SearchPage extends GetView<SearchController> {
   Widget _renderHeader() {
@@ -84,7 +85,7 @@ class SearchPage extends GetView<SearchController> {
 
   Widget _renderTitle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 20),
       child: SizedBox(
         width: double.infinity,
         child: Text(
@@ -115,6 +116,8 @@ class SearchPage extends GetView<SearchController> {
                       controller: controller.nameController,
                     ),
                     _renderTitle(),
+                    SelectableWidget(text: StringResource.SELECT_STATE),
+                    SelectableWidget(text: StringResource.SELECT_THE_POLITICAL_PARTY),
                   ],
                 ),
               ),
