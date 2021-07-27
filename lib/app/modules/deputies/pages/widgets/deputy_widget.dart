@@ -54,6 +54,7 @@ class DeputyWidget extends StatelessWidget {
           style: TextHelper.style(
             fontSize: 14,
             fontWeight: FontWeight.w600,
+            height: 1.4,
           ), // BtTextTheme.nameDeputyList,
         ),
       ),
@@ -81,10 +82,7 @@ class DeputyWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          border: Border.all(
-            color: BtColorTheme.SILVER,
-            width: 0.3,
-          ),
+          border: Border.all(color: BtColorTheme.SILVER, width: 0.3),
         ),
         child: Text(
           deputy.politicalParty ?? '-',
@@ -101,8 +99,6 @@ class DeputyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: _renderListTitle(),
-    );
+    return Container(child: _renderListTitle());
   }
 }

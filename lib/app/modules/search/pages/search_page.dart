@@ -4,17 +4,95 @@ import 'package:get/get.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/input_search_widget.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/selectable_widget.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/selectable_modal_widget.dart';
 
 class SearchPage extends GetView<SearchController> {
   Widget _renderHeader() {
     return BtHeaderWidget(
       leftIcon: Icons.chevron_left,
       leftOnPress: () => Get.back(),
+    );
+  }
+
+  Widget _renderForm() {
+    return Form(
+      key: controller.formKey,
+      child: Expanded(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: <Widget>[
+                    InputSearchWidget(controller: controller.nameController),
+                    _renderTitle(),
+                    _renderSelectableStates()
+                  ],
+                ),
+              ),
+            ),
+            _renderButtons(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _renderTitle() {
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: SizedBox(
+        width: double.infinity,
+        child: Text(
+          StringResource.FILTERS,
+          style: TextHelper.style(fontSize: 22, fontWeight: FontWeight.w700),
+        ),
+      ),
+    );
+  }
+
+  Widget _renderSelectableStates() {
+    return Obx(
+      () => SelectableWidget(
+        text: controller.selectedState.initials ?? StringResource.SELECT_STATE,
+        onTap: () {
+          controller.handleGetStates();
+
+          BtModalWidget.bottomSheet(
+            content: Obx(
+              () => SelectableModalWidget(
+                isLoading: controller.statesIsLoading,
+                isError: controller.statesIsError,
+                items: controller.states,
+                title: StringResource.STATES,
+                handleSelect: controller.handleSelectState,
+                showPropName: 'initials',
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _renderButtons() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          _renderButtonCleanFilter(),
+          _renderButtonApplyFilters(),
+        ],
+      ),
     );
   }
 
@@ -69,73 +147,10 @@ class SearchPage extends GetView<SearchController> {
     );
   }
 
-  Widget _renderButtons() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          _renderButtonCleanFilter(),
-          _renderButtonApplyFilters(),
-        ],
-      ),
-    );
-  }
-
-  Widget _renderTitle() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      child: SizedBox(
-        width: double.infinity,
-        child: Text(
-          StringResource.FILTERS,
-          style: TextHelper.style(
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _renderForm() {
-    return Form(
-      key: controller.formKey,
-      child: Expanded(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    InputSearchWidget(
-                      controller: controller.nameController,
-                    ),
-                    _renderTitle(),
-                    SelectableWidget(text: StringResource.SELECT_STATE),
-                    SelectableWidget(text: StringResource.SELECT_THE_POLITICAL_PARTY),
-                  ],
-                ),
-              ),
-            ),
-            _renderButtons(),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _renderContent() {
     return SafeArea(
       child: Column(
-        children: <Widget>[
-          _renderHeader(),
-          _renderForm(),
-        ],
+        children: <Widget>[_renderHeader(), _renderForm()],
       ),
     );
   }
@@ -144,10 +159,7 @@ class SearchPage extends GetView<SearchController> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: _renderContent(),
-      ),
+      child: Scaffold(resizeToAvoidBottomInset: false, body: _renderContent()),
     );
   }
 }

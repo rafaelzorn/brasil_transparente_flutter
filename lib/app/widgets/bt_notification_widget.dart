@@ -6,12 +6,14 @@ import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 class BtNotificationWidget extends StatelessWidget {
   final IconData icon;
+  final double iconSize;
   final String text;
   final String? textButton;
   final Function? onPress;
 
   BtNotificationWidget({
     required this.icon,
+    this.iconSize = 90,
     required this.text,
     this.textButton,
     this.onPress,
@@ -51,11 +53,12 @@ class BtNotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       alignment: AlignmentDirectional.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(this.icon, size: 90, color: BtColorTheme.WHITE),
+          Icon(this.icon, size: this.iconSize, color: BtColorTheme.WHITE),
           Container(
             padding: EdgeInsets.only(top: 15, bottom: 10),
             child: Text(

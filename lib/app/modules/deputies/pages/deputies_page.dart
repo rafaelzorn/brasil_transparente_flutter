@@ -17,13 +17,13 @@ class DeputiesPage extends GetView<DeputiesController> {
     return BtHeaderWidget(
       rightIcon: Icons.search,
       rightOnPress: () => Get.toNamed(BtRoutes.SEARCH),
-      bottom: 20,
+      bottom: 15,
     );
   }
 
   Widget _renderTitle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 25),
       child: SizedBox(
         width: double.infinity,
         child: Text(
@@ -90,7 +90,7 @@ class DeputiesPage extends GetView<DeputiesController> {
               child: Column(
                 children: [
                   _renderTitle(),
-                  Expanded(child: _renderList()),
+                  Expanded(child: Obx(() => _renderList())),
                 ],
               ),
             ),
@@ -102,8 +102,6 @@ class DeputiesPage extends GetView<DeputiesController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => _renderContent()),
-    );
+    return Scaffold(body: _renderContent());
   }
 }

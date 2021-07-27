@@ -2,10 +2,12 @@ import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
+import 'package:brasil_transparente_flutter/app/data/repositories/state_repository.dart';
 
 class SearchBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(SearchController(), permanent: true);
+    Get.lazyPut(() => StateRepository(Get.find()));
+    Get.put(SearchController(Get.find()), permanent: true);
   }
 }

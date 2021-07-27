@@ -27,10 +27,7 @@ class InputSearchWidget extends StatelessWidget {
       ),
       decoration: InputDecoration(
         hintText: StringResource.SEARCH_FOR_THE_DEPUTY_NAME,
-        hintStyle: TextHelper.style(
-          fontSize: 15,
-          color: BtColorTheme.SILVER,
-        ),
+        hintStyle: TextHelper.style(fontSize: 15, color: BtColorTheme.SILVER),
         suffixIcon: Icon(
           Icons.search,
           color: BtColorTheme.SILVER,
@@ -46,7 +43,7 @@ class InputSearchWidget extends StatelessWidget {
         ),
         filled: true,
         fillColor: BtColorTheme.CINDER,
-        contentPadding: EdgeInsets.fromLTRB(15, 15, 8, 15),
+        contentPadding: EdgeInsets.fromLTRB(15, 18, 8, 18),
       ),
     );
   }
@@ -54,7 +51,7 @@ class InputSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 50),
       child: _renderContent(),
     );
   }

@@ -50,7 +50,7 @@ class BtHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       margin: EdgeInsets.only(bottom: this.bottom),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

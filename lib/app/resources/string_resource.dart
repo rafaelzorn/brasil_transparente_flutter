@@ -11,5 +11,7 @@ class StringResource {
   static const String SEARCH_FOR_THE_DEPUTY_NAME =
       'Procure pelo nome do deputado';
   static const String SELECT_STATE = 'Selecione o estado';
-  static const String SELECT_THE_POLITICAL_PARTY = 'Selecione o partido político';
+  static const String SELECT_THE_POLITICAL_PARTY =
+      'Selecione o partido político';
+  static const String STATES = 'Estados';
 }

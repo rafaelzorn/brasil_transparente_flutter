@@ -65,7 +65,7 @@ class DeputiesController extends GetxController {
     required int page,
     bool showLoading = false,
     resetList = false,
-    Map<String, String> filters = const {}
+    Map<String, String> filters = const {},
   }) {
     _resetList(resetList);
     _isLoading(showLoading);
@@ -81,7 +81,9 @@ class DeputiesController extends GetxController {
     handleFindDeputies(page: _initialPage, resetList: true, filters: filters);
   }
 
-  void nextPage() => handleFindDeputies(page: _page + _initialPage, filters: filters);
+  void nextPage() {
+    handleFindDeputies(page: _page + _initialPage, filters: filters);
+  }
 
   void reload() {
     handleFindDeputies(page: _page, showLoading: true, filters: filters);

@@ -1,9 +1,9 @@
 class DeputyModel {
   int id;
-  String ?name;
-  String ?state;
-  String ?photo;
-  String ?politicalParty;
+  String? name;
+  String? state;
+  String? photo;
+  String? politicalParty;
 
   DeputyModel({
     required this.id,
@@ -18,7 +18,7 @@ class DeputyModel {
       id: map['id'],
       name: map['nome'] ?? null,
       state: map['siglaUf'] ?? null,
-      photo: map['urlFoto' ] ?? null,
+      photo: map['urlFoto'] ?? null,
       politicalParty: map['siglaPartido'] ?? null,
     );
   }

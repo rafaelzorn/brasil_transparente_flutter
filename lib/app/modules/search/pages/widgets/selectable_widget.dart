@@ -6,15 +6,17 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 
 class SelectableWidget extends StatelessWidget {
   final String text;
+  final Function onTap;
 
   SelectableWidget({
     Key? key,
     required this.text,
+    required this.onTap,
   }) : super(key: key);
 
   Widget _renderContent() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => this.onTap(),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(

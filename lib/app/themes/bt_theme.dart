@@ -6,4 +6,7 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 final ThemeData btTheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
   scaffoldBackgroundColor: BtColorTheme.CINDER,
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(primary: BtColorTheme.WHITE),
+  ),
 );
