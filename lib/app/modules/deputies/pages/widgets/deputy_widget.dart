@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
@@ -7,6 +8,7 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/resources/image_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/string_helper.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
+import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 
 class DeputyWidget extends StatelessWidget {
   final DeputyModel deputy;
@@ -15,8 +17,6 @@ class DeputyWidget extends StatelessWidget {
 
   Widget _renderListImage() {
     return Container(
-      width: 45,
-      height: 45,
       decoration: BoxDecoration(
         color: BtColorTheme.WHITE,
         shape: BoxShape.circle,
@@ -43,7 +43,9 @@ class DeputyWidget extends StatelessWidget {
 
   Widget _renderListTitle() {
     return ListTile(
-      onTap: () {},
+      onTap: () => Get.toNamed(
+        BtRoutes.DEPUTY_DETAIL.replaceAll(':id', deputy.id.toString()),
+      ),
       dense: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 0),
       leading: _renderListImage(),

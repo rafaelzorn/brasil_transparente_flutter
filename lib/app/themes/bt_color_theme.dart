@@ -6,4 +6,6 @@ class BtColorTheme {
   static const Color DODGER_BLUE = Color(0XFF4B53FC);
   static const Color SILVER = Color(0XFFBABABA);
   static const Color STEEL_GRAY = Color(0XFF1A1A26);
+  static const Color TUNA = Color(0XFF363644);
+  static const Color TOM_THUMB = Color(0XFF0E5D1B);
 }

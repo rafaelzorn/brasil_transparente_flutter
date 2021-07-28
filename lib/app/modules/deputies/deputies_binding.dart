@@ -7,7 +7,7 @@ import 'package:brasil_transparente_flutter/app/data/repositories/deputy_reposit
 class DeputiesBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => DeputyRepository(Get.find()));
-    Get.lazyPut(() => DeputiesController(Get.find()));
+    Get.lazyPut<DeputyRepository>(() => DeputyRepository(Get.find()));
+    Get.lazyPut<DeputiesController>(() => DeputiesController(Get.find()));
   }
 }

@@ -6,6 +6,8 @@ import 'package:brasil_transparente_flutter/app/modules/deputies/pages/deputies_
 import 'package:brasil_transparente_flutter/app/modules/deputies/deputies_binding.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/pages/search_page.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/search_binding.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_detail/pages/deputy_detail_page.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_detail/deputy_detail_binding.dart';
 
 class BtPages {
   static final List<GetPage> routes = [
@@ -18,6 +20,11 @@ class BtPages {
       name: BtRoutes.SEARCH,
       page: () => SearchPage(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: BtRoutes.DEPUTY_DETAIL,
+      page: () => DeputyDetailPage(),
+      binding: DeputyDetailBinding(),
     ),
   ];
 }
