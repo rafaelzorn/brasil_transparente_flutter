@@ -18,6 +18,7 @@ class DeputyRepository {
         'itens': findDeputiesSupport.items,
         'nome': findDeputiesSupport.filters['name'] ?? '',
         'siglaUf': findDeputiesSupport.filters['siglaUf'] ?? '',
+        'siglaPartido': findDeputiesSupport.filters['siglaPartido'] ?? '',
       });
 
       return response.data['dados']

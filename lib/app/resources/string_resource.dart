@@ -14,4 +14,5 @@ class StringResource {
   static const String SELECT_THE_POLITICAL_PARTY =
       'Selecione o partido político';
   static const String STATES = 'Estados';
+  static const String POLITICAL_PARTIES = 'Partidos políticos';
 }

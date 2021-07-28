@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/controllers/select_state_controller.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/controllers/select_political_party_controller.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
@@ -33,7 +35,8 @@ class SearchPage extends GetView<SearchController> {
                   children: <Widget>[
                     InputSearchWidget(controller: controller.nameController),
                     _renderTitle(),
-                    _renderSelectableStates()
+                    _renderSelectableStates(),
+                    _renderSelectablePoliticalParties(),
                   ],
                 ),
               ),
@@ -61,18 +64,46 @@ class SearchPage extends GetView<SearchController> {
   Widget _renderSelectableStates() {
     return Obx(
       () => SelectableWidget(
-        text: controller.selectedState.initials ?? StringResource.SELECT_STATE,
+        text: SelectStateController.to.selectedState.initials ??
+            StringResource.SELECT_STATE,
         onTap: () {
-          controller.handleGetStates();
+          SelectStateController.to.handleGetStates();
 
           BtModalWidget.bottomSheet(
             content: Obx(
               () => SelectableModalWidget(
-                isLoading: controller.statesIsLoading,
-                isError: controller.statesIsError,
-                items: controller.states,
+                isLoading: SelectStateController.to.isLoading,
+                isError: SelectStateController.to.isError,
+                items: SelectStateController.to.states,
                 title: StringResource.STATES,
-                handleSelect: controller.handleSelectState,
+                handleSelect: SelectStateController.to.handleSelectState,
+                showPropName: 'initials',
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _renderSelectablePoliticalParties() {
+    return Obx(
+      () => SelectableWidget(
+        text:
+            SelectPoliticalPartyController.to.selectedPoliticalParty.initials ??
+                StringResource.SELECT_THE_POLITICAL_PARTY,
+        onTap: () {
+          SelectPoliticalPartyController.to.handleGetPoliticalParties();
+
+          BtModalWidget.bottomSheet(
+            content: Obx(
+              () => SelectableModalWidget(
+                isLoading: SelectPoliticalPartyController.to.isLoading,
+                isError: SelectPoliticalPartyController.to.isError,
+                items: SelectPoliticalPartyController.to.politicalParties,
+                title: StringResource.POLITICAL_PARTIES,
+                handleSelect: SelectPoliticalPartyController
+                    .to.handleSelectPoliticalParty,
                 showPropName: 'initials',
               ),
             ),
