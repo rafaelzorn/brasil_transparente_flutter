@@ -11,6 +11,7 @@ class ProfileImageWidget extends StatelessWidget {
 
   Widget _renderImage() {
     return Container(
+      margin: EdgeInsets.only(bottom: 20),
       child: ClipOval(
         child: FadeInImage.memoryNetwork(
           imageErrorBuilder: (context, error, stackTrace) {
