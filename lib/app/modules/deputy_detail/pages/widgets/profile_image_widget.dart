@@ -11,22 +11,22 @@ class ProfileImageWidget extends StatelessWidget {
 
   Widget _renderImage() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 15),
       child: ClipOval(
         child: FadeInImage.memoryNetwork(
           imageErrorBuilder: (context, error, stackTrace) {
             return Image.asset(
               ImageResource.notFound,
               fit: BoxFit.cover,
-              height: 120,
-              width: 120,
+              height: 110,
+              width: 110,
             );
           },
           placeholder: kTransparentImage,
           image:
               'https://www.camara.leg.br/internet/deputado/bandep/204554.jpg',
-          width: 120,
-          height: 120,
+          width: 110,
+          height: 110,
           fit: BoxFit.cover,
         ),
       ),
@@ -35,7 +35,7 @@ class ProfileImageWidget extends StatelessWidget {
 
   Widget _renderStatus() {
     return Transform.translate(
-      offset: Offset(100, 20),
+      offset: Offset(95, 20),
       child: Container(
         width: 70,
         padding: EdgeInsets.symmetric(vertical: 3),

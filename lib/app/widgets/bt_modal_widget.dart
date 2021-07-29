@@ -14,7 +14,7 @@ class BtModalWidget {
           topRight: Radius.circular(25),
         ),
       ),
-      backgroundColor: BtColorTheme.CHARADE,
+      backgroundColor: BtColorTheme.STEEL_GRAY,
       isDismissible: false,
       enableDrag: false,
     );

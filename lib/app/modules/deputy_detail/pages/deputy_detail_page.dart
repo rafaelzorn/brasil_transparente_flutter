@@ -18,7 +18,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
 
   Widget _renderMainInformation() {
     return Container(
-      margin: EdgeInsets.only(bottom: 30),
+      margin: EdgeInsets.only(bottom: 25),
       child: Column(
         children: <Widget>[
           Text(
@@ -29,7 +29,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
               color: BtColorTheme.WHITE,
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 5),
           Text(
             '767.745.400-31',
             style: TextHelper.style(
@@ -38,7 +38,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
               color: BtColorTheme.SILVER,
             ),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 10),
           Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
             decoration: BoxDecoration(
@@ -60,20 +60,27 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
     );
   }
 
-  Widget _renderAbout() {
+  Widget _renderContainer(Widget child) {
     return Container(
+      margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: BtColorTheme.CHARADE,
+        color: BtColorTheme.STEEL_GRAY,
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
-      child: Column(
+      child: child,
+    );
+  }
+
+  Widget _renderAbout() {
+    return _renderContainer(
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Sobre',
             style: TextHelper.style(
-              fontSize: 18,
+              fontSize: 14,
               fontWeight: FontWeight.w700,
               color: BtColorTheme.WHITE,
             ),
@@ -82,11 +89,102 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
           Text(
             'Jose Abilio Silva De Santana é um deputado brasileiro pelo partido pl, tem 56 anos e nasceu na cidade de Salvador/BA.',
             style: TextHelper.style(
-              fontSize: 13,
-              color: BtColorTheme.WHITE,
-              height: 1.2,
+              fontSize: 12,
+              color: BtColorTheme.SILVER,
+              height: 1.3,
             ),
             textAlign: TextAlign.justify,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderGraduation() {
+    return _renderContainer(
+      Row(
+        children: <Widget>[
+          Icon(Icons.school, size: 15, color: BtColorTheme.WHITE),
+          SizedBox(width: 5),
+          Text(
+            'Graduação: ',
+            style: TextHelper.style(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: BtColorTheme.WHITE,
+            ),
+          ),
+          Text(
+            'Superior Incompleto',
+            style: TextHelper.style(
+              fontSize: 12,
+              color: BtColorTheme.SILVER,
+              height: 1.2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderContact() {
+    return _renderContainer(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Contato',
+            style: TextHelper.style(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: BtColorTheme.WHITE,
+            ),
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: <Widget>[
+              Icon(Icons.email, size: 15, color: BtColorTheme.WHITE),
+              SizedBox(width: 5),
+              Text(
+                'E-mail: ',
+                style: TextHelper.style(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: BtColorTheme.WHITE,
+                ),
+              ),
+              Text(
+                'DEP.ABILIOSANTANA@CAMARA.LEG.BR'.toLowerCase(),
+                style: TextHelper.style(
+                  fontSize: 12,
+                  color: BtColorTheme.SILVER,
+                  height: 1.2,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 6),
+          Row(
+            children: <Widget>[
+              Icon(Icons.phone, size: 15, color: BtColorTheme.WHITE),
+              SizedBox(width: 5),
+              Text(
+                'Telefone: ',
+                style: TextHelper.style(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: BtColorTheme.WHITE,
+                ),
+              ),
+              Text(
+                '3215-5531',
+                style: TextHelper.style(
+                  fontSize: 12,
+                  color: BtColorTheme.SILVER,
+                  height: 1.2,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -106,6 +204,8 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
                   ProfileImageWidget(),
                   _renderMainInformation(),
                   _renderAbout(),
+                  _renderGraduation(),
+                  _renderContact(),
                 ],
               ),
             ),
