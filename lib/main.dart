@@ -22,7 +22,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: BtColorTheme.CINDER,
+        statusBarColor: BtColorTheme.BUNKER,
         statusBarIconBrightness: Brightness.light,
       ),
     );

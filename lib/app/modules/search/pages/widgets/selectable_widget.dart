@@ -21,7 +21,7 @@ class SelectableWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
-          border: Border.all(color: BtColorTheme.SILVER, width: 0.3),
+          border: Border.all(color: BtColorTheme.SLATE_GRAY, width: 0.5),
         ),
         child: Row(
           children: [
@@ -30,14 +30,17 @@ class SelectableWidget extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(15, 6, 0, 6),
                 decoration: BoxDecoration(
                   border: Border(
-                    right: BorderSide(color: BtColorTheme.SILVER, width: 0.3),
+                    right: BorderSide(
+                      color: BtColorTheme.SLATE_GRAY,
+                      width: 0.5,
+                    ),
                   ),
                 ),
                 child: Text(
                   this.text,
                   style: TextHelper.style(
                     fontSize: 15,
-                    color: BtColorTheme.SILVER,
+                    color: BtColorTheme.SLATE_GRAY,
                   ),
                 ),
               ),
@@ -47,7 +50,7 @@ class SelectableWidget extends StatelessWidget {
               child: Icon(
                 Icons.expand_more,
                 size: 28,
-                color: BtColorTheme.SILVER,
+                color: BtColorTheme.SLATE_GRAY,
               ),
             ),
           ],

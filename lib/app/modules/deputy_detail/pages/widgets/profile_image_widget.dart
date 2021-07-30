@@ -42,7 +42,7 @@ class ProfileImageWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: BtColorTheme.TOM_THUMB,
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: BtColorTheme.CINDER, width: 1.5),
+          border: Border.all(color: BtColorTheme.BUNKER, width: 1.5),
         ),
         child: Text(
           'Exercício',

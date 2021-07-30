@@ -34,7 +34,7 @@ class BtNotificationWidget extends StatelessWidget {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(100)),
-              border: Border.all(color: BtColorTheme.WHITE),
+              color: BtColorTheme.OXFORD_BLUE,
             ),
             child: Text(
               this.textButton!,
@@ -58,7 +58,7 @@ class BtNotificationWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(this.icon, size: this.iconSize, color: BtColorTheme.WHITE),
+          Icon(this.icon, size: this.iconSize, color: BtColorTheme.MELROSE),
           Container(
             padding: EdgeInsets.only(top: 15, bottom: 10),
             child: Text(

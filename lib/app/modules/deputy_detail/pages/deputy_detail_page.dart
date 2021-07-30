@@ -35,14 +35,15 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
             style: TextHelper.style(
               fontSize: 13,
               fontWeight: FontWeight.w400,
-              color: BtColorTheme.SILVER,
+              color: BtColorTheme.SLATE_GRAY,
             ),
           ),
           SizedBox(height: 10),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
+            width: 200,
+            padding: EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
-              color: BtColorTheme.DODGER_BLUE,
+              border: Border.all(color: BtColorTheme.SLATE_GRAY, width: 1),
               borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
             child: Text(
@@ -65,7 +66,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: BtColorTheme.STEEL_GRAY,
+        color: BtColorTheme.EBONY_CLAY,
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       child: child,
@@ -90,7 +91,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
             'Jose Abilio Silva De Santana é um deputado brasileiro pelo partido pl, tem 56 anos e nasceu na cidade de Salvador/BA.',
             style: TextHelper.style(
               fontSize: 12,
-              color: BtColorTheme.SILVER,
+              color: BtColorTheme.SLATE_GRAY,
               height: 1.3,
             ),
             textAlign: TextAlign.justify,
@@ -104,7 +105,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
     return _renderContainer(
       Row(
         children: <Widget>[
-          Icon(Icons.school, size: 15, color: BtColorTheme.WHITE),
+          Icon(Icons.school, size: 15, color: BtColorTheme.MELROSE),
           SizedBox(width: 5),
           Text(
             'Graduação: ',
@@ -118,7 +119,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
             'Superior Incompleto',
             style: TextHelper.style(
               fontSize: 12,
-              color: BtColorTheme.SILVER,
+              color: BtColorTheme.SLATE_GRAY,
               height: 1.2,
             ),
           ),
@@ -143,12 +144,12 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
           SizedBox(height: 10),
           Row(
             children: <Widget>[
-              Icon(Icons.email, size: 15, color: BtColorTheme.WHITE),
+              Icon(Icons.email, size: 15, color: BtColorTheme.MELROSE),
               SizedBox(width: 5),
               Text(
                 'E-mail: ',
                 style: TextHelper.style(
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: FontWeight.w700,
                   color: BtColorTheme.WHITE,
                 ),
@@ -157,7 +158,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
                 'DEP.ABILIOSANTANA@CAMARA.LEG.BR'.toLowerCase(),
                 style: TextHelper.style(
                   fontSize: 12,
-                  color: BtColorTheme.SILVER,
+                  color: BtColorTheme.SLATE_GRAY,
                   height: 1.2,
                 ),
               ),
@@ -166,12 +167,12 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
           SizedBox(height: 6),
           Row(
             children: <Widget>[
-              Icon(Icons.phone, size: 15, color: BtColorTheme.WHITE),
+              Icon(Icons.phone, size: 15, color: BtColorTheme.MELROSE),
               SizedBox(width: 5),
               Text(
                 'Telefone: ',
                 style: TextHelper.style(
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: FontWeight.w700,
                   color: BtColorTheme.WHITE,
                 ),
@@ -180,7 +181,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
                 '3215-5531',
                 style: TextHelper.style(
                   fontSize: 12,
-                  color: BtColorTheme.SILVER,
+                  color: BtColorTheme.SLATE_GRAY,
                   height: 1.2,
                 ),
               ),

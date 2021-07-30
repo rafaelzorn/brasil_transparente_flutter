@@ -18,7 +18,7 @@ class DeputyWidget extends StatelessWidget {
   Widget _renderListImage() {
     return Container(
       decoration: BoxDecoration(
-        color: BtColorTheme.WHITE,
+        color: BtColorTheme.OXFORD_BLUE,
         shape: BoxShape.circle,
       ),
       child: ClipOval(
@@ -66,14 +66,14 @@ class DeputyWidget extends StatelessWidget {
           Icon(
             Icons.location_on,
             size: 15,
-            color: BtColorTheme.SILVER,
+            color: BtColorTheme.SLATE_GRAY,
           ),
           SizedBox(width: 3),
           Text(
             deputy.state ?? '-',
             style: TextHelper.style(
               fontSize: 11,
-              color: BtColorTheme.SILVER,
+              color: BtColorTheme.SLATE_GRAY,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -83,15 +83,15 @@ class DeputyWidget extends StatelessWidget {
         width: 100,
         padding: EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
+          color: BtColorTheme.OXFORD_BLUE,
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: BtColorTheme.SILVER, width: 0.3),
         ),
         child: Text(
           deputy.politicalParty ?? '-',
           style: TextHelper.style(
             fontSize: 9,
             fontWeight: FontWeight.w600,
-            color: BtColorTheme.SILVER,
+            color: BtColorTheme.WHITE,
           ),
           textAlign: TextAlign.center,
         ),

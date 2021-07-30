@@ -25,7 +25,7 @@ class BtHeaderWidget extends StatelessWidget {
       child: Icon(icon, size: 23, color: BtColorTheme.WHITE),
       padding: EdgeInsets.all(10),
       shape: CircleBorder(
-        side: BorderSide(width: 0.3, color: BtColorTheme.SILVER),
+        side: BorderSide(width: 0.5, color: BtColorTheme.SLATE_GRAY),
       ),
       onPressed: () => onPress(),
     );

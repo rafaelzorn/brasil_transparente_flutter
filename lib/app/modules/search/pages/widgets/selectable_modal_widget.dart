@@ -42,7 +42,7 @@ class SelectableModalWidget extends StatelessWidget {
               ),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 10),
-                side: BorderSide(color: BtColorTheme.SILVER, width: 0.5),
+                side: BorderSide(color: BtColorTheme.SLATE_GRAY, width: 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100),
                 ),
@@ -61,8 +61,8 @@ class SelectableModalWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: BtColorTheme.SILVER,
-              width: 0.1,
+              color: BtColorTheme.SLATE_GRAY,
+              width: 0.5,
               style: items.length != (index + 1)
                   ? BorderStyle.solid
                   : BorderStyle.none,
@@ -75,7 +75,7 @@ class SelectableModalWidget extends StatelessWidget {
             items[index].toMap()[this.showPropName],
             style: TextHelper.style(
               fontSize: 15,
-              color: BtColorTheme.SILVER,
+              color: BtColorTheme.SLATE_GRAY,
             ),
           ),
         ),
