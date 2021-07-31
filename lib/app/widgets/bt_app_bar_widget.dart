@@ -3,21 +3,22 @@ import 'package:flutter/material.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 
-class BtHeaderWidget extends StatelessWidget {
+class BtAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final IconData? rightIcon;
   final Function? rightOnPress;
   final IconData? leftIcon;
   final Function? leftOnPress;
-  final double bottom;
 
-  BtHeaderWidget({
+  BtAppBarWidget({
     Key? key,
     this.rightIcon,
     this.rightOnPress,
     this.leftIcon,
     this.leftOnPress,
-    this.bottom: 20,
   }) : super(key: key);
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80);
 
   Widget _renderIconButton(IconData icon, Function onPress) {
     return RawMaterialButton(
@@ -49,14 +50,20 @@ class BtHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      margin: EdgeInsets.only(bottom: this.bottom),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[_renderLeft(), _renderRight()],
-      ),
+    return AppBar(
+      automaticallyImplyLeading: false,
+      actions: <Widget>[
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[_renderLeft(), _renderRight()],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

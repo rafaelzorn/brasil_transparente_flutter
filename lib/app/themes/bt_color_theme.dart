@@ -8,4 +8,5 @@ class BtColorTheme {
   static const Color MELROSE = Color(0XFFB1C4FE);
   static const Color OXFORD_BLUE = Color(0XFF2e3845);
   static const Color EBONY_CLAY = Color(0XFF202934);
+  static const Color NEVADA = Color(0XFF65686C);
 }

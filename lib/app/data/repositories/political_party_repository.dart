@@ -4,13 +4,13 @@ import 'package:dio/dio.dart';
 import 'package:brasil_transparente_flutter/app/data/models/political_party_model.dart';
 
 class PoliticalPartyRepository {
-  Dio _dio;
+  final Dio _dio;
 
   PoliticalPartyRepository(this._dio);
 
   Future<List<PoliticalPartyModel>> getPoliticalParties() async {
     try {
-      Response response = await _dio.get('/partidos?itens=100');
+      final Response response = await _dio.get('/partidos?itens=100');
 
       return response.data['dados']
           .map<PoliticalPartyModel>(

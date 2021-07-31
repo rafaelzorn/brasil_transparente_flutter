@@ -9,4 +9,8 @@ final ThemeData btTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(primary: BtColorTheme.WHITE),
   ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: BtColorTheme.BUNKER,
+    elevation: 0,
+  ),
 );

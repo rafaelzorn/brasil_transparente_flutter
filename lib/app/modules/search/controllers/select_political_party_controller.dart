@@ -25,7 +25,7 @@ class SelectPoliticalPartyController extends GetxController {
 
   Future<void> _getPoliticalParties() async {
     try {
-      final politicalParties =
+      final List<PoliticalPartyModel> politicalParties =
           await _politicalPartyRepository.getPoliticalParties();
 
       _politicalParties(politicalParties);

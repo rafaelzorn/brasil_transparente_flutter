@@ -3,26 +3,28 @@ import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/deputy_detail/controllers/deputy_detail_controller.dart';
-import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_app_bar_widget.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputy_detail/pages/widgets/profile_image_widget.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
+import 'package:brasil_transparente_flutter/app/helpers/string_helper.dart';
+import 'package:brasil_transparente_flutter/app/helpers/format_helper.dart';
+import 'package:brasil_transparente_flutter/app/helpers/deputy_helper.dart';
+import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_notification_widget.dart';
 
 class DeputyDetailPage extends GetView<DeputyDetailController> {
-  Widget _renderHeader() {
-    return BtHeaderWidget(
-      leftIcon: Icons.chevron_left,
-      leftOnPress: () => Get.back(),
-    );
-  }
-
   Widget _renderMainInformation() {
     return Container(
       margin: EdgeInsets.only(bottom: 25),
       child: Column(
         children: <Widget>[
           Text(
-            'Abílio Santana',
+            StringHelper.capitalize(
+              controller.deputy.name ?? '-',
+              allWords: true,
+            ),
             style: TextHelper.style(
               fontSize: 21,
               fontWeight: FontWeight.w600,
@@ -31,7 +33,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
           ),
           SizedBox(height: 5),
           Text(
-            '767.745.400-31',
+            FormatHelper.formatCpf(controller.deputy.cpf),
             style: TextHelper.style(
               fontSize: 13,
               fontWeight: FontWeight.w400,
@@ -47,7 +49,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
               borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
             child: Text(
-              'PT',
+              controller.deputy.initialsParty ?? '-',
               style: TextHelper.style(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
@@ -61,7 +63,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
     );
   }
 
-  Widget _renderContainer(Widget child) {
+  Widget _renderBox(Widget child) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(15),
@@ -74,12 +76,12 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
   }
 
   Widget _renderAbout() {
-    return _renderContainer(
+    return _renderBox(
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Sobre',
+            StringResource.ABOUT,
             style: TextHelper.style(
               fontSize: 14,
               fontWeight: FontWeight.w700,
@@ -88,7 +90,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
           ),
           SizedBox(height: 10),
           Text(
-            'Jose Abilio Silva De Santana é um deputado brasileiro pelo partido pl, tem 56 anos e nasceu na cidade de Salvador/BA.',
+            DeputyHelper.about(controller.deputy),
             style: TextHelper.style(
               fontSize: 12,
               color: BtColorTheme.SLATE_GRAY,
@@ -102,13 +104,13 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
   }
 
   Widget _renderGraduation() {
-    return _renderContainer(
+    return _renderBox(
       Row(
         children: <Widget>[
           Icon(Icons.school, size: 15, color: BtColorTheme.MELROSE),
           SizedBox(width: 5),
           Text(
-            'Graduação: ',
+            '${StringResource.GRADUATION}: ',
             style: TextHelper.style(
               fontSize: 14,
               fontWeight: FontWeight.w700,
@@ -116,7 +118,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
             ),
           ),
           Text(
-            'Superior Incompleto',
+            controller.deputy.schooling ?? '-',
             style: TextHelper.style(
               fontSize: 12,
               color: BtColorTheme.SLATE_GRAY,
@@ -129,12 +131,12 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
   }
 
   Widget _renderContact() {
-    return _renderContainer(
+    return _renderBox(
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Contato',
+            StringResource.CONTACT,
             style: TextHelper.style(
               fontSize: 14,
               fontWeight: FontWeight.w700,
@@ -147,7 +149,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
               Icon(Icons.email, size: 15, color: BtColorTheme.MELROSE),
               SizedBox(width: 5),
               Text(
-                'E-mail: ',
+                '${StringResource.EMAIL}: ',
                 style: TextHelper.style(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -155,7 +157,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
                 ),
               ),
               Text(
-                'DEP.ABILIOSANTANA@CAMARA.LEG.BR'.toLowerCase(),
+                controller.deputy.email ?? '-',
                 style: TextHelper.style(
                   fontSize: 12,
                   color: BtColorTheme.SLATE_GRAY,
@@ -170,7 +172,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
               Icon(Icons.phone, size: 15, color: BtColorTheme.MELROSE),
               SizedBox(width: 5),
               Text(
-                'Telefone: ',
+                '${StringResource.PHONE}: ',
                 style: TextHelper.style(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -178,7 +180,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
                 ),
               ),
               Text(
-                '3215-5531',
+                controller.deputy.phone ?? '-',
                 style: TextHelper.style(
                   fontSize: 12,
                   color: BtColorTheme.SLATE_GRAY,
@@ -193,23 +195,38 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
   }
 
   Widget _renderContent() {
+    if (controller.isLoading) {
+      return Center(
+        child: SizedBox(
+          height: 40,
+          width: 40,
+          child: BtSpinnerWidget(),
+        ),
+      );
+    }
+
+    if (controller.isError) {
+      return BtNotificationWidget(
+        icon: Icons.error_outline,
+        text: StringResource.SOMETHING_WRONG_HAS_HAPPENED,
+        textButton: StringResource.TRY_AGAIN,
+        onPress: controller.reload,
+      );
+    }
+
     return SingleChildScrollView(
-      child: SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: <Widget>[
-            _renderHeader(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: <Widget>[
-                  ProfileImageWidget(),
-                  _renderMainInformation(),
-                  _renderAbout(),
-                  _renderGraduation(),
-                  _renderContact(),
-                ],
-              ),
+            ProfileImageWidget(
+              photo: controller.deputy.photo,
+              situation: controller.deputy.situation,
             ),
+            _renderMainInformation(),
+            _renderAbout(),
+            _renderGraduation(),
+            _renderContact(),
           ],
         ),
       ),
@@ -218,6 +235,12 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _renderContent());
+    return Scaffold(
+      appBar: BtAppBarWidget(
+        leftIcon: Icons.chevron_left,
+        leftOnPress: () => Get.back(),
+      ),
+      body: Obx(() => _renderContent()),
+    );
   }
 }

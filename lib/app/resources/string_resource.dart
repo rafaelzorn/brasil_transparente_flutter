@@ -15,4 +15,9 @@ class StringResource {
       'Selecione o partido político';
   static const String STATES = 'Estados';
   static const String POLITICAL_PARTIES = 'Partidos políticos';
+  static const String ABOUT = 'Sobre';
+  static const String GRADUATION = 'Graduação';
+  static const String CONTACT = 'Contato';
+  static const String PHONE = 'Telefone';
+  static const String EMAIL = 'E-mail';
 }

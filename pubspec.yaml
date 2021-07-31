@@ -22,7 +22,7 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter
+    sdk: flutter    
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -34,6 +34,7 @@ dependencies:
   lazy_load_scrollview: ^1.3.0
   transparent_image: ^2.0.0
   flutter_dotenv: ^5.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

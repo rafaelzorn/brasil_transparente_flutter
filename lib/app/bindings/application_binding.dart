@@ -7,7 +7,7 @@ class ApplicationBinding implements Bindings {
 
   @override
   void dependencies() {
-    Get.lazyPut(
+    Get.lazyPut<Dio>(
       () => Dio(
         BaseOptions(
           baseUrl: _baseUrl,

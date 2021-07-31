@@ -5,7 +5,7 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/deputies/controllers/deputies_controller.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputies/pages/widgets/deputy_widget.dart';
-import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_app_bar_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_notification_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
@@ -13,14 +13,6 @@ import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 
 class DeputiesPage extends GetView<DeputiesController> {
-  Widget _renderHeader() {
-    return BtHeaderWidget(
-      rightIcon: Icons.search,
-      rightOnPress: () => Get.toNamed(BtRoutes.SEARCH),
-      bottom: 15,
-    );
-  }
-
   Widget _renderTitle() {
     return Container(
       margin: EdgeInsets.only(bottom: 25),
@@ -80,21 +72,12 @@ class DeputiesPage extends GetView<DeputiesController> {
   }
 
   Widget _renderContent() {
-    return SafeArea(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
-        children: <Widget>[
-          _renderHeader(),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  _renderTitle(),
-                  Expanded(child: Obx(() => _renderList())),
-                ],
-              ),
-            ),
-          ),
+        children: [
+          _renderTitle(),
+          Expanded(child: Obx(() => _renderList())),
         ],
       ),
     );
@@ -102,6 +85,12 @@ class DeputiesPage extends GetView<DeputiesController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _renderContent());
+    return Scaffold(
+      appBar: BtAppBarWidget(
+        rightIcon: Icons.search,
+        rightOnPress: () => Get.toNamed(BtRoutes.SEARCH),
+      ),
+      body: _renderContent(),
+    );
   }
 }

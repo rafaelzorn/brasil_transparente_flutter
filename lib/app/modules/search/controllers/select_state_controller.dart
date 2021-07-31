@@ -23,7 +23,7 @@ class SelectStateController extends GetxController {
 
   Future<void> _getStates() async {
     try {
-      final states = await _stateRepository.getStates();
+      final List<StateModel> states = await _stateRepository.getStates();
 
       _states(states);
 

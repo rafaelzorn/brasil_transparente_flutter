@@ -1,7 +1,7 @@
 class StringHelper {
   static String capitalize(String string, {bool allWords = false}) {
     if (allWords) {
-      List words = string.split(' ');
+      final List words = string.split(' ');
       List capitalized = [];
 
       for (var word in words) {

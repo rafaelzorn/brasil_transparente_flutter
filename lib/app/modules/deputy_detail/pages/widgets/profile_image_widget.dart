@@ -7,10 +7,17 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 class ProfileImageWidget extends StatelessWidget {
-  ProfileImageWidget({Key? key}) : super(key: key);
+  final String? photo;
+  final String? situation;
+
+  ProfileImageWidget({Key? key, this.photo, this.situation}) : super(key: key);
 
   Widget _renderImage() {
     return Container(
+      decoration: BoxDecoration(
+        color: BtColorTheme.OXFORD_BLUE,
+        shape: BoxShape.circle,
+      ),
       margin: EdgeInsets.only(bottom: 15),
       child: ClipOval(
         child: FadeInImage.memoryNetwork(
@@ -23,8 +30,7 @@ class ProfileImageWidget extends StatelessWidget {
             );
           },
           placeholder: kTransparentImage,
-          image:
-              'https://www.camara.leg.br/internet/deputado/bandep/204554.jpg',
+          image: this.photo ?? '',
           width: 110,
           height: 110,
           fit: BoxFit.cover,
@@ -34,18 +40,24 @@ class ProfileImageWidget extends StatelessWidget {
   }
 
   Widget _renderStatus() {
+    Color color = BtColorTheme.TOM_THUMB;
+
+    if (this.situation != 'Exercício') {
+      color = BtColorTheme.NEVADA;
+    }
+
     return Transform.translate(
       offset: Offset(95, 20),
       child: Container(
         width: 70,
         padding: EdgeInsets.symmetric(vertical: 3),
         decoration: BoxDecoration(
-          color: BtColorTheme.TOM_THUMB,
+          color: color,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           border: Border.all(color: BtColorTheme.BUNKER, width: 1.5),
         ),
         child: Text(
-          'Exercício',
+          this.situation ?? '-',
           style: TextHelper.style(
             fontSize: 9,
             fontWeight: FontWeight.w600,

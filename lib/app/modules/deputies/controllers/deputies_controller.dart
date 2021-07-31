@@ -41,7 +41,7 @@ class DeputiesController extends GetxController {
 
   Future<void> _findDeputies() async {
     try {
-      final deputies = await _deputyRepository.findDeputies(
+      final List<DeputyModel> deputies = await _deputyRepository.findDeputies(
         _findDeputiesSupport(),
       );
 

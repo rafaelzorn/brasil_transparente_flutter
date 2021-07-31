@@ -53,7 +53,7 @@ class BtNotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       alignment: AlignmentDirectional.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

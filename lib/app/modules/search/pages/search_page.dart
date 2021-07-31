@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/select_state_controller.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/select_political_party_controller.dart';
-import 'package:brasil_transparente_flutter/app/widgets/bt_header_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_app_bar_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
@@ -15,13 +15,6 @@ import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/sel
 import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/selectable_modal_widget.dart';
 
 class SearchPage extends GetView<SearchController> {
-  Widget _renderHeader() {
-    return BtHeaderWidget(
-      leftIcon: Icons.chevron_left,
-      leftOnPress: () => Get.back(),
-    );
-  }
-
   Widget _renderTitle() {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
@@ -171,18 +164,19 @@ class SearchPage extends GetView<SearchController> {
 
   Widget _renderContent() {
     return SingleChildScrollView(
-      child: SafeArea(
-        child: Column(
-          children: <Widget>[_renderHeader(), _renderForm()],
-        ),
-      ),
+      child: _renderForm(),
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        appBar: BtAppBarWidget(
+          leftIcon: Icons.chevron_left,
+          leftOnPress: () => Get.back(),
+        ),
         resizeToAvoidBottomInset: false,
         body: _renderContent(),
         bottomNavigationBar: _renderButtons(),
