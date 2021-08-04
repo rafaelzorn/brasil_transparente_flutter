@@ -20,4 +20,7 @@ class StringResource {
   static const String CONTACT = 'Contato';
   static const String PHONE = 'Telefone';
   static const String EMAIL = 'E-mail';
+  static const String PROFILE = 'Perfil';
+  static const String EXPENSES = 'Despesas';
+  static const String PROPOSITIONS = 'Proposições';
 }

@@ -14,6 +14,7 @@ class DeputyModel {
   String? birthCity;
   String? birthState;
   String? birthDate;
+  String? gender;
 
   DeputyModel({
     this.id,
@@ -31,6 +32,7 @@ class DeputyModel {
     this.birthCity,
     this.birthState,
     this.birthDate,
+    this.gender,
   });
 
   factory DeputyModel.fromMap(Map<String, dynamic> map) {
@@ -50,6 +52,7 @@ class DeputyModel {
       birthCity: map['municipioNascimento'] ?? null,
       birthState: map['ufNascimento'] ?? null,
       birthDate: map['dataNascimento'] ?? null,
+      gender: map['sexo'] ?? null,
     );
   }
 }

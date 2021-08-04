@@ -10,12 +10,14 @@ class TextHelper {
     FontWeight fontWeight = FontWeight.w400,
     Color color = BtColorTheme.WHITE,
     double height = 1,
+    double letterSpacing = 0.5,
   }) {
     return GoogleFonts.openSans(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
       height: height,
+      letterSpacing: letterSpacing,
     );
   }
 }

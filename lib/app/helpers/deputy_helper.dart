@@ -10,6 +10,6 @@ class DeputyHelper {
       allWords: true,
     );
 
-    return '$civilName ${deputy.situation == "Exercício" ? "é" : "foi"} um deputado brasileiro pelo partido ${deputy.initialsParty ?? '-'}, nasceu em ${FormatHelper.formatDate(deputy.birthDate)} na cidade de ${deputy.birthCity ?? ''}/${deputy.birthState}.';
+    return '$civilName ${deputy.situation == "Exercício" ? "é" : "foi"} ${deputy.gender == "M" ? "um deputado brasileiro" : "uma deputada brasileira"} pelo partido ${deputy.initialsParty ?? '-'}, nasceu em ${FormatHelper.formatDate(deputy.birthDate)} na cidade de ${deputy.birthCity ?? ''}/${deputy.birthState}.';
   }
 }
