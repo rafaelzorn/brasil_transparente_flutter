@@ -61,6 +61,7 @@ class SearchPage extends GetView<SearchController> {
                 items: SelectStateController.to.states,
                 title: StringResource.STATES,
                 handleSelect: SelectStateController.to.handleSelectState,
+                reload: SelectStateController.to.reload,
                 showPropName: 'initials',
               ),
             ),
@@ -77,7 +78,11 @@ class SearchPage extends GetView<SearchController> {
             SelectPoliticalPartyController.to.selectedPoliticalParty.initials ??
                 StringResource.SELECT_THE_POLITICAL_PARTY,
         onTap: () {
-          SelectPoliticalPartyController.to.handleGetPoliticalParties();
+          SelectPoliticalPartyController.to.handleGetPoliticalParties(
+            page: SelectPoliticalPartyController.to.initialPage,
+            showLoading: true,
+            resetList: true,
+          );
 
           BtModalWidget.bottomSheet(
             content: Obx(
@@ -88,6 +93,11 @@ class SearchPage extends GetView<SearchController> {
                 title: StringResource.POLITICAL_PARTIES,
                 handleSelect: SelectPoliticalPartyController
                     .to.handleSelectPoliticalParty,
+                nextPage: SelectPoliticalPartyController.to.nextPage,
+                lastPage: SelectPoliticalPartyController.to.lastPage,
+                refresh: SelectPoliticalPartyController.to.refresh,
+                reload: SelectPoliticalPartyController.to.reload,
+                hasPagination: true,
                 showPropName: 'initials',
               ),
             ),

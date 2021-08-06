@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
@@ -15,6 +16,11 @@ class SelectableModalWidget extends StatelessWidget {
   final String title;
   final Function handleSelect;
   final String showPropName;
+  final bool hasPagination;
+  final Function reload;
+  final Function? nextPage;
+  final bool? lastPage;
+  final Function? refresh;
 
   SelectableModalWidget({
     Key? key,
@@ -24,6 +30,11 @@ class SelectableModalWidget extends StatelessWidget {
     required this.title,
     required this.handleSelect,
     required this.showPropName,
+    required this.reload,
+    this.hasPagination = false,
+    this.nextPage,
+    this.lastPage,
+    this.refresh,
   }) : super(key: key);
 
   Widget _renderCloseButton() {
@@ -83,6 +94,26 @@ class SelectableModalWidget extends StatelessWidget {
     );
   }
 
+  Widget _renderLazyLoadScrollView({
+    required nextPage,
+    required lastPage,
+    required refresh,
+  }) {
+    return LazyLoadScrollView(
+      onEndOfPage: nextPage,
+      isLoading: lastPage,
+      child: RefreshIndicator(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return _renderItem(index: index);
+          },
+          itemCount: items.length,
+        ),
+        onRefresh: refresh,
+      ),
+    );
+  }
+
   Widget _renderList() {
     if (isLoading) {
       return Center(
@@ -99,6 +130,16 @@ class SelectableModalWidget extends StatelessWidget {
         icon: Icons.error_outline,
         text: StringResource.SOMETHING_WRONG_HAS_HAPPENED,
         iconSize: 70,
+        textButton: StringResource.TRY_AGAIN,
+        onPress: this.reload,
+      );
+    }
+
+    if (this.hasPagination) {
+      return _renderLazyLoadScrollView(
+        nextPage: this.nextPage,
+        lastPage: this.lastPage,
+        refresh: this.refresh,
       );
     }
 
@@ -130,7 +171,7 @@ class SelectableModalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      height: (MediaQuery.of(context).size.height * 0.5),
+      height: (MediaQuery.of(context).size.height * 0.7),
       child: _renderContent(),
     );
   }

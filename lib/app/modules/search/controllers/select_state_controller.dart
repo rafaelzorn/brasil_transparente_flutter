@@ -35,6 +35,12 @@ class SelectStateController extends GetxController {
     }
   }
 
+  void reload() {
+    _isLoading(true);
+
+    _getStates();
+  }
+
   void handleGetStates() {
     _isLoading(true);
 

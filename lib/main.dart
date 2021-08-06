@@ -18,6 +18,9 @@ Future main() async {
 }
 
 class Main extends StatelessWidget {
+
+  Main({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
