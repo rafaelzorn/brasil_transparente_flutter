@@ -9,26 +9,10 @@ import 'package:brasil_transparente_flutter/app/widgets/bt_app_bar_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_notification_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
-import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_main_title_page_widget.dart';
 
 class DeputiesPage extends GetView<DeputiesController> {
-  Widget _renderTitle() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 25),
-      child: SizedBox(
-        width: double.infinity,
-        child: Text(
-          StringResource.DEPUTIES,
-          style: TextHelper.style(
-            fontSize: 25,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _renderList() {
     if (controller.isLoading) {
       return Center(
@@ -76,7 +60,7 @@ class DeputiesPage extends GetView<DeputiesController> {
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          _renderTitle(),
+          BtMainTitlePageWidget(title: StringResource.DEPUTIES),
           Expanded(child: Obx(() => _renderList())),
         ],
       ),

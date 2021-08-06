@@ -5,6 +5,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:brasil_transparente_flutter/app/resources/image_resource.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
+import 'package:brasil_transparente_flutter/app/constants/general_constant.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   final String? photo;
@@ -42,7 +43,7 @@ class ProfileImageWidget extends StatelessWidget {
   Widget _renderStatus() {
     Color color = BtColorTheme.TOM_THUMB;
 
-    if (this.situation != 'Exercício') {
+    if (this.situation != GeneralConstant.EXERCISE) {
       color = BtColorTheme.NEVADA;
     }
 
