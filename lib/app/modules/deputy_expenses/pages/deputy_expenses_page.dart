@@ -19,10 +19,7 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            BtMainTitlePageWidget(
-              title: StringResource.EXPENSES,
-              marginBottom: 30,
-            ),
+            BtMainTitlePageWidget(title: StringResource.EXPENSES),
             Container(
               margin: EdgeInsets.only(bottom: 20),
               padding: EdgeInsets.symmetric(horizontal: 10),

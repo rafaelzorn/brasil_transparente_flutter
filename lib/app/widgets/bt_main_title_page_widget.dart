@@ -7,7 +7,7 @@ class BtMainTitlePageWidget extends StatelessWidget {
   final String title;
   final double marginBottom;
 
-  BtMainTitlePageWidget({required this.title, this.marginBottom = 25});
+  BtMainTitlePageWidget({required this.title, this.marginBottom = 20});
 
   @override
   Widget build(BuildContext context) {
