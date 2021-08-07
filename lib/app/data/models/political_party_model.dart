@@ -8,8 +8,6 @@ class PoliticalPartyModel {
   }
 
   factory PoliticalPartyModel.fromMap(Map<String, dynamic> map) {
-    return PoliticalPartyModel(
-      initials: map['sigla'] ?? null,
-    );
+    return PoliticalPartyModel(initials: map['sigla']);
   }
 }

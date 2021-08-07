@@ -9,7 +9,7 @@ class BtAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final IconData? leftIcon;
   final Function? leftOnPress;
 
-  BtAppBarWidget({
+  const BtAppBarWidget({
     Key? key,
     this.rightIcon,
     this.rightOnPress,
@@ -22,30 +22,30 @@ class BtAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   Widget _renderIconButton(IconData icon, Function onPress) {
     return RawMaterialButton(
-      constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-      child: Icon(icon, size: 23, color: BtColorTheme.WHITE),
-      padding: EdgeInsets.all(10),
-      shape: CircleBorder(
-        side: BorderSide(width: 0.5, color: BtColorTheme.SLATE_GRAY),
+      constraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+      child: Icon(icon, size: 23, color: BtColorTheme.white),
+      padding: const EdgeInsets.all(10),
+      shape: const CircleBorder(
+        side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
       ),
       onPressed: () => onPress(),
     );
   }
 
   Widget _renderLeft() {
-    if (this.leftOnPress == null) {
+    if (leftOnPress == null) {
       return Container();
     }
 
-    return _renderIconButton(this.leftIcon!, this.leftOnPress!);
+    return _renderIconButton(leftIcon!, leftOnPress!);
   }
 
   Widget _renderRight() {
-    if (this.rightIcon == null) {
+    if (rightIcon == null) {
       return Container();
     }
 
-    return _renderIconButton(this.rightIcon!, this.rightOnPress!);
+    return _renderIconButton(rightIcon!, rightOnPress!);
   }
 
   @override
@@ -55,7 +55,7 @@ class BtAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: <Widget>[
         Expanded(
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -8,7 +8,7 @@ class SelectableWidget extends StatelessWidget {
   final String text;
   final Function onTap;
 
-  SelectableWidget({
+  const SelectableWidget({
     Key? key,
     required this.text,
     required this.onTap,
@@ -16,41 +16,41 @@ class SelectableWidget extends StatelessWidget {
 
   Widget _renderContent() {
     return GestureDetector(
-      onTap: () => this.onTap(),
+      onTap: () => onTap(),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          border: Border.all(color: BtColorTheme.SLATE_GRAY, width: 0.5),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          border: Border.all(color: BtColorTheme.slateGray, width: 0.5),
         ),
         child: Row(
-          children: [
+          children: <Widget>[
             Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(15, 6, 0, 6),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.fromLTRB(15, 6, 0, 6),
+                decoration: const BoxDecoration(
                   border: Border(
                     right: BorderSide(
-                      color: BtColorTheme.SLATE_GRAY,
+                      color: BtColorTheme.slateGray,
                       width: 0.5,
                     ),
                   ),
                 ),
                 child: Text(
-                  this.text,
+                  text,
                   style: TextHelper.style(
                     fontSize: 15,
-                    color: BtColorTheme.SLATE_GRAY,
+                    color: BtColorTheme.slateGray,
                   ),
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Icon(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: const Icon(
                 Icons.expand_more,
                 size: 28,
-                color: BtColorTheme.SLATE_GRAY,
+                color: BtColorTheme.slateGray,
               ),
             ),
           ],
@@ -62,7 +62,7 @@ class SelectableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       child: _renderContent(),
     );
   }

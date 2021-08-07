@@ -22,7 +22,7 @@ class SelectableModalWidget extends StatelessWidget {
   final bool? lastPage;
   final Function? refresh;
 
-  SelectableModalWidget({
+  const SelectableModalWidget({
     Key? key,
     required this.isLoading,
     required this.isError,
@@ -43,17 +43,17 @@ class SelectableModalWidget extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(vertical: 5),
             child: TextButton(
               onPressed: () => Get.back(),
-              child: Icon(
+              child: const Icon(
                 Icons.keyboard_arrow_down,
                 size: 20,
-                color: BtColorTheme.WHITE,
+                color: BtColorTheme.white,
               ),
               style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                side: BorderSide(color: BtColorTheme.SLATE_GRAY, width: 1),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                side: const BorderSide(color: BtColorTheme.slateGray, width: 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100),
                 ),
@@ -67,12 +67,12 @@ class SelectableModalWidget extends StatelessWidget {
 
   Widget _renderItem({required int index}) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 60),
+      padding: const EdgeInsets.symmetric(horizontal: 60),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: BtColorTheme.SLATE_GRAY,
+              color: BtColorTheme.slateGray,
               width: 0.5,
               style: items.length != (index + 1)
                   ? BorderStyle.solid
@@ -81,12 +81,12 @@ class SelectableModalWidget extends StatelessWidget {
           ),
         ),
         child: TextButton(
-          onPressed: () => this.handleSelect(items[index]),
+          onPressed: () => handleSelect(items[index]),
           child: Text(
-            items[index].toMap()[this.showPropName],
+            items[index].toMap()[showPropName],
             style: TextHelper.style(
               fontSize: 15,
-              color: BtColorTheme.SLATE_GRAY,
+              color: BtColorTheme.slateGray,
             ),
           ),
         ),
@@ -116,7 +116,7 @@ class SelectableModalWidget extends StatelessWidget {
 
   Widget _renderList() {
     if (isLoading) {
-      return Center(
+      return const Center(
         child: SizedBox(
           height: 30,
           width: 30,
@@ -128,18 +128,18 @@ class SelectableModalWidget extends StatelessWidget {
     if (isError) {
       return BtNotificationWidget(
         icon: Icons.error_outline,
-        text: StringResource.SOMETHING_WRONG_HAS_HAPPENED,
+        text: StringResource.somethingWrongHasHappened,
         iconSize: 70,
-        textButton: StringResource.TRY_AGAIN,
-        onPress: this.reload,
+        textButton: StringResource.tryAgain,
+        onPress: reload,
       );
     }
 
-    if (this.hasPagination) {
+    if (hasPagination) {
       return _renderLazyLoadScrollView(
-        nextPage: this.nextPage,
-        lastPage: this.lastPage,
-        refresh: this.refresh,
+        nextPage: nextPage,
+        lastPage: lastPage,
+        refresh: refresh,
       );
     }
 
@@ -152,12 +152,12 @@ class SelectableModalWidget extends StatelessWidget {
   Widget _renderContent() {
     return Column(children: <Widget>[
       Container(
-        padding: EdgeInsets.only(top: 25, bottom: 15),
+        padding: const EdgeInsets.only(top: 25, bottom: 15),
         child: Text(
-          this.title,
+          title,
           style: TextHelper.style(
             fontSize: 20,
-            color: BtColorTheme.WHITE,
+            color: BtColorTheme.white,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -170,7 +170,7 @@ class SelectableModalWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       height: (MediaQuery.of(context).size.height * 0.7),
       child: _renderContent(),
     );

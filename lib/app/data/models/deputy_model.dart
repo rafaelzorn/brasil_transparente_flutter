@@ -37,22 +37,22 @@ class DeputyModel {
 
   factory DeputyModel.fromMap(Map<String, dynamic> map) {
     return DeputyModel(
-      id: map['id'] ?? null,
-      name: map['nome'] ?? null,
-      cpf: map['cpf'] ?? null,
-      initialsParty: map['siglaPartido'] ?? null,
-      state: map['siglaUf'] ?? null,
-      photo: map['urlFoto'] ?? null,
-      politicalParty: map['siglaPartido'] ?? null,
-      schooling: map['escolaridade'] ?? null,
-      email: map['email'] ?? null,
-      phone: map['telefone'] ?? null,
-      situation: map['situacao'] ?? null,
-      civilName: map['nomeCivil'] ?? null,
-      birthCity: map['municipioNascimento'] ?? null,
-      birthState: map['ufNascimento'] ?? null,
-      birthDate: map['dataNascimento'] ?? null,
-      gender: map['sexo'] ?? null,
+      id: map['id'],
+      name: map['nome'],
+      cpf: map['cpf'],
+      initialsParty: map['siglaPartido'],
+      state: map['siglaUf'],
+      photo: map['urlFoto'],
+      politicalParty: map['siglaPartido'],
+      schooling: map['escolaridade'],
+      email: map['email'],
+      phone: map['telefone'],
+      situation: map['situacao'],
+      civilName: map['nomeCivil'],
+      birthCity: map['municipioNascimento'],
+      birthState: map['ufNascimento'],
+      birthDate: map['dataNascimento'],
+      gender: map['sexo'],
     );
   }
 }

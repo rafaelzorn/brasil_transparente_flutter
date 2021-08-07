@@ -78,6 +78,7 @@ class SelectPoliticalPartyController extends GetxController {
     });
   }
 
+  @override
   Future<void> refresh() async {
     handleGetPoliticalParties(page: initialPage, resetList: true);
   }

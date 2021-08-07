@@ -8,8 +8,6 @@ class StateModel {
   }
 
   factory StateModel.fromMap(Map<String, dynamic> map) {
-    return StateModel(
-      initials: map['sigla'] ?? null,
-    );
+    return StateModel(initials: map['sigla']);
   }
 }

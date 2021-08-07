@@ -14,18 +14,17 @@ import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 Future main() async {
   await dotenv.load(fileName: '.env');
 
-  runApp(Main());
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
-
-  Main({Key? key}) : super(key: key);
+  const Main({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: BtColorTheme.BUNKER,
+      const SystemUiOverlayStyle(
+        statusBarColor: BtColorTheme.bunker,
         statusBarIconBrightness: Brightness.light,
       ),
     );
@@ -33,9 +32,9 @@ class Main extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: ApplicationBinding(),
-      title: StringResource.APP_NAME,
+      title: StringResource.appName,
       theme: btTheme,
-      initialRoute: BtRoutes.DEPUTIES,
+      initialRoute: BtRoutes.deputies,
       getPages: BtPages.routes,
     );
   }

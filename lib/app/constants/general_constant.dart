@@ -1,4 +1,4 @@
 class GeneralConstant {
-  static const String EXERCISE = 'Exercício';
-  static const String MALE = 'M';
+  static const String exercise = 'Exercício';
+  static const String male = 'M';
 }

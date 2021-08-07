@@ -8,13 +8,13 @@ class BtModalWidget {
   static void bottomSheet({required Widget content}) {
     Get.bottomSheet(
       content,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25),
           topRight: Radius.circular(25),
         ),
       ),
-      backgroundColor: BtColorTheme.EBONY_CLAY,
+      backgroundColor: BtColorTheme.ebonyClay,
       isDismissible: false,
       enableDrag: false,
     );

@@ -77,6 +77,7 @@ class DeputiesController extends GetxController {
     });
   }
 
+  @override
   Future<void> refresh() async {
     handleFindDeputies(page: _initialPage, resetList: true, filters: filters);
   }

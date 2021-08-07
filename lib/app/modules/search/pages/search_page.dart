@@ -15,13 +15,15 @@ import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/sel
 import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/selectable_modal_widget.dart';
 
 class SearchPage extends GetView<SearchController> {
+  const SearchPage({Key? key}) : super(key: key);
+
   Widget _renderTitle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       child: SizedBox(
         width: double.infinity,
         child: Text(
-          StringResource.FILTERS,
+          StringResource.filters,
           style: TextHelper.style(fontSize: 22, fontWeight: FontWeight.w700),
         ),
       ),
@@ -30,7 +32,7 @@ class SearchPage extends GetView<SearchController> {
 
   Widget _renderForm() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Form(
         key: controller.formKey,
         child: Column(
@@ -49,7 +51,7 @@ class SearchPage extends GetView<SearchController> {
     return Obx(
       () => SelectableWidget(
         text: SelectStateController.to.selectedState.initials ??
-            StringResource.SELECT_STATE,
+            StringResource.selectState,
         onTap: () {
           SelectStateController.to.handleGetStates();
 
@@ -59,7 +61,7 @@ class SearchPage extends GetView<SearchController> {
                 isLoading: SelectStateController.to.isLoading,
                 isError: SelectStateController.to.isError,
                 items: SelectStateController.to.states,
-                title: StringResource.STATES,
+                title: StringResource.states,
                 handleSelect: SelectStateController.to.handleSelectState,
                 reload: SelectStateController.to.reload,
                 showPropName: 'initials',
@@ -76,7 +78,7 @@ class SearchPage extends GetView<SearchController> {
       () => SelectableWidget(
         text:
             SelectPoliticalPartyController.to.selectedPoliticalParty.initials ??
-                StringResource.SELECT_THE_POLITICAL_PARTY,
+                StringResource.selectThePoliticalParty,
         onTap: () {
           SelectPoliticalPartyController.to.handleGetPoliticalParties(
             page: SelectPoliticalPartyController.to.initialPage,
@@ -90,7 +92,7 @@ class SearchPage extends GetView<SearchController> {
                 isLoading: SelectPoliticalPartyController.to.isLoading,
                 isError: SelectPoliticalPartyController.to.isError,
                 items: SelectPoliticalPartyController.to.politicalParties,
-                title: StringResource.POLITICAL_PARTIES,
+                title: StringResource.politicalParties,
                 handleSelect: SelectPoliticalPartyController
                     .to.handleSelectPoliticalParty,
                 nextPage: SelectPoliticalPartyController.to.nextPage,
@@ -109,7 +111,7 @@ class SearchPage extends GetView<SearchController> {
 
   Widget _renderButtons() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
@@ -125,17 +127,17 @@ class SearchPage extends GetView<SearchController> {
     return Expanded(
       flex: 1,
       child: Padding(
-        padding: EdgeInsets.only(right: 5),
+        padding: const EdgeInsets.only(right: 5),
         child: TextButton(
-          child: Text(StringResource.CLEAN),
+          child: const Text(StringResource.clean),
           onPressed: controller.clear,
           style: TextButton.styleFrom(
-            padding: EdgeInsets.all(15),
-            primary: BtColorTheme.WHITE,
-            backgroundColor: BtColorTheme.BUNKER,
+            padding: const EdgeInsets.all(15),
+            primary: BtColorTheme.white,
+            backgroundColor: BtColorTheme.bunker,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: BorderSide(color: BtColorTheme.SLATE_GRAY, width: 0.5),
+              side: const BorderSide(color: BtColorTheme.slateGray, width: 0.5),
             ),
             textStyle: TextHelper.style(
               fontSize: 14,
@@ -151,14 +153,14 @@ class SearchPage extends GetView<SearchController> {
     return Expanded(
       flex: 2,
       child: Padding(
-        padding: EdgeInsets.only(left: 5),
+        padding: const EdgeInsets.only(left: 5),
         child: TextButton(
-          child: Text(StringResource.APPLY_FILTERS),
+          child: const Text(StringResource.applyFilters),
           onPressed: controller.search,
           style: TextButton.styleFrom(
-            padding: EdgeInsets.all(15),
-            primary: BtColorTheme.WHITE,
-            backgroundColor: BtColorTheme.OXFORD_BLUE,
+            padding: const EdgeInsets.all(15),
+            primary: BtColorTheme.white,
+            backgroundColor: BtColorTheme.oxfordBlue,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
             ),

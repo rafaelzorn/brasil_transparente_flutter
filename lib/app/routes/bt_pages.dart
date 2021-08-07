@@ -12,18 +12,18 @@ import 'package:brasil_transparente_flutter/app/modules/deputy_detail/deputy_det
 class BtPages {
   static final List<GetPage> routes = [
     GetPage(
-      name: BtRoutes.DEPUTIES,
-      page: () => DeputiesPage(),
+      name: BtRoutes.deputies,
+      page: () => const DeputiesPage(),
       binding: DeputiesBinding(),
     ),
     GetPage(
-      name: BtRoutes.SEARCH,
-      page: () => SearchPage(),
+      name: BtRoutes.search,
+      page: () => const SearchPage(),
       binding: SearchBinding(),
     ),
     GetPage(
-      name: BtRoutes.DEPUTY_DETAIL,
-      page: () => DeputyDetailPage(),
+      name: BtRoutes.deputyDetail,
+      page: () => const DeputyDetailPage(),
       binding: DeputyDetailBinding(),
     ),
   ];

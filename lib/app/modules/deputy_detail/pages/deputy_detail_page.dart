@@ -10,10 +10,12 @@ import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/page
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 
 class DeputyDetailPage extends GetView<DeputyDetailController> {
+  const DeputyDetailPage({Key? key}) : super(key: key);
+
   Widget _renderContent() {
     return IndexedStack(
       index: controller.indexStack,
-      children: <Widget>[
+      children: const <Widget>[
         DeputyProfilePage(),
         DeputyExpensesPage(),
         DeputyPropositionsPage(),
@@ -45,15 +47,15 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
           items: [
             _bottomNavigationBarItem(
               icon: Icons.person,
-              label: StringResource.PROFILE,
+              label: StringResource.profile,
             ),
             _bottomNavigationBarItem(
               icon: Icons.attach_money,
-              label: StringResource.EXPENSES,
+              label: StringResource.expenses,
             ),
             _bottomNavigationBarItem(
               icon: Icons.description,
-              label: StringResource.PROPOSITIONS,
+              label: StringResource.propositions,
             ),
           ],
         ),

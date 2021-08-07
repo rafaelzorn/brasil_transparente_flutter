@@ -7,13 +7,17 @@ class BtSpinnerWidget extends StatelessWidget {
   final double strokeWidth;
   final Color color;
 
-  BtSpinnerWidget({this.strokeWidth: 2, this.color: BtColorTheme.SLATE_GRAY});
+  const BtSpinnerWidget({
+    Key? key,
+    this.strokeWidth = 2,
+    this.color = BtColorTheme.slateGray,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
       strokeWidth: strokeWidth,
-      valueColor: AlwaysStoppedAnimation<Color>(this.color),
+      valueColor: AlwaysStoppedAnimation<Color>(color),
     );
   }
 }

@@ -11,15 +11,16 @@ class ProfileImageWidget extends StatelessWidget {
   final String? photo;
   final String? situation;
 
-  ProfileImageWidget({Key? key, this.photo, this.situation}) : super(key: key);
+  const ProfileImageWidget({Key? key, this.photo, this.situation})
+      : super(key: key);
 
   Widget _renderImage() {
     return Container(
-      decoration: BoxDecoration(
-        color: BtColorTheme.OXFORD_BLUE,
+      decoration: const BoxDecoration(
+        color: BtColorTheme.oxfordBlue,
         shape: BoxShape.circle,
       ),
-      margin: EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 15),
       child: ClipOval(
         child: FadeInImage.memoryNetwork(
           imageErrorBuilder: (context, error, stackTrace) {
@@ -31,7 +32,7 @@ class ProfileImageWidget extends StatelessWidget {
             );
           },
           placeholder: kTransparentImage,
-          image: this.photo ?? '',
+          image: photo ?? '',
           width: 110,
           height: 110,
           fit: BoxFit.cover,
@@ -41,28 +42,28 @@ class ProfileImageWidget extends StatelessWidget {
   }
 
   Widget _renderStatus() {
-    Color color = BtColorTheme.TOM_THUMB;
+    Color color = BtColorTheme.tomThumb;
 
-    if (this.situation != GeneralConstant.EXERCISE) {
-      color = BtColorTheme.NEVADA;
+    if (situation != GeneralConstant.exercise) {
+      color = BtColorTheme.nevada;
     }
 
     return Transform.translate(
-      offset: Offset(95, 20),
+      offset: const Offset(95, 20),
       child: Container(
         width: 70,
-        padding: EdgeInsets.symmetric(vertical: 3),
+        padding: const EdgeInsets.symmetric(vertical: 3),
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: BtColorTheme.BUNKER, width: 1.5),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          border: Border.all(color: BtColorTheme.bunker, width: 1.5),
         ),
         child: Text(
-          this.situation ?? '-',
+          situation ?? '-',
           style: TextHelper.style(
             fontSize: 9,
             fontWeight: FontWeight.w600,
-            color: BtColorTheme.WHITE,
+            color: BtColorTheme.white,
           ),
           textAlign: TextAlign.center,
         ),
@@ -77,7 +78,7 @@ class ProfileImageWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Stack(
-          children: [_renderImage(), _renderStatus()],
+          children: <Widget>[_renderImage(), _renderStatus()],
         )
       ],
     );

@@ -13,24 +13,26 @@ class DeputyExpense {
 }
 
 class ChartWidget extends StatelessWidget {
+  const ChartWidget({Key? key}) : super(key: key);
+
   static List<charts.Series<DeputyExpense, String>> _deputyExpenses() {
     final data = [
-      new DeputyExpense('Jan', 800.00),
-      new DeputyExpense('Fev', 1000.00),
-      new DeputyExpense('Mar', 20000.00),
-      new DeputyExpense('Abr', 29000.00),
-      new DeputyExpense('Mai', 17000.00),
-      new DeputyExpense('Jun', 9000.00),
-      new DeputyExpense('Jul', 23000.00),
-      new DeputyExpense('Ago', 17000.00),
-      new DeputyExpense('Set', 2050.00),
-      new DeputyExpense('Out', 34000.00),
-      new DeputyExpense('Nov', 19000.00),
-      new DeputyExpense('Dez', 80000.00),
+      DeputyExpense('Jan', 800.00),
+      DeputyExpense('Fev', 1000.00),
+      DeputyExpense('Mar', 20000.00),
+      DeputyExpense('Abr', 29000.00),
+      DeputyExpense('Mai', 17000.00),
+      DeputyExpense('Jun', 9000.00),
+      DeputyExpense('Jul', 23000.00),
+      DeputyExpense('Ago', 17000.00),
+      DeputyExpense('Set', 2050.00),
+      DeputyExpense('Out', 34000.00),
+      DeputyExpense('Nov', 19000.00),
+      DeputyExpense('Dez', 80000.00),
     ];
 
     return [
-      new charts.Series<DeputyExpense, String>(
+      charts.Series<DeputyExpense, String>(
         id: 'Sales',
         domainFn: (DeputyExpense sales, _) => sales.year,
         measureFn: (DeputyExpense sales, _) => sales.sales,
@@ -50,13 +52,13 @@ class ChartWidget extends StatelessWidget {
             'R\$ 153.532,12',
             style: TextHelper.style(fontSize: 18, fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
             'Despesas totais no ano de 2021',
             style: TextHelper.style(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: BtColorTheme.SLATE_GRAY,
+              color: BtColorTheme.slateGray,
             ),
           ),
         ],
@@ -66,10 +68,10 @@ class ChartWidget extends StatelessWidget {
 
   Widget _renderContent() {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: BtColorTheme.EBONY_CLAY,
+      margin: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+        color: BtColorTheme.ebonyClay,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -83,10 +85,10 @@ class ChartWidget extends StatelessWidget {
       aspectRatio: 2.0,
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
-          return LinearGradient(
+          return const LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: [BtColorTheme.MELROSE, BtColorTheme.WHITE],
+            colors: [BtColorTheme.melrose, BtColorTheme.white],
             stops: [
               0.0,
               1.0,
@@ -98,14 +100,14 @@ class ChartWidget extends StatelessWidget {
           _deputyExpenses(),
           animate: true,
           primaryMeasureAxis: charts.NumericAxisSpec(
-            tickProviderSpec: charts.BasicNumericTickProviderSpec(
+            tickProviderSpec: const charts.BasicNumericTickProviderSpec(
               desiredTickCount: 4,
             ),
             showAxisLine: true,
             renderSpec: charts.GridlineRendererSpec(
               labelStyle: charts.TextStyleSpec(
                 fontSize: 7, // size in Pts.
-                color: charts.ColorUtil.fromDartColor(BtColorTheme.SLATE_GRAY),
+                color: charts.ColorUtil.fromDartColor(BtColorTheme.slateGray),
               ),
             ),
           ),
@@ -115,7 +117,7 @@ class ChartWidget extends StatelessWidget {
               labelOffsetFromAxisPx: 8,
               labelStyle: charts.TextStyleSpec(
                 fontSize: 8,
-                color: charts.ColorUtil.fromDartColor(BtColorTheme.SLATE_GRAY),
+                color: charts.ColorUtil.fromDartColor(BtColorTheme.slateGray),
               ),
             ),
           ),

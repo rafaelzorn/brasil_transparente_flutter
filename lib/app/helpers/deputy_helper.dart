@@ -11,6 +11,6 @@ class DeputyHelper {
       allWords: true,
     );
     
-    return '$civilName ${deputy.situation == GeneralConstant.EXERCISE ? "é" : "foi"} ${deputy.gender == GeneralConstant.MALE ? "um deputado brasileiro" : "uma deputada brasileira"} pelo partido ${deputy.initialsParty ?? '-'}, nasceu em ${FormatHelper.formatDate(deputy.birthDate)} na cidade de ${deputy.birthCity ?? ''}/${deputy.birthState}.';
+    return '$civilName ${deputy.situation == GeneralConstant.exercise ? "é" : "foi"} ${deputy.gender == GeneralConstant.male ? "um deputado brasileiro" : "uma deputada brasileira"} pelo partido ${deputy.initialsParty ?? '-'}, nasceu em ${FormatHelper.formatDate(deputy.birthDate)} na cidade de ${deputy.birthCity ?? ''}/${deputy.birthState}.';
   }
 }

@@ -8,7 +8,7 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 class InputSearchWidget extends StatelessWidget {
   final TextEditingController controller;
 
-  InputSearchWidget({
+  const InputSearchWidget({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -16,37 +16,37 @@ class InputSearchWidget extends StatelessWidget {
   Widget _renderContent() {
     return TextField(
       autocorrect: false,
-      controller: this.controller,
+      controller: controller,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.done,
       style: TextHelper.style(
         fontSize: 15,
-        color: BtColorTheme.SLATE_GRAY,
+        color: BtColorTheme.slateGray,
         height: 1.3,
       ),
       decoration: InputDecoration(
-        hintText: StringResource.SEARCH_FOR_THE_DEPUTY_NAME,
+        hintText: StringResource.searchForTheDeputyName,
         hintStyle: TextHelper.style(
           fontSize: 15,
-          color: BtColorTheme.SLATE_GRAY,
+          color: BtColorTheme.slateGray,
         ),
-        suffixIcon: Icon(
+        suffixIcon: const Icon(
           Icons.search,
-          color: BtColorTheme.SLATE_GRAY,
+          color: BtColorTheme.slateGray,
           size: 28,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: BtColorTheme.SLATE_GRAY, width: 0.5),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: BtColorTheme.slateGray, width: 0.5),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: BtColorTheme.SLATE_GRAY, width: 0.5),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: BtColorTheme.slateGray, width: 0.5),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         filled: true,
-        fillColor: BtColorTheme.BUNKER,
-        contentPadding: EdgeInsets.fromLTRB(15, 18, 8, 18),
+        fillColor: BtColorTheme.bunker,
+        contentPadding: const EdgeInsets.fromLTRB(15, 18, 8, 18),
       ),
     );
   }
@@ -54,7 +54,7 @@ class InputSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 50),
+      margin: const EdgeInsets.only(bottom: 50),
       child: _renderContent(),
     );
   }

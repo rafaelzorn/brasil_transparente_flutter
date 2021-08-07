@@ -3,6 +3,7 @@ class GetPoliticalPartiesSupport {
   late int items;
 
   @override
+  // ignore: avoid_renaming_method_parameters
   bool operator ==(Object o) {
     if (identical(this, o)) {
       return true;

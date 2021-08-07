@@ -8,7 +8,7 @@ class TextHelper {
   static TextStyle style({
     required double fontSize,
     FontWeight fontWeight = FontWeight.w400,
-    Color color = BtColorTheme.WHITE,
+    Color color = BtColorTheme.white,
     double height = 1,
     double letterSpacing = 0.5,
   }) {

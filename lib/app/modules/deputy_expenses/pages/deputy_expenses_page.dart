@@ -9,21 +9,23 @@ import 'package:brasil_transparente_flutter/app/widgets/bt_swipe_calendar_widget
 import 'package:brasil_transparente_flutter/app/widgets/bt_main_title_page_widget.dart';
 
 class DeputyExpensesPage extends GetView<DeputyExpensesController> {
+  const DeputyExpensesPage({Key? key}) : super(key: key);
+
   Widget _renderChart() {
-    return ChartWidget();
+    return const ChartWidget();
   }
 
   Widget _renderContent() {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
-          children: [
-            BtMainTitlePageWidget(title: StringResource.EXPENSES),
+          children: <Widget>[
+            const BtMainTitlePageWidget(title: StringResource.expenses),
             Container(
-              margin: EdgeInsets.only(bottom: 20),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: BtSwipeCalendarWidget(date: 'Agosto 2021'),
+              margin: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: const BtSwipeCalendarWidget(date: 'Agosto 2021'),
             ),
             _renderChart()
           ],

@@ -1,5 +1,5 @@
 class BtRoutes {
-  static const String DEPUTIES = '/deputies';
-  static const String SEARCH = '/search';
-  static const String DEPUTY_DETAIL = '/deputy-detail/:id';
+  static const String deputies = '/deputies';
+  static const String search = '/search';
+  static const String deputyDetail = '/deputy-detail/:id';
 }

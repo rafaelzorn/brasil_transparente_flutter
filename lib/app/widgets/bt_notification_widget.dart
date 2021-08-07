@@ -11,33 +11,34 @@ class BtNotificationWidget extends StatelessWidget {
   final String? textButton;
   final Function? onPress;
 
-  BtNotificationWidget({
+  const BtNotificationWidget({
+    Key? key,
     required this.icon,
     this.iconSize = 90,
     required this.text,
     this.textButton,
     this.onPress,
-  });
+  }) : super(key: key);
 
   Widget _renderButton() {
-    if (this.onPress == null) {
+    if (onPress == null) {
       return Container();
     }
 
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: InkWell(
-        onTap: () => this.onPress!(),
+        onTap: () => onPress!(),
         child: FractionallySizedBox(
           widthFactor: 0.75,
           child: Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(10),
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(100)),
-              color: BtColorTheme.OXFORD_BLUE,
+              color: BtColorTheme.oxfordBlue,
             ),
             child: Text(
-              this.textButton!,
+              textButton!,
               textAlign: TextAlign.center,
               style: TextHelper.style(
                 fontSize: 14,
@@ -53,16 +54,16 @@ class BtNotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       alignment: AlignmentDirectional.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(this.icon, size: this.iconSize, color: BtColorTheme.MELROSE),
+          Icon(icon, size: iconSize, color: BtColorTheme.melrose),
           Container(
-            padding: EdgeInsets.only(top: 15, bottom: 10),
+            padding: const EdgeInsets.only(top: 15, bottom: 10),
             child: Text(
-              this.text,
+              text,
               textAlign: TextAlign.center,
               style: TextHelper.style(fontSize: 14, height: 1.5),
             ),

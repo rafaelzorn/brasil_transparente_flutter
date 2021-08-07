@@ -9,11 +9,12 @@ class PropositionWidget extends StatelessWidget {
   final double bottomRadius;
   final bool isLast;
 
-  PropositionWidget({
+  const PropositionWidget({
+    Key? key,
     this.isLast = false,
     this.topRadius = 0,
     this.bottomRadius = 0,
-  });
+  }) : super(key: key);
 
   Widget _renderInformation() {
     return Expanded(
@@ -29,7 +30,7 @@ class PropositionWidget extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'Contra a apreciac¸a~o conclusiva do Projeto de Lei No 399/2015, do Deputado',
             overflow: TextOverflow.ellipsis,
@@ -37,7 +38,7 @@ class PropositionWidget extends StatelessWidget {
             style: TextHelper.style(
               fontSize: 11,
               height: 1.3,
-              color: BtColorTheme.SLATE_GRAY,
+              color: BtColorTheme.slateGray,
             ),
           ),
         ],
@@ -51,15 +52,15 @@ class PropositionWidget extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerRight,
         child: RawMaterialButton(
-          constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-          child: Icon(
+          constraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          child: const Icon(
             Icons.visibility_outlined,
             size: 15,
-            color: BtColorTheme.WHITE,
+            color: BtColorTheme.white,
           ),
-          padding: EdgeInsets.all(10),
-          shape: CircleBorder(
-            side: BorderSide(width: 0.5, color: BtColorTheme.SLATE_GRAY),
+          padding: const EdgeInsets.all(10),
+          shape: const CircleBorder(
+            side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
           ),
           onPressed: () => {},
         ),
@@ -70,25 +71,25 @@ class PropositionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: this.isLast ? 10 : 0),
+      margin: EdgeInsets.only(bottom: isLast ? 10 : 0),
       height: 80,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       foregroundDecoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: BtColorTheme.SLATE_GRAY,
+            color: BtColorTheme.slateGray,
             width: 0.5,
-            style: this.isLast ? BorderStyle.none : BorderStyle.solid,
+            style: isLast ? BorderStyle.none : BorderStyle.solid,
           ),
         ),
       ),
       decoration: BoxDecoration(
-        color: BtColorTheme.EBONY_CLAY,
+        color: BtColorTheme.ebonyClay,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(this.topRadius),
-          topRight: Radius.circular(this.topRadius),
-          bottomLeft: Radius.circular(this.bottomRadius),
-          bottomRight: Radius.circular(this.bottomRadius),
+          topLeft: Radius.circular(topRadius),
+          topRight: Radius.circular(topRadius),
+          bottomLeft: Radius.circular(bottomRadius),
+          bottomRight: Radius.circular(bottomRadius),
         ),
       ),
       child: Row(

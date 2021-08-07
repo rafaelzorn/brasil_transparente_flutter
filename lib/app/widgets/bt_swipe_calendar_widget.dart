@@ -7,15 +7,15 @@ import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 class BtSwipeCalendarWidget extends StatelessWidget {
   final String date;
 
-  BtSwipeCalendarWidget({required this.date});
+  const BtSwipeCalendarWidget({Key? key, required this.date}) : super(key: key);
 
   Widget _renderIcon({required icon}) {
     return RawMaterialButton(
-      constraints: BoxConstraints(minWidth: 0, minHeight: 0),
-      child: Icon(icon, size: 23, color: BtColorTheme.WHITE),
-      padding: EdgeInsets.all(10),
-      shape: CircleBorder(
-        side: BorderSide(width: 0.5, color: BtColorTheme.SLATE_GRAY),
+      constraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+      child: Icon(icon, size: 23, color: BtColorTheme.white),
+      padding: const EdgeInsets.all(10),
+      shape: const CircleBorder(
+        side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
       ),
       onPressed: () => {},
     );
@@ -30,17 +30,17 @@ class BtSwipeCalendarWidget extends StatelessWidget {
         _renderIcon(icon: Icons.chevron_left),
         Container(
           width: 180,
-          padding: EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            border: Border.all(color: BtColorTheme.SLATE_GRAY, width: 1),
-            borderRadius: BorderRadius.all(Radius.circular(30)),
+            border: Border.all(color: BtColorTheme.slateGray, width: 1),
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
           ),
           child: Text(
-            this.date,
+            date,
             style: TextHelper.style(
               fontSize: 13,
               fontWeight: FontWeight.w700,
-              color: BtColorTheme.WHITE,
+              color: BtColorTheme.white,
             ),
             textAlign: TextAlign.center,
           ),

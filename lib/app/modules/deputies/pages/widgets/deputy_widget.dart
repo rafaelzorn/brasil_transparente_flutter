@@ -13,12 +13,12 @@ import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 class DeputyWidget extends StatelessWidget {
   final DeputyModel deputy;
 
-  DeputyWidget({Key? key, required this.deputy}) : super(key: key);
+  const DeputyWidget({Key? key, required this.deputy}) : super(key: key);
 
   Widget _renderListImage() {
     return Container(
-      decoration: BoxDecoration(
-        color: BtColorTheme.OXFORD_BLUE,
+      decoration: const BoxDecoration(
+        color: BtColorTheme.oxfordBlue,
         shape: BoxShape.circle,
       ),
       child: ClipOval(
@@ -44,13 +44,13 @@ class DeputyWidget extends StatelessWidget {
   Widget _renderListTitle() {
     return ListTile(
       onTap: () => Get.toNamed(
-        BtRoutes.DEPUTY_DETAIL.replaceAll(':id', deputy.id.toString()),
+        BtRoutes.deputyDetail.replaceAll(':id', deputy.id.toString()),
       ),
       dense: true,
-      contentPadding: EdgeInsets.symmetric(horizontal: 0),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0),
       leading: _renderListImage(),
       title: Container(
-        margin: EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: 8),
         child: Text(
           StringHelper.capitalize(deputy.name ?? '-', allWords: true),
           style: TextHelper.style(
@@ -63,17 +63,17 @@ class DeputyWidget extends StatelessWidget {
       subtitle: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Icon(
+          const Icon(
             Icons.location_on,
             size: 15,
-            color: BtColorTheme.SLATE_GRAY,
+            color: BtColorTheme.slateGray,
           ),
-          SizedBox(width: 3),
+          const SizedBox(width: 3),
           Text(
             deputy.state ?? '-',
             style: TextHelper.style(
               fontSize: 11,
-              color: BtColorTheme.SLATE_GRAY,
+              color: BtColorTheme.slateGray,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -81,9 +81,9 @@ class DeputyWidget extends StatelessWidget {
       ),
       trailing: Container(
         width: 100,
-        padding: EdgeInsets.symmetric(vertical: 5),
-        decoration: BoxDecoration(
-          color: BtColorTheme.OXFORD_BLUE,
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        decoration: const BoxDecoration(
+          color: BtColorTheme.oxfordBlue,
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Text(
@@ -91,7 +91,7 @@ class DeputyWidget extends StatelessWidget {
           style: TextHelper.style(
             fontSize: 9,
             fontWeight: FontWeight.w600,
-            color: BtColorTheme.WHITE,
+            color: BtColorTheme.white,
           ),
           textAlign: TextAlign.center,
         ),
