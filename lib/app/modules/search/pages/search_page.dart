@@ -175,9 +175,7 @@ class SearchPage extends GetView<SearchController> {
   }
 
   Widget _renderContent() {
-    return SingleChildScrollView(
-      child: _renderForm(),
-    );
+    return SingleChildScrollView(child: _renderForm());
   }
 
   @override

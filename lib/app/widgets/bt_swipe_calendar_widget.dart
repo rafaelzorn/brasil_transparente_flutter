@@ -21,6 +21,26 @@ class BtSwipeCalendarWidget extends StatelessWidget {
     );
   }
 
+  Widget _renderDate() {
+    return Container(
+      width: 180,
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        border: Border.all(color: BtColorTheme.slateGray, width: 1),
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+      ),
+      child: Text(
+        date,
+        style: TextHelper.style(
+          fontSize: 13,
+          fontWeight: FontWeight.w700,
+          color: BtColorTheme.white,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,23 +48,7 @@ class BtSwipeCalendarWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         _renderIcon(icon: Icons.chevron_left),
-        Container(
-          width: 180,
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-            border: Border.all(color: BtColorTheme.slateGray, width: 1),
-            borderRadius: const BorderRadius.all(Radius.circular(30)),
-          ),
-          child: Text(
-            date,
-            style: TextHelper.style(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-              color: BtColorTheme.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        _renderDate(),
         _renderIcon(icon: Icons.chevron_right),
       ],
     );

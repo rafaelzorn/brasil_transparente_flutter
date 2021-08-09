@@ -24,10 +24,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
   }
 
   _bottomNavigationBarItem({required IconData icon, required String label}) {
-    return BottomNavigationBarItem(
-      icon: Icon(icon),
-      label: label,
-    );
+    return BottomNavigationBarItem(icon: Icon(icon), label: label);
   }
 
   @override
@@ -42,7 +39,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
         () => BottomNavigationBar(
           onTap: controller.handleIndexStack,
           currentIndex: controller.indexStack,
-          iconSize: 24,
+          iconSize: 20,
           elevation: 0,
           items: [
             _bottomNavigationBarItem(

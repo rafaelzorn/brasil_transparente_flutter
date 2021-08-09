@@ -47,16 +47,20 @@ class DeputiesController extends GetxController {
 
       if (_resetList()) {
         _deputies.clear();
+        _lastPage(false);
+        _resetList(false);
+      }
+
+      if (deputies.isEmpty) {
+        _lastPage(true);
       }
 
       _deputies.addAll(deputies);
 
       _isLoading(false);
-      _resetList(false);
       _isError(false);
     } catch (error) {
       _isLoading(false);
-      _resetList(false);
       _isError(true);
     }
   }
@@ -87,6 +91,11 @@ class DeputiesController extends GetxController {
   }
 
   void reload() {
-    handleFindDeputies(page: _page, showLoading: true, filters: filters);
+    handleFindDeputies(
+      page: _page,
+      showLoading: true,
+      resetList: _resetList(),
+      filters: filters,
+    );
   }
 }

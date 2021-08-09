@@ -11,8 +11,11 @@ class ProfileImageWidget extends StatelessWidget {
   final String? photo;
   final String? situation;
 
-  const ProfileImageWidget({Key? key, this.photo, this.situation})
-      : super(key: key);
+  const ProfileImageWidget({
+    Key? key,
+    this.photo,
+    this.situation,
+  }) : super(key: key);
 
   Widget _renderImage() {
     return Container(

@@ -15,6 +15,14 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
     return const ChartWidget();
   }
 
+  Widget _renderSwipeCalendar() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: const BtSwipeCalendarWidget(date: 'Agosto 2021'),
+    );
+  }
+
   Widget _renderContent() {
     return SingleChildScrollView(
       child: Container(
@@ -22,12 +30,8 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
         child: Column(
           children: <Widget>[
             const BtMainTitlePageWidget(title: StringResource.expenses),
-            Container(
-              margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: const BtSwipeCalendarWidget(date: 'Agosto 2021'),
-            ),
-            _renderChart()
+            _renderSwipeCalendar(),
+            _renderChart(),
           ],
         ),
       ),

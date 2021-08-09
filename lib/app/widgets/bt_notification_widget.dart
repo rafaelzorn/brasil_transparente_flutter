@@ -51,6 +51,17 @@ class BtNotificationWidget extends StatelessWidget {
     );
   }
 
+  Widget _renderText() {
+    return Container(
+      padding: const EdgeInsets.only(top: 15, bottom: 10),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextHelper.style(fontSize: 14, height: 1.5),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,14 +71,7 @@ class BtNotificationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(icon, size: iconSize, color: BtColorTheme.melrose),
-          Container(
-            padding: const EdgeInsets.only(top: 15, bottom: 10),
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: TextHelper.style(fontSize: 14, height: 1.5),
-            ),
-          ),
+          _renderText(),
           _renderButton(),
         ],
       ),

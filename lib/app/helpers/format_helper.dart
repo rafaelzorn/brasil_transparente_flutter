@@ -11,11 +11,11 @@ class FormatHelper {
     return "${numeros.substring(0, 3)}.${numeros.substring(3, 6)}.${numeros.substring(6, 9)}-${numeros.substring(9)}";
   }
 
-  static String formatDate(String? date) {
+  static String formatDate(String? date, {String format = 'dd/MM/yyyy'}) {
     if (date == null) {
       return '-';
     }
 
-    return DateFormat('dd/MM/yyyy').format(DateTime.parse(date));
+    return DateFormat(format).format(DateTime.parse(date));
   }
 }

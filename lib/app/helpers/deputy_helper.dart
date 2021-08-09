@@ -10,7 +10,9 @@ class DeputyHelper {
       deputy.civilName ?? '-',
       allWords: true,
     );
-    
-    return '$civilName ${deputy.situation == GeneralConstant.exercise ? "é" : "foi"} ${deputy.gender == GeneralConstant.male ? "um deputado brasileiro" : "uma deputada brasileira"} pelo partido ${deputy.initialsParty ?? '-'}, nasceu em ${FormatHelper.formatDate(deputy.birthDate)} na cidade de ${deputy.birthCity ?? ''}/${deputy.birthState}.';
+
+    return '$civilName ${deputy.situation == GeneralConstant.exercise ? "é" : "foi"} '
+        '${deputy.gender == GeneralConstant.male ? "um deputado brasileiro" : "uma deputada brasileira"} pelo partido ${deputy.initialsParty ?? '-'}, '
+        'nasceu em ${FormatHelper.formatDate(deputy.birthDate)} na cidade de ${deputy.birthCity ?? ''}/${deputy.birthState}.';
   }
 }

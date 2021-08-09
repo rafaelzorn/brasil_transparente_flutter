@@ -8,6 +8,7 @@ class DeputiesBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DeputyRepository>(() => DeputyRepository(Get.find()));
+
     Get.lazyPut<DeputiesController>(() => DeputiesController(Get.find()));
   }
 }

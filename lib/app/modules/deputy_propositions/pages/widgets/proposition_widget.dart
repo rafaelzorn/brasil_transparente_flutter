@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
+import 'package:brasil_transparente_flutter/app/data/models/proposition_model.dart';
 
 class PropositionWidget extends StatelessWidget {
-  final double topRadius;
-  final double bottomRadius;
+  final int index;
   final bool isLast;
+  final PropositionModel proposition;
 
   const PropositionWidget({
     Key? key,
-    this.isLast = false,
-    this.topRadius = 0,
-    this.bottomRadius = 0,
+    required this.index,
+    required this.isLast,
+    required this.proposition,
   }) : super(key: key);
 
   Widget _renderInformation() {
@@ -24,7 +25,7 @@ class PropositionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'REC 29/2021',
+            '${proposition.initialsType ?? '-'} ${proposition.number ?? '-'}/${proposition.year ?? '-'}',
             style: TextHelper.style(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -32,7 +33,7 @@ class PropositionWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Contra a apreciac¸a~o conclusiva do Projeto de Lei No 399/2015, do Deputado',
+            proposition.menu ?? '-',
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextHelper.style(
@@ -70,8 +71,11 @@ class PropositionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double topRadius = index == 0 ? 10 : 0;
+    final double bottomRadius = isLast ? 10 : 0;
+
     return Container(
-      margin: EdgeInsets.only(bottom: isLast ? 10 : 0),
+      margin: EdgeInsets.only(bottom: isLast ? 20 : 0),
       height: 80,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       foregroundDecoration: BoxDecoration(

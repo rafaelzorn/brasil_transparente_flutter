@@ -50,16 +50,20 @@ class SelectPoliticalPartyController extends GetxController {
 
       if (_resetList()) {
         _politicalParties.clear();
+        _lastPage(false);
+        _resetList(false);
+      }
+
+      if (politicalParties.isEmpty) {
+        _lastPage(true);
       }
 
       _politicalParties.addAll(politicalParties);
 
       _isLoading(false);
-      _resetList(false);
       _isError(false);
     } catch (error) {
       _isLoading(false);
-      _resetList(false);
       _isError(true);
     }
   }
@@ -87,8 +91,12 @@ class SelectPoliticalPartyController extends GetxController {
     handleGetPoliticalParties(page: _page + initialPage);
   }
 
-  void reload() {
-    handleGetPoliticalParties(page: _page, showLoading: true);
+  void reload() {     
+    handleGetPoliticalParties(
+      page: _page,
+      showLoading: true,
+      resetList: _resetList(),
+    );
   }
 
   void handleSelectPoliticalParty(PoliticalPartyModel politicalParty) {

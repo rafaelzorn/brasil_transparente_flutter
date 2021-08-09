@@ -14,6 +14,7 @@ class SearchBinding implements Bindings {
     Get.lazyPut<PoliticalPartyRepository>(
       () => PoliticalPartyRepository(Get.find()),
     );
+
     Get.put<SearchController>(SearchController(), permanent: true);
     Get.put<SelectStateController>(
       SelectStateController(Get.find()),
