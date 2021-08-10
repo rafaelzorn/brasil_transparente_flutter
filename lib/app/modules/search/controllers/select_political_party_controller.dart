@@ -54,7 +54,7 @@ class SelectPoliticalPartyController extends GetxController {
         _resetList(false);
       }
 
-      if (politicalParties.isEmpty) {
+      if (politicalParties.isEmpty || politicalParties.length < _itemsPerPage) {
         _lastPage(true);
       }
 
@@ -91,7 +91,7 @@ class SelectPoliticalPartyController extends GetxController {
     handleGetPoliticalParties(page: _page + initialPage);
   }
 
-  void reload() {     
+  void reload() {
     handleGetPoliticalParties(
       page: _page,
       showLoading: true,

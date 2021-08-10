@@ -6,10 +6,19 @@ import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 class BtSwipeCalendarWidget extends StatelessWidget {
   final String date;
+  final Function onPressedLeft;
+  final Function onPressedRight;
+  final bool hideRightButton;
 
-  const BtSwipeCalendarWidget({Key? key, required this.date}) : super(key: key);
+  const BtSwipeCalendarWidget({
+    Key? key,
+    required this.date,
+    required this.onPressedLeft,
+    required this.onPressedRight,
+    required this.hideRightButton,
+  }) : super(key: key);
 
-  Widget _renderIcon({required icon}) {
+  Widget _renderIcon({required icon, required onPressed}) {
     return RawMaterialButton(
       constraints: const BoxConstraints(minWidth: 0, minHeight: 0),
       child: Icon(icon, size: 23, color: BtColorTheme.white),
@@ -17,8 +26,19 @@ class BtSwipeCalendarWidget extends StatelessWidget {
       shape: const CircleBorder(
         side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
       ),
-      onPressed: () => {},
+      onPressed: () => onPressed(),
     );
+  }
+
+  Widget _renderRightButton() {
+    if (hideRightButton) {
+      return RawMaterialButton(
+        constraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+        onPressed: () => {},
+      );
+    }
+
+    return _renderIcon(icon: Icons.chevron_right, onPressed: onPressedRight);
   }
 
   Widget _renderDate() {
@@ -47,9 +67,9 @@ class BtSwipeCalendarWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        _renderIcon(icon: Icons.chevron_left),
+        _renderIcon(icon: Icons.chevron_left, onPressed: onPressedLeft),
         _renderDate(),
-        _renderIcon(icon: Icons.chevron_right),
+        _renderRightButton(),
       ],
     );
   }

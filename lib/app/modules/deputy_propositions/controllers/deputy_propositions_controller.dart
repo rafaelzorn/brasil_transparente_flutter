@@ -4,12 +4,17 @@ import 'package:get/get.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/proposition_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/models/proposition_model.dart';
 import 'package:brasil_transparente_flutter/app/data/supports/find_propositions_support.dart';
+import 'package:brasil_transparente_flutter/app/helpers/date_helper.dart';
 
 class DeputyPropositionsController extends GetxController {
   final PropositionRepository _propositionRepository;
 
   final int _itemsPerPage = 15;
   final int _initialPage = 1;
+  final int currentYear = DateHelper.currentYear();
+
+  final String incrementYear = 'incrementYear';
+  final String decrementYear = 'decrementYear';
 
   final RxList<PropositionModel> _propositions = <PropositionModel>[].obs;
   final Rx<FindPropositionsSupport> _findPropositionsSupport =
@@ -25,7 +30,7 @@ class DeputyPropositionsController extends GetxController {
   bool get isError => _isError();
 
   int get _page => _findPropositionsSupport().page;
-  int get _year => _findPropositionsSupport().year;
+  int get year => _findPropositionsSupport().year;
 
   DeputyPropositionsController(this._propositionRepository);
 
@@ -38,7 +43,7 @@ class DeputyPropositionsController extends GetxController {
     handleFindPropositions(
       page: _initialPage,
       showLoading: true,
-      year: 2021,
+      year: currentYear,
     );
   }
 
@@ -55,7 +60,7 @@ class DeputyPropositionsController extends GetxController {
         _resetList(false);
       }
 
-      if (propositions.isEmpty) {
+      if (propositions.isEmpty || propositions.length < _itemsPerPage) {
         _lastPage(true);
       }
 
@@ -88,11 +93,11 @@ class DeputyPropositionsController extends GetxController {
 
   @override
   Future<void> refresh() async {
-    handleFindPropositions(page: _initialPage, resetList: true, year: _year);
+    handleFindPropositions(page: _initialPage, resetList: true, year: year);
   }
 
   void nextPage() {
-    handleFindPropositions(page: _page + _initialPage, year: _year);
+    handleFindPropositions(page: _page + _initialPage, year: year);
   }
 
   void reload() {
@@ -100,7 +105,25 @@ class DeputyPropositionsController extends GetxController {
       page: _page,
       showLoading: true,
       resetList: _resetList(),
-      year: _year,
+      year: year,
     );
+  }
+
+  void handleChangeYear({required String action}) {
+    _resetList(true);
+    _isLoading(true);
+
+    _findPropositionsSupport.update((val) {
+      int selectedYear = val!.year;
+
+      if (action == decrementYear) {
+        selectedYear--;
+      } else {
+        selectedYear++;
+      }
+
+      val.page = _initialPage;
+      val.year = selectedYear;
+    });
   }
 }

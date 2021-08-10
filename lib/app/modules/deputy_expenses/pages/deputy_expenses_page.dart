@@ -19,7 +19,12 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: const BtSwipeCalendarWidget(date: 'Agosto 2021'),
+      child: BtSwipeCalendarWidget(
+        hideRightButton: false,
+        date: 'Agosto 2021',
+        onPressedLeft: () => {},
+        onPressedRight: () => {},
+      ),
     );
   }
 

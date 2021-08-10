@@ -22,7 +22,7 @@ class PropositionRepository {
         'ordem': 'DESC',
         'ordenarPor': 'ano'
       });
-
+    
       return response.data['dados']
           .map<PropositionModel>(
             (proposition) => PropositionModel.fromMap(proposition),

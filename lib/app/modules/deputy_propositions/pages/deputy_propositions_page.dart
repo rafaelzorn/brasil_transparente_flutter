@@ -18,19 +18,16 @@ class DeputyPropositionsPage extends GetView<DeputyPropositionsController> {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: const BtSwipeCalendarWidget(date: '2021'),
-    );
-  }
-
-  Widget _renderProposition({required int index}) {
-    final bool lastPage = controller.lastPage;
-    final int total = controller.propositions.length;
-    final bool isLast = lastPage && total == (index + 1);
-
-    return PropositionWidget(
-      index: index,
-      isLast: isLast,
-      proposition: controller.propositions[index],
+      child: BtSwipeCalendarWidget(
+        hideRightButton: controller.currentYear == controller.year,
+        date: controller.year.toString(),
+        onPressedLeft: () => controller.handleChangeYear(
+          action: controller.decrementYear,
+        ),
+        onPressedRight: () => controller.handleChangeYear(
+          action: controller.incrementYear,
+        ),
+      ),
     );
   }
 
@@ -63,7 +60,9 @@ class DeputyPropositionsPage extends GetView<DeputyPropositionsController> {
       child: RefreshIndicator(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return _renderProposition(index: index);
+            return PropositionWidget(
+              proposition: controller.propositions[index],
+            );
           },
           itemCount: controller.propositions.length,
         ),

@@ -66,7 +66,7 @@ class DeputyProfilePage extends GetView<DeputyProfileController> {
 
   Widget _renderBox(Widget child) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
         color: BtColorTheme.ebonyClay,

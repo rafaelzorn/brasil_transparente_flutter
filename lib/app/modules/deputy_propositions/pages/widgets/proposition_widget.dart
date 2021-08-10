@@ -6,14 +6,10 @@ import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/data/models/proposition_model.dart';
 
 class PropositionWidget extends StatelessWidget {
-  final int index;
-  final bool isLast;
   final PropositionModel proposition;
 
   const PropositionWidget({
     Key? key,
-    required this.index,
-    required this.isLast,
     required this.proposition,
   }) : super(key: key);
 
@@ -71,30 +67,13 @@ class PropositionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double topRadius = index == 0 ? 10 : 0;
-    final double bottomRadius = isLast ? 10 : 0;
-
     return Container(
-      margin: EdgeInsets.only(bottom: isLast ? 20 : 0),
+      margin: const EdgeInsets.only(bottom: 10),
       height: 80,
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      foregroundDecoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: BtColorTheme.slateGray,
-            width: 0.5,
-            style: isLast ? BorderStyle.none : BorderStyle.solid,
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: BtColorTheme.ebonyClay,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(topRadius),
-          topRight: Radius.circular(topRadius),
-          bottomLeft: Radius.circular(bottomRadius),
-          bottomRight: Radius.circular(bottomRadius),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Row(
         children: <Widget>[_renderInformation(), _renderIcon()],

@@ -51,7 +51,7 @@ class DeputiesController extends GetxController {
         _resetList(false);
       }
 
-      if (deputies.isEmpty) {
+      if (deputies.isEmpty || deputies.length < _itemsPerPage) {
         _lastPage(true);
       }
 
