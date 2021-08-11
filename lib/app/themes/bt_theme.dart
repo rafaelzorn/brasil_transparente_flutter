@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 
 final ThemeData btTheme = ThemeData(
+  primaryColor: BtColorTheme.bunker,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   scaffoldBackgroundColor: BtColorTheme.bunker,
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(primary: BtColorTheme.white),
   ),
   appBarTheme: const AppBarTheme(
+    backwardsCompatibility: false,
+    systemOverlayStyle: SystemUiOverlayStyle.light,
     backgroundColor: BtColorTheme.bunker,
     elevation: 0,
   ),

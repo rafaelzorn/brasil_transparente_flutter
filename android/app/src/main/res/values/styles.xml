@@ -2,10 +2,13 @@
 <resources>    
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:textColor">#ffffff</item>
-
+        <item name="android:colorPrimary">@color/primary</item>
+        
         <item name="android:windowBackground">
           @drawable/background_splash
         </item>        
+
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
