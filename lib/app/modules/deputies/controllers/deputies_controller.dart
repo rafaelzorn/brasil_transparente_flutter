@@ -11,21 +11,21 @@ class DeputiesController extends GetxController {
   final DeputyRepository _deputyRepository;
 
   final int _itemsPerPage = 15;
-  final int _initialPage = 1;
+  final int initialPage = 1;
 
   final RxList<DeputyModel> _deputies = <DeputyModel>[].obs;
   final Rx<FindDeputiesSupport> _findDeputiesSupport =
       FindDeputiesSupport().obs;
-  final RxBool _lastPage = false.obs;
+  final RxBool _isLastPage = false.obs;
   final RxBool _isLoading = false.obs;
   final RxBool _isError = false.obs;
-  final RxBool _resetList = false.obs;
+  final RxBool _isRefresh = false.obs;
 
   List<DeputyModel> get deputies => _deputies.toList();
-  bool get lastPage => _lastPage();
+  bool get isLastPage => _isLastPage();
   bool get isLoading => _isLoading();
   bool get isError => _isError();
-
+  bool get isRefresh => _isRefresh();
   int get _page => _findDeputiesSupport().page;
   Map<String, String> get filters => _findDeputiesSupport().filters;
 
@@ -36,43 +36,50 @@ class DeputiesController extends GetxController {
     super.onInit();
 
     ever(_findDeputiesSupport, (_) => _findDeputies());
-    handleFindDeputies(page: _initialPage, showLoading: true);
+    handleFindDeputies(page: initialPage, isLoading: true);
   }
 
   Future<void> _findDeputies() async {
     try {
-      final List<DeputyModel> deputies = await _deputyRepository.findDeputies(
+      final Map<String, dynamic> data = await _deputyRepository.findDeputies(
         _findDeputiesSupport(),
       );
 
-      if (_resetList()) {
+      if (_isRefresh()) {
         _deputies.clear();
-        _lastPage(false);
-        _resetList(false);
       }
 
-      if (deputies.isEmpty || deputies.length < _itemsPerPage) {
-        _lastPage(true);
+      if (data['last_page']) {
+        _isLastPage(true);
       }
 
-      _deputies.addAll(deputies);
+      _deputies.addAll(data['deputies']);
 
       _isLoading(false);
+      _isRefresh(false);
       _isError(false);
     } catch (error) {
       _isLoading(false);
+      _isRefresh(false);
       _isError(true);
     }
   }
 
   void handleFindDeputies({
     required int page,
-    bool showLoading = false,
-    resetList = false,
     Map<String, String> filters = const {},
+    bool isLoading = false,
+    bool isRefresh = false,
+    bool isLastPage = false,
+    bool clearList = false,
   }) {
-    _resetList(resetList);
-    _isLoading(showLoading);
+    _isLoading(isLoading);
+    _isRefresh(isRefresh);
+    _isLastPage(isLastPage);
+
+    if (clearList) {
+      _deputies.clear();
+    }
 
     _findDeputiesSupport.update((val) {
       val!.page = page;
@@ -83,18 +90,20 @@ class DeputiesController extends GetxController {
 
   @override
   Future<void> refresh() async {
-    handleFindDeputies(page: _initialPage, resetList: true, filters: filters);
+    handleFindDeputies(page: initialPage, isRefresh: true, filters: filters);
   }
 
   void nextPage() {
-    handleFindDeputies(page: _page + _initialPage, filters: filters);
+    if (!_isRefresh() && !_isLastPage()) {
+      handleFindDeputies(page: _page + initialPage, filters: filters);
+    }
   }
 
   void reload() {
     handleFindDeputies(
-      page: _page,
-      showLoading: true,
-      resetList: _resetList(),
+      page: initialPage,
+      isLoading: true,
+      clearList: true,
       filters: filters,
     );
   }

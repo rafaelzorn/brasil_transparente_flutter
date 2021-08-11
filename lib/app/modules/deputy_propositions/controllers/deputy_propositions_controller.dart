@@ -19,18 +19,18 @@ class DeputyPropositionsController extends GetxController {
   final RxList<PropositionModel> _propositions = <PropositionModel>[].obs;
   final Rx<FindPropositionsSupport> _findPropositionsSupport =
       FindPropositionsSupport().obs;
-  final RxBool _lastPage = false.obs;
+  final RxBool _isLastPage = false.obs;
   final RxBool _isLoading = false.obs;
   final RxBool _isError = false.obs;
-  final RxBool _resetList = false.obs;
+  final RxBool _isRefresh = false.obs;
 
   List<PropositionModel> get propositions => _propositions.toList();
-  bool get lastPage => _lastPage();
+  bool get isLastPage => _isLastPage();
   bool get isLoading => _isLoading();
   bool get isError => _isError();
-
-  int get _page => _findPropositionsSupport().page;
+  bool get isRefresh => _isRefresh();
   int get year => _findPropositionsSupport().year;
+  int get _page => _findPropositionsSupport().page;
 
   DeputyPropositionsController(this._propositionRepository);
 
@@ -42,34 +42,34 @@ class DeputyPropositionsController extends GetxController {
 
     handleFindPropositions(
       page: _initialPage,
-      showLoading: true,
       year: currentYear,
+      isLoading: true,
     );
   }
 
   Future<void> _findPropositions() async {
     try {
-      final List<PropositionModel> propositions =
+      final Map<String, dynamic> data =
           await _propositionRepository.findPropositions(
         _findPropositionsSupport(),
       );
 
-      if (_resetList()) {
+      if (_isRefresh()) {
         _propositions.clear();
-        _lastPage(false);
-        _resetList(false);
       }
 
-      if (propositions.isEmpty || propositions.length < _itemsPerPage) {
-        _lastPage(true);
+      if (data['last_page']) {
+        _isLastPage(true);
       }
 
-      _propositions.addAll(propositions);
+      _propositions.addAll(data['propositions']);
 
       _isLoading(false);
+      _isRefresh(false);
       _isError(false);
     } catch (error) {
       _isLoading(false);
+      _isRefresh(false);
       _isError(true);
     }
   }
@@ -77,11 +77,18 @@ class DeputyPropositionsController extends GetxController {
   void handleFindPropositions({
     required int page,
     required int year,
-    bool showLoading = false,
-    resetList = false,
+    bool isLoading = false,
+    bool isRefresh = false,
+    bool isLastPage = false,
+    bool clearList = false,
   }) {
-    _resetList(resetList);
-    _isLoading(showLoading);
+    _isLoading(isLoading);
+    _isRefresh(isRefresh);
+    _isLastPage(isLastPage);
+
+    if (clearList) {
+      _propositions.clear();
+    }
 
     _findPropositionsSupport.update((val) {
       val!.page = page;
@@ -93,37 +100,38 @@ class DeputyPropositionsController extends GetxController {
 
   @override
   Future<void> refresh() async {
-    handleFindPropositions(page: _initialPage, resetList: true, year: year);
+    handleFindPropositions(page: _initialPage, year: year, isRefresh: true);
   }
 
   void nextPage() {
-    handleFindPropositions(page: _page + _initialPage, year: year);
+    if (!_isRefresh() && !_isLastPage()) {
+      handleFindPropositions(page: _page + _initialPage, year: year);
+    }
   }
 
   void reload() {
     handleFindPropositions(
-      page: _page,
-      showLoading: true,
-      resetList: _resetList(),
+      page: _initialPage,
       year: year,
+      isLoading: true,
+      clearList: true,
     );
   }
 
   void handleChangeYear({required String action}) {
-    _resetList(true);
-    _isLoading(true);
+    int selectedYear = year;
 
-    _findPropositionsSupport.update((val) {
-      int selectedYear = val!.year;
+    if (action == decrementYear) {
+      selectedYear--;
+    } else {
+      selectedYear++;
+    }
 
-      if (action == decrementYear) {
-        selectedYear--;
-      } else {
-        selectedYear++;
-      }
-
-      val.page = _initialPage;
-      val.year = selectedYear;
-    });
+    handleFindPropositions(
+      page: _initialPage,
+      year: selectedYear,
+      isLoading: true,
+      clearList: true,
+    );
   }
 }

@@ -17,19 +17,19 @@ class SelectPoliticalPartyController extends GetxController {
       <PoliticalPartyModel>[].obs;
   final Rx<GetPoliticalPartiesSupport> _getPoliticalPartiesSupport =
       GetPoliticalPartiesSupport().obs;
-  final RxBool _lastPage = false.obs;
+  final RxBool _isLastPage = false.obs;
   final RxBool _isLoading = false.obs;
   final RxBool _isError = false.obs;
-  final RxBool _resetList = false.obs;
+  final RxBool _isRefresh = false.obs;
   final Rx<PoliticalPartyModel> _selectedPoliticalParty =
       PoliticalPartyModel().obs;
 
   List<PoliticalPartyModel> get politicalParties => _politicalParties.toList();
   PoliticalPartyModel get selectedPoliticalParty => _selectedPoliticalParty();
-  bool get lastPage => _lastPage();
+  bool get lastPage => _isLastPage();
   bool get isLoading => _isLoading();
   bool get isError => _isError();
-
+  bool get isRefresh => _isRefresh();
   int get _page => _getPoliticalPartiesSupport().page;
 
   SelectPoliticalPartyController(this._politicalPartyRepository);
@@ -43,38 +43,45 @@ class SelectPoliticalPartyController extends GetxController {
 
   Future<void> _getPoliticalParties() async {
     try {
-      final List<PoliticalPartyModel> politicalParties =
+      final Map<String, dynamic> data =
           await _politicalPartyRepository.getPoliticalParties(
         _getPoliticalPartiesSupport(),
       );
 
-      if (_resetList()) {
+      if (_isRefresh()) {
         _politicalParties.clear();
-        _lastPage(false);
-        _resetList(false);
       }
 
-      if (politicalParties.isEmpty || politicalParties.length < _itemsPerPage) {
-        _lastPage(true);
+      if (data['last_page']) {
+        _isLastPage(true);
       }
 
-      _politicalParties.addAll(politicalParties);
+      _politicalParties.addAll(data['political_parties']);
 
       _isLoading(false);
+      _isRefresh(false);
       _isError(false);
     } catch (error) {
       _isLoading(false);
+      _isRefresh(false);
       _isError(true);
     }
   }
 
   void handleGetPoliticalParties({
     required int page,
-    bool showLoading = false,
-    resetList = false,
+    bool isLoading = false,
+    bool isRefresh = false,
+    bool isLastPage = false,
+    bool clearList = false,
   }) {
-    _resetList(resetList);
-    _isLoading(showLoading);
+    _isLoading(isLoading);
+    _isRefresh(isRefresh);
+    _isLastPage(isLastPage);
+
+    if (clearList) {
+      _politicalParties.clear();
+    }
 
     _getPoliticalPartiesSupport.update((val) {
       val!.page = page;
@@ -84,18 +91,20 @@ class SelectPoliticalPartyController extends GetxController {
 
   @override
   Future<void> refresh() async {
-    handleGetPoliticalParties(page: initialPage, resetList: true);
+    handleGetPoliticalParties(page: initialPage, isRefresh: true);
   }
 
   void nextPage() {
-    handleGetPoliticalParties(page: _page + initialPage);
+    if (!_isRefresh() && !_isLastPage()) {
+      handleGetPoliticalParties(page: _page + initialPage);
+    }
   }
 
   void reload() {
     handleGetPoliticalParties(
-      page: _page,
-      showLoading: true,
-      resetList: _resetList(),
+      page: initialPage,
+      isLoading: true,
+      clearList: true,
     );
   }
 

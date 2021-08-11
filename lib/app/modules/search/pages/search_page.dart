@@ -82,8 +82,8 @@ class SearchPage extends GetView<SearchController> {
         onTap: () {
           SelectPoliticalPartyController.to.handleGetPoliticalParties(
             page: SelectPoliticalPartyController.to.initialPage,
-            showLoading: true,
-            resetList: true,
+            isLoading: true,
+            clearList: true,
           );
 
           BtModalWidget.bottomSheet(

@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/data/repositories/base_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
 import 'package:brasil_transparente_flutter/app/data/supports/find_deputies_support.dart';
 
-class DeputyRepository {
+class DeputyRepository extends BaseRepository {
   final Dio _dio;
 
   DeputyRepository(this._dio);
 
-  Future<List<DeputyModel>> findDeputies(
+  Future<Map<String, dynamic>> findDeputies(
     FindDeputiesSupport findDeputiesSupport,
   ) async {
     try {
@@ -21,11 +22,16 @@ class DeputyRepository {
         'siglaPartido': findDeputiesSupport.filters['siglaPartido'] ?? '',
       });
 
-      return response.data['dados']
+      final List<DeputyModel> deputies = response.data['dados']
           .map<DeputyModel>(
             (deputy) => DeputyModel.fromMap(deputy),
           )
           .toList();
+
+      return {
+        'deputies': deputies,
+        'last_page': isLastPage(links: response.data['links']),
+      };
     } catch (error) {
       rethrow;
     }
@@ -34,7 +40,7 @@ class DeputyRepository {
   Future<DeputyModel> findDeputy(int id) async {
     try {
       Response response = await _dio.get('/deputados/$id');
-      
+
       final lastStatus = response.data['dados']['ultimoStatus'];
 
       response.data['dados']['nome'] = lastStatus['nome'];

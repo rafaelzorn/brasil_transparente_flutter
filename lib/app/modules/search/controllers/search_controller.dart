@@ -15,17 +15,19 @@ class SearchController extends GetxController {
   void search() {
     Get.back();
 
+    final Map<String, String> filters = {
+      'name': nameController.text,
+      'siglaUf': SelectStateController.to.selectedState.initials ?? '',
+      'siglaPartido':
+          SelectPoliticalPartyController.to.selectedPoliticalParty.initials ??
+              '',
+    };
+
     DeputiesController.to.handleFindDeputies(
-      page: 1,
-      resetList: true,
-      showLoading: true,
-      filters: {
-        'name': nameController.text,
-        'siglaUf': SelectStateController.to.selectedState.initials ?? '',
-        'siglaPartido':
-            SelectPoliticalPartyController.to.selectedPoliticalParty.initials ??
-                '',
-      },
+      page: DeputiesController.to.initialPage,
+      isLoading: true,
+      clearList: true,
+      filters: filters,
     );
   }
 

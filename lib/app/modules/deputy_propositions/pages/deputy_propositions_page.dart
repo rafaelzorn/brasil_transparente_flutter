@@ -47,7 +47,7 @@ class DeputyPropositionsPage extends GetView<DeputyPropositionsController> {
       );
     }
 
-    if (controller.propositions.isEmpty) {
+    if (controller.propositions.isEmpty && !controller.isRefresh) {
       return const BtNotificationWidget(
         icon: Icons.sentiment_very_dissatisfied,
         text: StringResource.noResultAvailable,
@@ -56,7 +56,7 @@ class DeputyPropositionsPage extends GetView<DeputyPropositionsController> {
 
     return LazyLoadScrollView(
       onEndOfPage: controller.nextPage,
-      isLoading: controller.lastPage,
+      isLoading: controller.isLastPage,
       child: RefreshIndicator(
         child: ListView.builder(
           itemBuilder: (context, index) {

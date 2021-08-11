@@ -35,7 +35,7 @@ class DeputiesPage extends GetView<DeputiesController> {
       );
     }
 
-    if (controller.deputies.isEmpty) {
+    if (controller.deputies.isEmpty && !controller.isRefresh) {
       return const BtNotificationWidget(
         icon: Icons.sentiment_very_dissatisfied,
         text: StringResource.noResultAvailable,
@@ -44,7 +44,7 @@ class DeputiesPage extends GetView<DeputiesController> {
 
     return LazyLoadScrollView(
       onEndOfPage: controller.nextPage,
-      isLoading: controller.lastPage,
+      isLoading: controller.isLastPage,
       child: RefreshIndicator(
         child: ListView.builder(
           itemBuilder: (context, index) {
