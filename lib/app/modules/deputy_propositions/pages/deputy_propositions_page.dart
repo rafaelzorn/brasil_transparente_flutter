@@ -27,6 +27,7 @@ class DeputyPropositionsPage extends GetView<DeputyPropositionsController> {
         onPressedRight: () => controller.handleChangeYear(
           action: controller.incrementYear,
         ),
+        disabledButton: controller.isLoading,
       ),
     );
   }

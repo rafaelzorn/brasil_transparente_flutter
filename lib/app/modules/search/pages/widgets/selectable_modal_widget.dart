@@ -171,7 +171,7 @@ class SelectableModalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      height: (MediaQuery.of(context).size.height * 0.7),
+      height: (MediaQuery.of(context).size.height * 0.5),
       child: _renderContent(),
     );
   }

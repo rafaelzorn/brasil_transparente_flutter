@@ -17,6 +17,7 @@ class BtModalWidget {
       backgroundColor: BtColorTheme.ebonyClay,
       isDismissible: false,
       enableDrag: false,
+      isScrollControlled: true,
     );
   }
 }

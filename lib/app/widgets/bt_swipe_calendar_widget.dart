@@ -9,6 +9,7 @@ class BtSwipeCalendarWidget extends StatelessWidget {
   final Function onPressedLeft;
   final Function onPressedRight;
   final bool hideRightButton;
+  final bool disabledButton;
 
   const BtSwipeCalendarWidget({
     Key? key,
@@ -16,6 +17,7 @@ class BtSwipeCalendarWidget extends StatelessWidget {
     required this.onPressedLeft,
     required this.onPressedRight,
     required this.hideRightButton,
+    this.disabledButton = false,
   }) : super(key: key);
 
   Widget _renderIcon({required icon, required onPressed}) {
@@ -26,7 +28,7 @@ class BtSwipeCalendarWidget extends StatelessWidget {
       shape: const CircleBorder(
         side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
       ),
-      onPressed: () => onPressed(),
+      onPressed: disabledButton ? null : onPressed,
     );
   }
 
