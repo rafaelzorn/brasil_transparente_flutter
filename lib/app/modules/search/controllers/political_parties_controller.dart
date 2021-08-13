@@ -5,8 +5,8 @@ import 'package:brasil_transparente_flutter/app/data/repositories/political_part
 import 'package:brasil_transparente_flutter/app/data/models/political_party_model.dart';
 import 'package:brasil_transparente_flutter/app/data/supports/get_political_parties_support.dart';
 
-class SelectPoliticalPartyController extends GetxController {
-  static SelectPoliticalPartyController get to => Get.find();
+class PoliticalPartiesController extends GetxController {
+  static PoliticalPartiesController get to => Get.find();
 
   final PoliticalPartyRepository _politicalPartyRepository;
 
@@ -32,7 +32,7 @@ class SelectPoliticalPartyController extends GetxController {
   bool get isRefresh => _isRefresh();
   int get _page => _getPoliticalPartiesSupport().page;
 
-  SelectPoliticalPartyController(this._politicalPartyRepository);
+  PoliticalPartiesController(this._politicalPartyRepository);
 
   @override
   void onInit() {

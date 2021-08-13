@@ -38,4 +38,14 @@ class PropositionRepository extends BaseRepository {
       rethrow;
     }
   }
+
+  Future<PropositionModel> findProposition(int id) async {
+    try {
+      Response response = await _dio.get('/proposicoes/$id');
+
+      return PropositionModel.fromMap(response.data['dados']);
+    } catch (error) {
+      rethrow;
+    }
+  }
 }

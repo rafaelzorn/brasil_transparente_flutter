@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
-import 'package:brasil_transparente_flutter/app/modules/search/controllers/select_state_controller.dart';
-import 'package:brasil_transparente_flutter/app/modules/search/controllers/select_political_party_controller.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/controllers/states_controller.dart';
+import 'package:brasil_transparente_flutter/app/modules/search/controllers/political_parties_controller.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_app_bar_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
@@ -50,20 +50,20 @@ class SearchPage extends GetView<SearchController> {
   Widget _renderSelectableStates() {
     return Obx(
       () => SelectableWidget(
-        text: SelectStateController.to.selectedState.initials ??
+        text: StatesController.to.selectedState.initials ??
             StringResource.selectState,
         onTap: () {
-          SelectStateController.to.handleGetStates();
+          StatesController.to.handleGetStates();
 
           BtModalWidget.bottomSheet(
             content: Obx(
               () => SelectableModalWidget(
-                isLoading: SelectStateController.to.isLoading,
-                isError: SelectStateController.to.isError,
-                items: SelectStateController.to.states,
+                isLoading: StatesController.to.isLoading,
+                isError: StatesController.to.isError,
+                items: StatesController.to.states,
                 title: StringResource.states,
-                handleSelect: SelectStateController.to.handleSelectState,
-                reload: SelectStateController.to.reload,
+                handleSelect: StatesController.to.handleSelectState,
+                reload: StatesController.to.handleGetStates,
                 showPropName: 'initials',
               ),
             ),
@@ -76,12 +76,11 @@ class SearchPage extends GetView<SearchController> {
   Widget _renderSelectablePoliticalParties() {
     return Obx(
       () => SelectableWidget(
-        text:
-            SelectPoliticalPartyController.to.selectedPoliticalParty.initials ??
-                StringResource.selectThePoliticalParty,
+        text: PoliticalPartiesController.to.selectedPoliticalParty.initials ??
+            StringResource.selectThePoliticalParty,
         onTap: () {
-          SelectPoliticalPartyController.to.handleGetPoliticalParties(
-            page: SelectPoliticalPartyController.to.initialPage,
+          PoliticalPartiesController.to.handleGetPoliticalParties(
+            page: PoliticalPartiesController.to.initialPage,
             isLoading: true,
             clearList: true,
           );
@@ -89,16 +88,16 @@ class SearchPage extends GetView<SearchController> {
           BtModalWidget.bottomSheet(
             content: Obx(
               () => SelectableModalWidget(
-                isLoading: SelectPoliticalPartyController.to.isLoading,
-                isError: SelectPoliticalPartyController.to.isError,
-                items: SelectPoliticalPartyController.to.politicalParties,
+                isLoading: PoliticalPartiesController.to.isLoading,
+                isError: PoliticalPartiesController.to.isError,
+                items: PoliticalPartiesController.to.politicalParties,
                 title: StringResource.politicalParties,
-                handleSelect: SelectPoliticalPartyController
-                    .to.handleSelectPoliticalParty,
-                nextPage: SelectPoliticalPartyController.to.nextPage,
-                lastPage: SelectPoliticalPartyController.to.lastPage,
-                refresh: SelectPoliticalPartyController.to.refresh,
-                reload: SelectPoliticalPartyController.to.reload,
+                handleSelect:
+                    PoliticalPartiesController.to.handleSelectPoliticalParty,
+                nextPage: PoliticalPartiesController.to.nextPage,
+                lastPage: PoliticalPartiesController.to.lastPage,
+                refresh: PoliticalPartiesController.to.refresh,
+                reload: PoliticalPartiesController.to.reload,
                 hasPagination: true,
                 showPropName: 'initials',
               ),

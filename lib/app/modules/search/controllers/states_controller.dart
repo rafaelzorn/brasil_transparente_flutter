@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/state_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/models/state_model.dart';
 
-class SelectStateController extends GetxController {
-  static SelectStateController get to => Get.find();
+class StatesController extends GetxController {
+  static StatesController get to => Get.find();
 
   final StateRepository _stateRepository;
 
@@ -19,7 +19,7 @@ class SelectStateController extends GetxController {
   bool get isError => _isError();
   StateModel get selectedState => _selectedState();
 
-  SelectStateController(this._stateRepository);
+  StatesController(this._stateRepository);
 
   Future<void> _getStates() async {
     try {
@@ -33,12 +33,6 @@ class SelectStateController extends GetxController {
       _isLoading(false);
       _isError(true);
     }
-  }
-
-  void reload() {
-    _isLoading(true);
-
-    _getStates();
   }
 
   void handleGetStates() {

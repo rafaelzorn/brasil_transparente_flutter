@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 // Bt
@@ -7,6 +6,7 @@ import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_notification_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_close_button_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 
 class SelectableModalWidget extends StatelessWidget {
@@ -36,34 +36,6 @@ class SelectableModalWidget extends StatelessWidget {
     this.lastPage,
     this.refresh,
   }) : super(key: key);
-
-  Widget _renderCloseButton() {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: TextButton(
-              onPressed: () => Get.back(),
-              child: const Icon(
-                Icons.keyboard_arrow_down,
-                size: 20,
-                color: BtColorTheme.white,
-              ),
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                side: const BorderSide(color: BtColorTheme.slateGray, width: 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _renderItem({required int index}) {
     return Container(
@@ -163,7 +135,7 @@ class SelectableModalWidget extends StatelessWidget {
         ),
       ),
       Expanded(child: _renderList()),
-      _renderCloseButton(),
+      const BtCloseButtonModalWidget(),
     ]);
   }
 

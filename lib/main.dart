@@ -21,6 +21,8 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      defaultTransition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 900),
       debugShowCheckedModeBanner: false,
       initialBinding: ApplicationBinding(),
       title: StringResource.appName,
