@@ -59,9 +59,11 @@ class PropositionDetailModalWidget extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           TextButton(
-            onPressed: () => Get.toNamed(BtRoutes.propositionPdf, arguments: {
-              'pdf': controller.proposition.fullContent,
-            }),
+            onPressed: () => Get.toNamed(BtRoutes.propositionPdf,
+                preventDuplicates: false,
+                arguments: {
+                  'pdf': controller.proposition.fullContent,
+                }),
             child: Text(
               StringResource.document,
               style: TextHelper.style(
