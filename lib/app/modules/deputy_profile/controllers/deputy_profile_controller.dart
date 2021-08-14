@@ -28,7 +28,7 @@ class DeputyProfileController extends GetxController {
     try {
       _isLoading(true);
 
-      final deputy = await _deputyRepository.findDeputy(id);
+      final DeputyModel deputy = await _deputyRepository.findDeputy(id);
 
       _deputy(deputy);
 

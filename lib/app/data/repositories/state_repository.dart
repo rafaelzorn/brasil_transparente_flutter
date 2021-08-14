@@ -10,12 +10,11 @@ class StateRepository {
 
   Future<List<StateModel>> getStates() async {
     try {
-      final Response response = await _dio.get('/referencias/deputados/siglaUF');
+      final Response response =
+          await _dio.get('/referencias/deputados/siglaUF');
 
       return response.data['dados']
-          .map<StateModel>(
-            (state) => StateModel.fromMap(state),
-          )
+          .map<StateModel>((state) => StateModel.fromMap(state))
           .toList();
     } catch (error) {
       rethrow;

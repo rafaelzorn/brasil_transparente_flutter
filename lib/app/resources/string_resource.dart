@@ -21,4 +21,8 @@ class StringResource {
   static const String profile = 'Perfil';
   static const String expenses = 'Despesas';
   static const String propositions = 'Proposições';
+  static const String document = 'Documento';
+  static const String processing = 'Tramitação';
+  static const String dispatch = 'Despacho';
+  static const String lastUpdate = 'Ultima atualização';
 }

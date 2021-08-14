@@ -23,9 +23,7 @@ class DeputyRepository extends BaseRepository {
       });
 
       final List<DeputyModel> deputies = response.data['dados']
-          .map<DeputyModel>(
-            (deputy) => DeputyModel.fromMap(deputy),
-          )
+          .map<DeputyModel>((deputy) => DeputyModel.fromMap(deputy))
           .toList();
 
       return {

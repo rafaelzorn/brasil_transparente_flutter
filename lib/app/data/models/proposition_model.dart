@@ -4,6 +4,7 @@ class PropositionModel {
   int? year;
   String? initialsType;
   String? menu;
+  String? fullContent;
 
   PropositionModel({
     this.id,
@@ -11,6 +12,7 @@ class PropositionModel {
     this.year,
     this.initialsType,
     this.menu,
+    this.fullContent,
   });
 
   factory PropositionModel.fromMap(Map<String, dynamic> map) {
@@ -20,6 +22,7 @@ class PropositionModel {
       year: map['ano'],
       initialsType: map['siglaTipo'],
       menu: map['ementa'],
+      fullContent: map['urlInteiroTeor'],
     );
   }
 }

@@ -16,9 +16,7 @@ class ProcedureRepository extends BaseRepository {
       );
 
       return response.data['dados']
-          .map<ProcedureModel>(
-            (procedure) => ProcedureModel.fromMap(procedure),
-          )
+          .map<ProcedureModel>((procedure) => ProcedureModel.fromMap(procedure))
           .toList();
     } catch (error) {
       rethrow;

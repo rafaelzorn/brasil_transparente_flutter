@@ -11,7 +11,8 @@ class PoliticalPartyRepository extends BaseRepository {
   PoliticalPartyRepository(this._dio);
 
   Future<Map<String, dynamic>> getPoliticalParties(
-      GetPoliticalPartiesSupport getPoliticalPartiesSupport) async {
+    GetPoliticalPartiesSupport getPoliticalPartiesSupport,
+  ) async {
     try {
       final Response response = await _dio.get('/partidos', queryParameters: {
         'pagina': getPoliticalPartiesSupport.page,

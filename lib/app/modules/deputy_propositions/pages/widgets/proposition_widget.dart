@@ -5,8 +5,8 @@ import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/data/models/proposition_model.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
-import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/pages/widgets/proceedings_modal_widget/proceedings_modal_widget.dart';
-import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/controllers/proceedings_controller.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/pages/widgets/proposition_detail_modal_widget/proposition_detail_modal_widget.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/controllers/proposition_detail_controller.dart';
 
 class PropositionWidget extends StatelessWidget {
   final PropositionModel proposition;
@@ -63,13 +63,14 @@ class PropositionWidget extends StatelessWidget {
             side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
           ),
           onPressed: () {
-            ProceedingsController.to.handleGetProceedings(
-              propositionId: proposition.id!,
+            PropositionDetailController.to.handleFindProposition(
+              id: proposition.id!,
             );
 
             BtModalWidget.bottomSheet(
-              content: ProceedingsModalWidget(
-                controller: ProceedingsController.to,
+              content: PropositionDetailModalWidget(
+                controller: PropositionDetailController.to,
+                id: proposition.id!,
               ),
             );
           },
