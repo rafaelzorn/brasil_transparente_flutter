@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/proposition_pdf/controllers/proposition_pdf_controller.dart';
@@ -33,13 +32,6 @@ class PropositionPdfPage extends GetView<PropositionPdfController> {
     }
 
     return Container();
-
-    /*
-    return PDFViewer(
-      document: controller.document,
-      showPicker: false,
-    );
-    */
   }
 
   @override
