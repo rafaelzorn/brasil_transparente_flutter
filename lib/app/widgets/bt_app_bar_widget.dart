@@ -8,6 +8,7 @@ class BtAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Function? rightOnPress;
   final IconData? leftIcon;
   final Function? leftOnPress;
+  final double height;
 
   const BtAppBarWidget({
     Key? key,
@@ -15,10 +16,11 @@ class BtAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.rightOnPress,
     this.leftIcon,
     this.leftOnPress,
+    this.height = 80,
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => Size.fromHeight(height);
 
   Widget _renderIconButton(IconData icon, Function onPress) {
     return RawMaterialButton(
