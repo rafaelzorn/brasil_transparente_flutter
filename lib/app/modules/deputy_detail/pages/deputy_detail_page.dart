@@ -8,6 +8,7 @@ import 'package:brasil_transparente_flutter/app/modules/deputy_profile/pages/dep
 import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/pages/deputy_expenses_page.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/pages/deputy_propositions_page.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
+import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 
 class DeputyDetailPage extends GetView<DeputyDetailController> {
   const DeputyDetailPage({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class DeputyDetailPage extends GetView<DeputyDetailController> {
     return Scaffold(
       appBar: BtAppBarWidget(
         leftIcon: Icons.chevron_left,
-        leftOnPress: () => Get.back(),
+        leftOnPress: () => Get.offNamed(BtRoutes.deputies),
       ),
       body: Obx(() => _renderContent()),
       bottomNavigationBar: Obx(
