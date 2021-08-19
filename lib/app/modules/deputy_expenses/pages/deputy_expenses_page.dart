@@ -7,6 +7,7 @@ import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/pages/wi
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_swipe_calendar_widget.dart';
 import 'package:brasil_transparente_flutter/app/widgets/bt_main_title_page_widget.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 
 class DeputyExpensesPage extends GetView<DeputyExpensesController> {
   const DeputyExpensesPage({Key? key}) : super(key: key);
@@ -29,6 +30,12 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
   }
 
   Widget _renderContent() {
+    if (controller.isLoading) {
+      return const Center(
+        child: SizedBox(height: 40, width: 40, child: BtSpinnerWidget()),
+      );
+    }
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -45,6 +52,6 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
 
   @override
   Widget build(BuildContext context) {
-    return _renderContent();
+    return Obx(() => _renderContent());
   }
 }

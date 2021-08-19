@@ -1,6 +1,4 @@
-class FindPropositionsSupport {
-  late int page;
-  late int items;
+class FindExpensesByYearSupport {
   late int year;
   late int deputyId;
 
@@ -11,15 +9,13 @@ class FindPropositionsSupport {
       return true;
     }
 
-    return o is FindPropositionsSupport &&
-        o.page == page &&
-        o.items == items &&
+    return o is FindExpensesByYearSupport &&
         o.year == year &&
         o.deputyId == deputyId;
   }
 
   @override
   int get hashCode {
-    return page.hashCode ^ items.hashCode ^ year.hashCode ^ deputyId.hashCode;
+    return year.hashCode ^ deputyId.hashCode;
   }
 }

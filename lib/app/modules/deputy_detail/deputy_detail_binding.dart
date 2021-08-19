@@ -9,6 +9,7 @@ import 'package:brasil_transparente_flutter/app/modules/deputy_propositions/cont
 import 'package:brasil_transparente_flutter/app/data/repositories/deputy_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/proposition_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/procedure_repository.dart';
+import 'package:brasil_transparente_flutter/app/data/repositories/expense_repository.dart';
 import 'package:brasil_transparente_flutter/app/services/proposition_detail_service.dart';
 
 class DeputyDetailBinding implements Bindings {
@@ -17,6 +18,7 @@ class DeputyDetailBinding implements Bindings {
     Get.lazyPut<DeputyRepository>(() => DeputyRepository(Get.find()));
     Get.lazyPut<PropositionRepository>(() => PropositionRepository(Get.find()));
     Get.lazyPut<ProcedureRepository>(() => ProcedureRepository(Get.find()));
+    Get.lazyPut<ExpenseRepository>(() => ExpenseRepository(Get.find()));
 
     Get.lazyPut<PropositionDetailService>(
       () => PropositionDetailService(Get.find(), Get.find()),
@@ -25,10 +27,12 @@ class DeputyDetailBinding implements Bindings {
     Get.lazyPut<DeputyDetailController>(() => DeputyDetailController());
     Get.lazyPut<DeputyProfileController>(
       () => DeputyProfileController(Get.find()),
-    );
-    Get.lazyPut<DeputyExpensesController>(() => DeputyExpensesController());
+    );    
     Get.lazyPut<DeputyPropositionsController>(
       () => DeputyPropositionsController(Get.find()),
+    );
+    Get.lazyPut<DeputyExpensesController>(
+      () => DeputyExpensesController(Get.find()),
     );
     Get.lazyPut<PropositionDetailController>(
       () => PropositionDetailController(Get.find()),
