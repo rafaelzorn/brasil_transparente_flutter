@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/expense_repository.dart';
-import 'package:brasil_transparente_flutter/app/data/supports/find_expenses_by_year_support.dart';
+import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expenses_by_year_support.dart';
 import 'package:brasil_transparente_flutter/app/helpers/date_helper.dart';
 
 class DeputyExpensesController extends GetxController {
@@ -10,11 +11,13 @@ class DeputyExpensesController extends GetxController {
 
   final int currentYear = DateHelper.currentYear();
 
-  final Rx<FindExpensesByYearSupport> _findExpensesByYearSupport =
-      FindExpensesByYearSupport().obs;
+  final RxList<ExpenseModel> _expensesByYear = <ExpenseModel>[].obs;
+  final Rx<FindDeputyExpensesByYearSupport> _findDeputyExpensesByYearSupport =
+      FindDeputyExpensesByYearSupport().obs;
   final RxBool _isLoading = false.obs;
   final RxBool _isError = false.obs;
 
+  List<ExpenseModel> get expensesByYear => _expensesByYear.toList();
   bool get isLoading => _isLoading();
   bool get isError => _isError();
 
@@ -24,7 +27,7 @@ class DeputyExpensesController extends GetxController {
   void onInit() {
     super.onInit();
 
-    ever(_findExpensesByYearSupport, (_) => _findExpenses());
+    ever(_findDeputyExpensesByYearSupport, (_) => _findExpenses());
 
     handleFindExpenses(
       year: currentYear,
@@ -34,10 +37,12 @@ class DeputyExpensesController extends GetxController {
 
   Future<void> _findExpenses() async {
     try {
-      final Map<String, dynamic> data =
-          await _expenseRepository.findExpensesByYear(
-        _findExpensesByYearSupport(),
+      final List<ExpenseModel> data =
+          await _expenseRepository.findDeputyExpensesByYear(
+        _findDeputyExpensesByYearSupport(),
       );
+
+      _expensesByYear(data);
 
       _isLoading(false);
       _isError(false);
@@ -53,7 +58,7 @@ class DeputyExpensesController extends GetxController {
   }) {
     _isLoading(isLoading);
 
-    _findExpensesByYearSupport.update((val) {
+    _findDeputyExpensesByYearSupport.update((val) {
       val!.year = year;
       val.deputyId = int.parse(Get.parameters['id']!);
     });

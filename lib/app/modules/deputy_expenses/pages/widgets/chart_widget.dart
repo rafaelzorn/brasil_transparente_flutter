@@ -2,8 +2,10 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
+import 'package:brasil_transparente_flutter/app/helpers/date_helper.dart';
 
 class DeputyExpense {
   final String year;
@@ -13,33 +15,9 @@ class DeputyExpense {
 }
 
 class ChartWidget extends StatelessWidget {
-  const ChartWidget({Key? key}) : super(key: key);
+  final List<ExpenseModel> expenses;
 
-  static List<charts.Series<DeputyExpense, String>> _deputyExpenses() {
-    final data = [
-      DeputyExpense('Jan', 800.00),
-      DeputyExpense('Fev', 1000.00),
-      DeputyExpense('Mar', 20000.00),
-      DeputyExpense('Abr', 29000.00),
-      DeputyExpense('Mai', 17000.00),
-      DeputyExpense('Jun', 9000.00),
-      DeputyExpense('Jul', 23000.00),
-      DeputyExpense('Ago', 17000.00),
-      DeputyExpense('Set', 2050.00),
-      DeputyExpense('Out', 34000.00),
-      DeputyExpense('Nov', 19000.00),
-      DeputyExpense('Dez', 80000.00),
-    ];
-
-    return [
-      charts.Series<DeputyExpense, String>(
-        id: 'Sales',
-        domainFn: (DeputyExpense sales, _) => sales.year,
-        measureFn: (DeputyExpense sales, _) => sales.sales,
-        data: data,
-      )
-    ];
-  }
+  const ChartWidget({Key? key, required this.expenses}) : super(key: key);
 
   Widget _renderTitle() {
     return SizedBox(
@@ -89,15 +67,21 @@ class ChartWidget extends StatelessWidget {
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
             colors: [BtColorTheme.melrose, BtColorTheme.white],
-            stops: [
-              0.0,
-              1.0,
-            ],
+            stops: [0.0, 1.0],
           ).createShader(bounds);
         },
         blendMode: BlendMode.srcATop,
         child: charts.BarChart(
-          _deputyExpenses(),
+          [
+            charts.Series<ExpenseModel, String>(
+              id: 'expenses',
+              domainFn: (ExpenseModel expense, _) => DateHelper.month(
+                month: (expense.month! - 1),
+              ).substring(0, 3),
+              measureFn: (ExpenseModel expense, _) => expense.totalValueMonth,
+              data: expenses,
+            )
+          ],
           animate: true,
           primaryMeasureAxis: charts.NumericAxisSpec(
             tickProviderSpec: const charts.BasicNumericTickProviderSpec(

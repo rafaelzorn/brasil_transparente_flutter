@@ -9,7 +9,9 @@ class ProcedureRepository extends BaseRepository {
 
   ProcedureRepository(this._dio);
 
-  Future<List<ProcedureModel>> getProceedings(int propositionId) async {
+  Future<List<ProcedureModel>> getPropositionProceedings(
+    int propositionId,
+  ) async {
     try {
       final Response response = await _dio.get(
         '/proposicoes/${propositionId.toString()}/tramitacoes',

@@ -1,4 +1,4 @@
-class FindExpensesByYearSupport {
+class FindDeputyExpensesByYearSupport {
   late int year;
   late int deputyId;
 
@@ -9,7 +9,7 @@ class FindExpensesByYearSupport {
       return true;
     }
 
-    return o is FindExpensesByYearSupport &&
+    return o is FindDeputyExpensesByYearSupport &&
         o.year == year &&
         o.deputyId == deputyId;
   }

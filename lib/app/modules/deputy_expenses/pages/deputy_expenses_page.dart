@@ -13,7 +13,7 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
   const DeputyExpensesPage({Key? key}) : super(key: key);
 
   Widget _renderChart() {
-    return const ChartWidget();
+    return ChartWidget(expenses: controller.expensesByYear);
   }
 
   Widget _renderSwipeCalendar() {

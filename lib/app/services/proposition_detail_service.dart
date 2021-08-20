@@ -19,7 +19,7 @@ class PropositionDetailService {
           await _propositionRepository.findProposition(id);
 
       final List<ProcedureModel> proceedings =
-          await _procedureRepository.getProceedings(id);
+          await _procedureRepository.getPropositionProceedings(id);
 
       proceedings.sort((a, b) => (b.sequence)!.compareTo(a.sequence!));
 
