@@ -29,7 +29,7 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
         onPressedRight: () => controller.handleChangeMonth(
           action: controller.incrementYear,
         ),
-        disabledButton: controller.isLoading,
+        disabledButton: controller.isLoading || controller.loadExpensesByYear,
       ),
     );
   }

@@ -14,13 +14,14 @@ class ExpenseRepository extends BaseRepository {
   Future<List<ExpenseModel>> findDeputyExpensesByYear(
     FindDeputyExpensesSupport findDeputyExpensesSupport,
   ) async {
+    final year = findDeputyExpensesSupport.year;
     bool next = true;
     int page = 1;
     List data = [];
 
     while (next) {
       final Response response = await findDeputyExpenses(
-        year: findDeputyExpensesSupport.year,
+        year: year,
         deputyId: findDeputyExpensesSupport.deputyId.toString(),
         page: page,
         items: 100,
@@ -35,9 +36,7 @@ class ExpenseRepository extends BaseRepository {
       page++;
     }
 
-    data.sort((a, b) => (a['mes'])!.compareTo(b['mes']!));
-
-    List<Map<String, dynamic>> expenses = groupByExpensesByMonth(data: data);
+    List<dynamic> expenses = groupByExpensesByMonth(data: data, year: year);
 
     return expenses
         .map<ExpenseModel>((expense) => ExpenseModel.fromMap(expense))
@@ -60,38 +59,47 @@ class ExpenseRepository extends BaseRepository {
     return response;
   }
 
-  List<Map<String, dynamic>> groupByExpensesByMonth({
+  List<dynamic> groupByExpensesByMonth({
     required List<dynamic> data,
-  }) {    
-    List<Map<String, dynamic>> expenses = [];
+    required int year,
+  }) {
+    final List<dynamic> expenses = [];
 
     for (dynamic expense in data) {
-      final int index = expense['mes'] - 1;
       final double documentValue = expense['valorDocumento'];
 
-      if (expenses.asMap().containsKey(index)) {
+      if (expenses.any((item) => item['mes'] == expense['mes'])) {
+        final int index =
+            expenses.indexWhere((item) => item['mes'] == expense['mes']);
+
         expenses[index]['valor_total_mes'] =
             expenses[index]['valor_total_mes'] + documentValue;
 
         continue;
       }
 
-      expenses.insert(index, {
-        'mes': expense['mes'],
-        'valor_total_mes': documentValue,
-      });
+      expenses.add({'mes': expense['mes'], 'valor_total_mes': documentValue});
     }
-  
-    int currentMonth = int.parse(Jiffy().format('M'));
-    bool hasLastMonth =
-        expenses.any((expense) => expense['mes'] == currentMonth);
 
-    if (!hasLastMonth) {
-      expenses.add({
-        'mes': currentMonth,
-        'valor_total_mes': 0.00,
-      });
+    Jiffy currentDate = Jiffy();
+    List months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+    for (dynamic month in months) {
+      if (expenses.any((item) => item['mes'] == month)) {
+        continue;
+      }
+
+      final int currentMonth = int.parse(currentDate.format('M'));
+      final int currentYear = int.parse(currentDate.format('yyyy'));
+
+      if (currentYear == year && month > currentMonth) {
+        continue;
+      }
+
+      expenses.add({'mes': month, 'valor_total_mes': 0.00});
     }
+
+    expenses.sort((a, b) => (a['mes'])!.compareTo(b['mes']!));
 
     return expenses;
   }
