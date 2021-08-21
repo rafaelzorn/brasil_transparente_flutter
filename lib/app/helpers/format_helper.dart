@@ -18,4 +18,10 @@ class FormatHelper {
 
     return DateFormat(format).format(DateTime.parse(date));
   }
+
+  static String formatMoney({required num value}) {
+    NumberFormat formatter = NumberFormat.simpleCurrency(locale: 'pt_BR');
+
+    return formatter.format(value);
+  }
 }

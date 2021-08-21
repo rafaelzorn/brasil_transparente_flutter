@@ -1,4 +1,5 @@
-class FindDeputyExpensesByYearSupport {
+class FindDeputyExpensesSupport {
+  late int month;
   late int year;
   late int deputyId;
 
@@ -9,13 +10,14 @@ class FindDeputyExpensesByYearSupport {
       return true;
     }
 
-    return o is FindDeputyExpensesByYearSupport &&
+    return o is FindDeputyExpensesSupport &&
+        o.month == month &&
         o.year == year &&
         o.deputyId == deputyId;
   }
 
   @override
   int get hashCode {
-    return year.hashCode ^ deputyId.hashCode;
+    return month.hashCode ^ year.hashCode ^ deputyId.hashCode;
   }
 }

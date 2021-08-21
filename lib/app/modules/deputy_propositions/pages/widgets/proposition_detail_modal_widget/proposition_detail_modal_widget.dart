@@ -22,18 +22,6 @@ class PropositionDetailModalWidget extends StatelessWidget {
     required this.id,
   }) : super(key: key);
 
-  Widget _renderListProceedings() {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return ProcedureWidget(
-          procedure: controller.proceedings[index],
-          isLastUpdate: index == 0,
-        );
-      },
-      itemCount: controller.proceedings.length,
-    );
-  }
-
   Widget _renderDetailProposition() {
     return Container(
       padding: const EdgeInsets.only(top: 25, bottom: 15),
@@ -106,11 +94,20 @@ class PropositionDetailModalWidget extends StatelessWidget {
       );
     }
 
-    return Column(
-      children: <Widget>[
-        _renderDetailProposition(),
-        Expanded(child: _renderListProceedings()),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _renderDetailProposition(),
+          ...controller.proceedings.map((item) {
+            final int index = controller.proceedings.indexOf(item);
+
+            return ProcedureWidget(
+              procedure: item,
+              isLastUpdate: index == 0,
+            );
+          }).toList()
+        ],
+      ),
     );
   }
 

@@ -8,7 +8,16 @@ class DateHelper {
     return now.year;
   }
 
-  static String month({required int month}) {        
+  static String formatDateMonthYear({
+    required int month,
+    required int year,
+  }) {
+    final String formatMonth = DateHelper.month(month: month);
+
+    return '$formatMonth ${year.toString()}';
+  }
+
+  static String month({required int month}) {
     List months = [
       StringResource.january,
       StringResource.february,
