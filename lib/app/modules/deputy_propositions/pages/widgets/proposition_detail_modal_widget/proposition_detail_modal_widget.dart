@@ -24,7 +24,7 @@ class PropositionDetailModalWidget extends StatelessWidget {
 
   Widget _renderDetailProposition() {
     return Container(
-      padding: const EdgeInsets.only(top: 25, bottom: 15),
+      padding: const EdgeInsets.only(top: 0, bottom: 15),
       child: Column(
         children: <Widget>[
           Text(
@@ -114,7 +114,7 @@ class PropositionDetailModalWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 25),
       height: (MediaQuery.of(context).size.height * 0.8),
       child: Column(
         children: <Widget>[
