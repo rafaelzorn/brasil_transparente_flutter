@@ -9,18 +9,15 @@ import 'package:brasil_transparente_flutter/app/helpers/date_helper.dart';
 import 'package:brasil_transparente_flutter/app/helpers/expense_helper.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/format_helper.dart';
-import 'package:brasil_transparente_flutter/app/widgets/bt_spinner_widget.dart';
 
 class ChartWidget extends StatelessWidget {
   final List<ExpenseModel> expenses;
-  final String year;
-  final bool isLoading;
+  final int year;
 
   const ChartWidget({
     Key? key,
     required this.expenses,
     required this.year,
-    required this.isLoading,
   }) : super(key: key);
 
   Widget _renderTitle() {
@@ -31,14 +28,12 @@ class ChartWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            isLoading
-                ? ''
-                : ExpenseHelper.sumDocumentValues(expenses: expenses),
+            ExpenseHelper.sumDocumentValues(expenses: expenses),
             style: TextHelper.style(fontSize: 18, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 4),
           Text(
-            isLoading ? '' : '${StringResource.totalExpensesInTheYearOf} $year',
+            '${StringResource.totalExpensesInTheYearOf} $year',
             style: TextHelper.style(
               fontSize: 13,
               fontWeight: FontWeight.w600,
@@ -52,7 +47,7 @@ class ChartWidget extends StatelessWidget {
 
   Widget _renderContent() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
         color: BtColorTheme.ebonyClay,
@@ -65,16 +60,6 @@ class ChartWidget extends StatelessWidget {
   }
 
   Widget _renderBarChart() {
-    if (isLoading) {
-      return const Center(
-        child: SizedBox(
-          height: 40,
-          width: 40,
-          child: BtSpinnerWidget(),
-        ),
-      );
-    }
-
     return charts.BarChart(
       [
         charts.Series<ExpenseModel, String>(
@@ -92,7 +77,7 @@ class ChartWidget extends StatelessWidget {
           return FormatHelper.formatMoney(value: value!);
         }),
         tickProviderSpec: const charts.BasicNumericTickProviderSpec(
-          desiredTickCount: 4,
+          desiredTickCount: 6,
         ),
         showAxisLine: true,
         renderSpec: charts.GridlineRendererSpec(
@@ -117,7 +102,7 @@ class ChartWidget extends StatelessWidget {
 
   Widget _renderChart() {
     return AspectRatio(
-      aspectRatio: 2.0,
+      aspectRatio: 1.7,
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
           return const LinearGradient(

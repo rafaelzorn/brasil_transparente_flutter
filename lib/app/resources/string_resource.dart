@@ -38,4 +38,5 @@ class StringResource {
   static const String november = 'Novembro';
   static const String december = 'Dezembro';
   static const String totalExpensesInTheYearOf = 'Despesas totais no ano de';
+  static const String totalExpensesForTheMonthOf = 'Despesas totais do mês de';
 }

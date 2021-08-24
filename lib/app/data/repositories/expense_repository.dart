@@ -4,7 +4,7 @@ import 'package:jiffy/jiffy.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/base_repository.dart';
-import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expenses_support.dart';
+import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expenses_by_year_support.dart';
 
 class ExpenseRepository extends BaseRepository {
   final Dio _dio;
@@ -12,9 +12,9 @@ class ExpenseRepository extends BaseRepository {
   ExpenseRepository(this._dio);
 
   Future<List<ExpenseModel>> findDeputyExpensesByYear(
-    FindDeputyExpensesSupport findDeputyExpensesSupport,
+    FindDeputyExpensesByYearSupport findDeputyExpensesByYearSupport,
   ) async {
-    final year = findDeputyExpensesSupport.year;
+    final year = findDeputyExpensesByYearSupport.year;
     bool next = true;
     int page = 1;
     List data = [];
@@ -22,7 +22,7 @@ class ExpenseRepository extends BaseRepository {
     while (next) {
       final Response response = await findDeputyExpenses(
         year: year,
-        deputyId: findDeputyExpensesSupport.deputyId.toString(),
+        deputyId: findDeputyExpensesByYearSupport.deputyId.toString(),
         page: page,
         items: 100,
       );
