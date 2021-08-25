@@ -5,6 +5,7 @@ import 'package:brasil_transparente_flutter/app/data/repositories/proposition_re
 import 'package:brasil_transparente_flutter/app/data/models/proposition_model.dart';
 import 'package:brasil_transparente_flutter/app/data/supports/find_propositions_support.dart';
 import 'package:brasil_transparente_flutter/app/helpers/date_helper.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_detail/controllers/deputy_detail_controller.dart';
 
 class DeputyPropositionsController extends GetxController {
   final PropositionRepository _propositionRepository;
@@ -94,7 +95,7 @@ class DeputyPropositionsController extends GetxController {
       val!.page = page;
       val.year = year;
       val.items = _itemsPerPage;
-      val.deputyId = int.parse(Get.parameters['id']!);
+      val.deputyId = DeputyDetailController.to.deputyId;
     });
   }
 

@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 // Bt
 import 'package:brasil_transparente_flutter/app/data/repositories/deputy_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_detail/controllers/deputy_detail_controller.dart';
 
 class DeputyProfileController extends GetxController {
   final DeputyRepository _deputyRepository;
+
+  final int deputyId = DeputyDetailController.to.deputyId;
 
   final Rx<DeputyModel> _deputy = DeputyModel().obs;
   final RxBool _isLoading = false.obs;
@@ -21,7 +24,7 @@ class DeputyProfileController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _findDeputy(int.parse(Get.parameters['id']!));
+    _findDeputy(deputyId);
   }
 
   Future<void> _findDeputy(int id) async {
@@ -41,6 +44,6 @@ class DeputyProfileController extends GetxController {
   }
 
   void reload() {
-    _findDeputy(int.parse(Get.parameters['id']!));
+    _findDeputy(deputyId);
   }
 }

@@ -5,6 +5,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/expense_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expenses_by_year_support.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_detail/controllers/deputy_detail_controller.dart';
 
 class DeputyExpensesController extends GetxController {
   final ExpenseRepository _expenseRepository;
@@ -65,7 +66,7 @@ class DeputyExpensesController extends GetxController {
 
     _findDeputyExpensesByYearSupport.update((val) {
       val!.year = int.parse(year);
-      val.deputyId = int.parse(Get.parameters['id']!);
+      val.deputyId = DeputyDetailController.to.deputyId;
     });
   }
 

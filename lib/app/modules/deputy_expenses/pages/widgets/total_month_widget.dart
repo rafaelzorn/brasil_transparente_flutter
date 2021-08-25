@@ -7,6 +7,8 @@ import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/helpers/format_helper.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/date_helper.dart';
+import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
+import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/pages/widgets/expenses_month_detail_modal_widget/expenses_month_detail_modal_widget.dart';
 
 class TotalMonthWidget extends StatelessWidget {
   final ExpenseModel expense;
@@ -66,7 +68,11 @@ class TotalMonthWidget extends StatelessWidget {
           shape: const CircleBorder(
             side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
           ),
-          onPressed: () {},
+          onPressed: () {
+            BtModalWidget.bottomSheet(
+              content: const ExpensesMonthDetailModalWidget(),
+            );
+          },
         ),
       ),
     );
