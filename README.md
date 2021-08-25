@@ -25,7 +25,7 @@ This project was created in order to better understand how the GetX package work
 
 - You need to set up all the Flutter enviroment
 - Clone this repository
-- Install all dependencies using the command `flutter pub get.`
+- Install all dependencies using the command `flutter pub get`
 - Rename `.env.example` to `.env`
 - If you are in VScode press `F5` to execute the App
 
