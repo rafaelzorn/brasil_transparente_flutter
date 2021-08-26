@@ -70,7 +70,7 @@ class ExpensesMonthDetailModalWidget extends StatelessWidget {
 
     return Column(children: <Widget>[
       Container(
-          padding: const EdgeInsets.only(top: 25, bottom: 15),
+          padding: const EdgeInsets.only(top: 25, bottom: 20),
           child: Column(
             children: <Widget>[
               Text(
@@ -85,7 +85,7 @@ class ExpensesMonthDetailModalWidget extends StatelessWidget {
               Text(
                 '${StringResource.total} ${FormatHelper.formatMoney(value: selectedExpenseMonth.totalValueMonth!)}',
                 style: TextHelper.style(
-                  fontSize: 22,
+                  fontSize: 18,
                   color: BtColorTheme.slateGray,
                   fontWeight: FontWeight.w600,
                 ),

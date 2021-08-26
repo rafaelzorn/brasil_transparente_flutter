@@ -1,4 +1,3 @@
-import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:flutter/material.dart';
 
 // Bt
@@ -6,6 +5,7 @@ import 'package:brasil_transparente_flutter/app/data/models/procedure_model.dart
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/helpers/format_helper.dart';
+import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 
 class ProcedureWidget extends StatelessWidget {
   final ProcedureModel procedure;
@@ -64,6 +64,15 @@ class ProcedureWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                Text(
+                  procedure.initialsOrgan ?? '-',
+                  style: TextHelper.style(
+                    fontSize: 11,
+                    height: 1.3,
+                    color: BtColorTheme.white,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 Row(
                   children: <Widget>[
                     const Icon(
@@ -84,15 +93,6 @@ class ProcedureWidget extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                Text(
-                  procedure.initialsOrgan ?? '-',
-                  style: TextHelper.style(
-                    fontSize: 11,
-                    height: 1.3,
-                    color: BtColorTheme.white,
-                    fontWeight: FontWeight.w700,
-                  ),
                 ),
               ],
             ),

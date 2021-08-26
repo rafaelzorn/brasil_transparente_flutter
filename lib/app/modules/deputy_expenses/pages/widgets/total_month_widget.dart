@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/controllers/deputy_expenses_controller.dart';
@@ -88,7 +89,7 @@ class TotalMonthWidget extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Row(
-        children: <Widget>[_renderInformation(), _renderIcon()],
+        children: <Widget>[Obx(() => _renderInformation()), _renderIcon()],
       ),
     );
   }

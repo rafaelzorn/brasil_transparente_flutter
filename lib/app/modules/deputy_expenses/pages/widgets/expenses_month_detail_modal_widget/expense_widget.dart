@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Bt
 import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/helpers/format_helper.dart';
+import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
+import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 
 class ExpenseWidget extends StatelessWidget {
   final ExpenseModel expense;
@@ -19,7 +22,7 @@ class ExpenseWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Valor ${FormatHelper.formatMoney(value: expense.documentValue)}',
+            '${StringResource.value} ${FormatHelper.formatMoney(value: expense.documentValue)}',
             style: TextHelper.style(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -55,7 +58,13 @@ class ExpenseWidget extends StatelessWidget {
           shape: const CircleBorder(
             side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
           ),
-          onPressed: () {},
+          onPressed: () => Get.toNamed(
+            BtRoutes.propositionPdf,
+            preventDuplicates: false,
+            arguments: {
+              'pdf': expense.documentUrl,
+            },
+          ),
         ),
       ),
     );

@@ -41,5 +41,5 @@ class StringResource {
   static const String totalExpensesForTheMonthOf = 'Despesas totais do mês de';
   static const String of = 'de';
   static const String total = 'Total';
-
+  static const String value = 'Valor';
 }

@@ -6,6 +6,7 @@ class ExpenseModel {
   String? providerName;
   String? documentDate;
   String? expenseType;
+  String? documentUrl;
 
   ExpenseModel({
     this.documentCode,
@@ -15,6 +16,7 @@ class ExpenseModel {
     this.providerName,
     this.documentDate,
     this.expenseType,
+    this.documentUrl,
   });
 
   factory ExpenseModel.fromMap(Map<String, dynamic> map) {
@@ -26,6 +28,7 @@ class ExpenseModel {
       providerName: map['nomeFornecedor'],
       documentDate: map['dataDocumento'],
       expenseType: map['tipoDespesa'],
+      documentUrl: map['urlDocumento'],
     );
   }
 }
