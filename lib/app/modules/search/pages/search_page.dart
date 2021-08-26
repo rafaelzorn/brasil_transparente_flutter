@@ -53,8 +53,6 @@ class SearchPage extends GetView<SearchController> {
         text: StatesController.to.selectedState.initials ??
             StringResource.selectState,
         onTap: () {
-          StatesController.to.handleGetStates();
-
           BtModalWidget.bottomSheet(
             content: Obx(
               () => SelectableModalWidget(
@@ -79,12 +77,6 @@ class SearchPage extends GetView<SearchController> {
         text: PoliticalPartiesController.to.selectedPoliticalParty.initials ??
             StringResource.selectThePoliticalParty,
         onTap: () {
-          PoliticalPartiesController.to.handleGetPoliticalParties(
-            page: PoliticalPartiesController.to.initialPage,
-            isLoading: true,
-            clearList: true,
-          );
-
           BtModalWidget.bottomSheet(
             content: Obx(
               () => SelectableModalWidget(

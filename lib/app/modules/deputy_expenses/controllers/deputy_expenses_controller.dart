@@ -8,6 +8,8 @@ import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expens
 import 'package:brasil_transparente_flutter/app/modules/deputy_detail/controllers/deputy_detail_controller.dart';
 
 class DeputyExpensesController extends GetxController {
+  static DeputyExpensesController get to => Get.find();
+
   final ExpenseRepository _expenseRepository;
 
   final String incrementMonth = 'incrementMonth';

@@ -23,14 +23,28 @@ class ProcedureWidget extends StatelessWidget {
     }
 
     return Container(
-      margin: const EdgeInsets.only(top: 10),
-      child: Text(
-        StringResource.lastUpdate,
-        style: TextHelper.style(
-          fontSize: 11,
-          color: BtColorTheme.tomThumb,
-          fontWeight: FontWeight.w900,
-        ),
+      margin: const EdgeInsets.only(top: 6),
+      child: Row(
+        children: <Widget>[
+          const Icon(
+            Icons.update,
+            size: 12,
+            color: BtColorTheme.white,
+          ),
+          const SizedBox(width: 5),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Text(
+              StringResource.lastUpdate,
+              style: TextHelper.style(
+                fontSize: 11,
+                color: BtColorTheme.tomThumb,
+                fontWeight: FontWeight.w900,
+                height: 0,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -50,16 +64,26 @@ class ProcedureWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  FormatHelper.formatDate(
-                    procedure.date,
-                    format: 'dd/MM/yyyy HH:mm',
-                  ),
-                  style: TextHelper.style(
-                    fontSize: 11,
-                    height: 1.3,
-                    color: BtColorTheme.white,
-                  ),
+                Row(
+                  children: <Widget>[
+                    const Icon(
+                      Icons.calendar_today,
+                      size: 13,
+                      color: BtColorTheme.white,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      FormatHelper.formatDate(
+                        procedure.date,
+                        format: 'dd/MM/yyyy HH:mm',
+                      ),
+                      style: TextHelper.style(
+                        fontSize: 11,
+                        height: 1.3,
+                        color: BtColorTheme.white,
+                      ),
+                    ),
+                  ],
                 ),
                 Text(
                   procedure.initialsOrgan ?? '-',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/controllers/deputy_expenses_controller.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
@@ -11,14 +12,12 @@ import 'package:brasil_transparente_flutter/app/widgets/bt_modal_widget.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/pages/widgets/expenses_month_detail_modal_widget/expenses_month_detail_modal_widget.dart';
 
 class TotalMonthWidget extends StatelessWidget {
-  final ExpenseModel expense;
-
-  const TotalMonthWidget({
-    Key? key,
-    required this.expense,
-  }) : super(key: key);
+  const TotalMonthWidget({Key? key}) : super(key: key);
 
   Widget _renderInformation() {
+    final ExpenseModel expense =
+        DeputyExpensesController.to.selectedExpenseMonth();
+
     final String month = DateHelper.month(
       month: (expense.month! - 1),
     );

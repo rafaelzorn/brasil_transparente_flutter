@@ -13,16 +13,17 @@ import 'package:brasil_transparente_flutter/app/widgets/bt_close_button_modal_wi
 import 'package:brasil_transparente_flutter/app/routes/bt_routes.dart';
 
 class PropositionDetailModalWidget extends StatelessWidget {
-  final PropositionDetailController controller;
   final int id;
 
   const PropositionDetailModalWidget({
     Key? key,
-    required this.controller,
     required this.id,
   }) : super(key: key);
 
   Widget _renderDetailProposition() {
+    final PropositionDetailController controller =
+        PropositionDetailController.to;
+
     return Container(
       padding: const EdgeInsets.only(top: 0, bottom: 15),
       child: Column(
@@ -74,6 +75,9 @@ class PropositionDetailModalWidget extends StatelessWidget {
   }
 
   Widget _renderContent() {
+    final PropositionDetailController controller =
+        PropositionDetailController.to;
+
     if (controller.isLoading) {
       return const Center(
         child: SizedBox(
@@ -113,6 +117,8 @@ class PropositionDetailModalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PropositionDetailController.to.handleFindProposition(id: id);
+
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 25),
       height: (MediaQuery.of(context).size.height * 0.8),

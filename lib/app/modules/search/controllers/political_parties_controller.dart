@@ -39,6 +39,12 @@ class PoliticalPartiesController extends GetxController {
     super.onInit();
 
     ever(_getPoliticalPartiesSupport, (_) => _getPoliticalParties());
+
+    handleGetPoliticalParties(
+      page: initialPage,
+      isLoading: true,
+      clearList: true,
+    );
   }
 
   Future<void> _getPoliticalParties() async {

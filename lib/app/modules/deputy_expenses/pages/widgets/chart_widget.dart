@@ -2,6 +2,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/modules/deputy_expenses/controllers/deputy_expenses_controller.dart';
 import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
@@ -11,16 +12,11 @@ import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/format_helper.dart';
 
 class ChartWidget extends StatelessWidget {
-  final List<ExpenseModel> expenses;
-  final int year;
-
-  const ChartWidget({
-    Key? key,
-    required this.expenses,
-    required this.year,
-  }) : super(key: key);
+  const ChartWidget({Key? key}) : super(key: key);
 
   Widget _renderTitle() {
+    final DeputyExpensesController controller = DeputyExpensesController.to;
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -28,12 +24,12 @@ class ChartWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            ExpenseHelper.sumDocumentValues(expenses: expenses),
+            ExpenseHelper.sumDocumentValues(expenses: controller.expenses),
             style: TextHelper.style(fontSize: 18, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 4),
           Text(
-            '${StringResource.totalExpensesInTheYearOf} $year',
+            '${StringResource.totalExpensesInTheYearOf} ${controller.year}',
             style: TextHelper.style(
               fontSize: 13,
               fontWeight: FontWeight.w600,
@@ -68,7 +64,7 @@ class ChartWidget extends StatelessWidget {
             month: (expense.month! - 1),
           ).substring(0, 3),
           measureFn: (ExpenseModel expense, _) => expense.totalValueMonth,
-          data: expenses,
+          data: DeputyExpensesController.to.expenses,
         )
       ],
       animate: true,

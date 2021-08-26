@@ -5,11 +5,39 @@ import 'package:jiffy/jiffy.dart';
 import 'package:brasil_transparente_flutter/app/data/models/expense_model.dart';
 import 'package:brasil_transparente_flutter/app/data/repositories/base_repository.dart';
 import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expenses_by_year_support.dart';
+import 'package:brasil_transparente_flutter/app/data/supports/find_deputy_expenses_by_month_support.dart';
 
 class ExpenseRepository extends BaseRepository {
   final Dio _dio;
 
   ExpenseRepository(this._dio);
+
+  Future<Map<String, dynamic>> findDeputyExpensesByMonth(
+    FindDeputyExpensesByMonthSupport FindDeputyExpensesByMonthSupport,
+  ) async {
+    try {
+      final Response response = await findDeputyExpenses(
+        year: FindDeputyExpensesByMonthSupport.year,
+        deputyId: FindDeputyExpensesByMonthSupport.deputyId.toString(),
+        page: FindDeputyExpensesByMonthSupport.page,
+        items: FindDeputyExpensesByMonthSupport.items,
+        month: FindDeputyExpensesByMonthSupport.month,
+      );
+
+      final List<ExpenseModel> expenses = response.data['dados']
+          .map<ExpenseModel>(
+            (expense) => ExpenseModel.fromMap(expense),
+          )
+          .toList();
+
+      return {
+        'expenses': expenses,
+        'last_page': isLastPage(links: response.data['links']),
+      };
+    } catch (error) {
+      rethrow;
+    }
+  }
 
   Future<List<ExpenseModel>> findDeputyExpensesByYear(
     FindDeputyExpensesByYearSupport findDeputyExpensesByYearSupport,
@@ -48,12 +76,16 @@ class ExpenseRepository extends BaseRepository {
     required int page,
     required String deputyId,
     required int items,
+    int? month,
   }) async {
     final Response response =
         await _dio.get('/deputados/$deputyId/despesas', queryParameters: {
       'pagina': page,
       'itens': items,
       'ano': year,
+      'mes': month ?? '',
+      'ordenarPor': 'dataDocumento',
+      'ordem': 'DESC'
     });
 
     return response;

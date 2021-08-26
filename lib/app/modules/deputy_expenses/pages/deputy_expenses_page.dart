@@ -60,9 +60,9 @@ class DeputyExpensesPage extends GetView<DeputyExpensesController> {
 
     return SingleChildScrollView(
       child: Column(
-        children: <Widget>[
-          ChartWidget(expenses: controller.expenses, year: controller.year),
-          TotalMonthWidget(expense: controller.selectedExpenseMonth()),
+        children: const <Widget>[
+          ChartWidget(),
+          TotalMonthWidget(),
         ],
       ),
     );

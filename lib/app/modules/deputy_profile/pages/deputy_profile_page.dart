@@ -220,10 +220,7 @@ class DeputyProfilePage extends GetView<DeputyProfileController> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: <Widget>[
-            ProfileImageWidget(
-              photo: controller.deputy.photo,
-              situation: controller.deputy.situation,
-            ),
+            const ProfileImageWidget(),
             _renderMainInformation(),
             _renderAbout(),
             _renderGraduation(),

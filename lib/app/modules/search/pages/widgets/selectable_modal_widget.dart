@@ -66,14 +66,10 @@ class SelectableModalWidget extends StatelessWidget {
     );
   }
 
-  Widget _renderLazyLoadScrollView({
-    required nextPage,
-    required lastPage,
-    required refresh,
-  }) {
+  Widget _renderLazyLoadScrollView() {
     return LazyLoadScrollView(
-      onEndOfPage: nextPage,
-      isLoading: lastPage,
+      onEndOfPage: () => nextPage!(),
+      isLoading: lastPage!,
       child: RefreshIndicator(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -81,7 +77,7 @@ class SelectableModalWidget extends StatelessWidget {
           },
           itemCount: items.length,
         ),
-        onRefresh: refresh,
+        onRefresh: () => refresh!(),
       ),
     );
   }
@@ -108,11 +104,7 @@ class SelectableModalWidget extends StatelessWidget {
     }
 
     if (hasPagination) {
-      return _renderLazyLoadScrollView(
-        nextPage: nextPage,
-        lastPage: lastPage,
-        refresh: refresh,
-      );
+      return _renderLazyLoadScrollView();
     }
 
     return ListView.builder(

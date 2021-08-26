@@ -21,6 +21,14 @@ class StatesController extends GetxController {
 
   StatesController(this._stateRepository);
 
+  @override
+  void onInit() {
+    super.onInit();
+
+    handleGetStates();
+  }
+
+
   Future<void> _getStates() async {
     try {
       final List<StateModel> states = await _stateRepository.getStates();

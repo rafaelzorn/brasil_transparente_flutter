@@ -6,6 +6,8 @@ import 'package:brasil_transparente_flutter/app/data/models/deputy_model.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputy_detail/controllers/deputy_detail_controller.dart';
 
 class DeputyProfileController extends GetxController {
+  static DeputyProfileController get to => Get.find();
+
   final DeputyRepository _deputyRepository;
 
   final int deputyId = DeputyDetailController.to.deputyId;

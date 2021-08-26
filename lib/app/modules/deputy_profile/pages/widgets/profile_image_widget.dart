@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/modules/deputy_profile/controllers/deputy_profile_controller.dart';
 import 'package:brasil_transparente_flutter/app/resources/image_resource.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/constants/general_constant.dart';
 
 class ProfileImageWidget extends StatelessWidget {
-  final String? photo;
-  final String? situation;
-
-  const ProfileImageWidget({
-    Key? key,
-    this.photo,
-    this.situation,
-  }) : super(key: key);
+  const ProfileImageWidget({Key? key}) : super(key: key);
 
   Widget _renderImage() {
     return Container(
@@ -35,7 +29,7 @@ class ProfileImageWidget extends StatelessWidget {
             );
           },
           placeholder: kTransparentImage,
-          image: photo ?? '',
+          image: DeputyProfileController.to.deputy.photo ?? '',
           width: 110,
           height: 110,
           fit: BoxFit.cover,
@@ -45,6 +39,8 @@ class ProfileImageWidget extends StatelessWidget {
   }
 
   Widget _renderStatus() {
+    final String? situation = DeputyProfileController.to.deputy.situation;
+
     Color color = BtColorTheme.tomThumb;
 
     if (situation != GeneralConstant.exercise) {

@@ -18,11 +18,15 @@ class DeputyDetailBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<DeputyRepository>(() => DeputyRepository(Get.find()));
     Get.lazyPut<PropositionRepository>(() => PropositionRepository(Get.find()));
-    Get.lazyPut<ProcedureRepository>(() => ProcedureRepository(Get.find()));
+    Get.lazyPut<ProcedureRepository>(
+      () => ProcedureRepository(Get.find()),
+      fenix: true,
+    );
     Get.lazyPut<ExpenseRepository>(() => ExpenseRepository(Get.find()));
 
     Get.lazyPut<PropositionDetailService>(
       () => PropositionDetailService(Get.find(), Get.find()),
+      fenix: true,
     );
 
     Get.lazyPut<DeputyDetailController>(() => DeputyDetailController());
@@ -32,14 +36,16 @@ class DeputyDetailBinding implements Bindings {
     Get.lazyPut<DeputyPropositionsController>(
       () => DeputyPropositionsController(Get.find()),
     );
+    Get.lazyPut<PropositionDetailController>(
+      () => PropositionDetailController(Get.find()),
+      fenix: true,
+    );
     Get.lazyPut<DeputyExpensesController>(
       () => DeputyExpensesController(Get.find()),
     );
-    Get.lazyPut<PropositionDetailController>(
-      () => PropositionDetailController(Get.find()),
-    );
     Get.lazyPut<ExpensesMonthDetailController>(
-      () => ExpensesMonthDetailController(),
+      () => ExpensesMonthDetailController(Get.find()),
+      fenix: true,
     );
   }
 }
