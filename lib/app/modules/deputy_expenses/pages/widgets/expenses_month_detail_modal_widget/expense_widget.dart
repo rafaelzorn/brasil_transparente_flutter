@@ -43,6 +43,10 @@ class ExpenseWidget extends StatelessWidget {
   }
 
   Widget _renderIcon() {
+    if (expense.documentUrl == null || expense.documentUrl!.split(".").last != 'pdf') {
+      return Container();
+    }
+
     return Expanded(
       flex: 2,
       child: Align(
@@ -59,7 +63,7 @@ class ExpenseWidget extends StatelessWidget {
             side: BorderSide(width: 0.5, color: BtColorTheme.slateGray),
           ),
           onPressed: () => Get.toNamed(
-            BtRoutes.propositionPdf,
+            BtRoutes.expenseDocumentPdf,
             preventDuplicates: false,
             arguments: {
               'pdf': expense.documentUrl,

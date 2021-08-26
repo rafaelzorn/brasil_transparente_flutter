@@ -21,6 +21,8 @@ class ExpenseDocumentPdfPage extends GetView<ExpenseDocumentPdfController> {
       );
     }
 
+    print(Get.arguments['pdf']);
+
     return SfPdfViewer.network(
       Get.arguments['pdf'],
       onDocumentLoadFailed: (PdfDocumentLoadFailedDetails details) {

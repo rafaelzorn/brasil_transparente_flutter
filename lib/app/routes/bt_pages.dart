@@ -6,10 +6,12 @@ import 'package:brasil_transparente_flutter/app/modules/deputies/pages/deputies_
 import 'package:brasil_transparente_flutter/app/modules/deputies/deputies_binding.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/pages/search_page.dart';
 import 'package:brasil_transparente_flutter/app/modules/proposition_pdf/pages/proposition_pdf_page.dart';
+import 'package:brasil_transparente_flutter/app/modules/expense_document_pdf/pages/expense_document_pdf_page.dart';
 import 'package:brasil_transparente_flutter/app/modules/search/search_binding.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputy_detail/pages/deputy_detail_page.dart';
 import 'package:brasil_transparente_flutter/app/modules/deputy_detail/deputy_detail_binding.dart';
 import 'package:brasil_transparente_flutter/app/modules/proposition_pdf/proposition_pdf_binding.dart';
+import 'package:brasil_transparente_flutter/app/modules/expense_document_pdf/expense_document_pdf_binding.dart';
 
 class BtPages {
   static final List<GetPage> routes = [
@@ -32,6 +34,11 @@ class BtPages {
       name: BtRoutes.propositionPdf,
       page: () => const PropositionPdfPage(),
       binding: PropositionPdfBinding(),
+    ),
+    GetPage(
+      name: BtRoutes.expenseDocumentPdf,
+      page: () => const ExpenseDocumentPdfPage(),
+      binding: ExpenseDocumentPdfBinding(),
     ),
   ];
 }
