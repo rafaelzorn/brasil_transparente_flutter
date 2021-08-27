@@ -15,7 +15,7 @@ This project was created in order to better understand how the GetX package work
 
 <img src="#" height="500">
 
-![Brasil Transparente Flutter]()
+![Brasil Transparente Flutter](./preview.png)
 
 ## APIs
 
