@@ -13,15 +13,15 @@ class ExpenseRepository extends BaseRepository {
   ExpenseRepository(this._dio);
 
   Future<Map<String, dynamic>> findDeputyExpensesByMonth(
-    FindDeputyExpensesByMonthSupport FindDeputyExpensesByMonthSupport,
+    FindDeputyExpensesByMonthSupport findDeputyExpensesByMonthSupport,
   ) async {
     try {
       final Response response = await findDeputyExpenses(
-        year: FindDeputyExpensesByMonthSupport.year,
-        deputyId: FindDeputyExpensesByMonthSupport.deputyId.toString(),
-        page: FindDeputyExpensesByMonthSupport.page,
-        items: FindDeputyExpensesByMonthSupport.items,
-        month: FindDeputyExpensesByMonthSupport.month,
+        year: findDeputyExpensesByMonthSupport.year,
+        deputyId: findDeputyExpensesByMonthSupport.deputyId.toString(),
+        page: findDeputyExpensesByMonthSupport.page,
+        items: findDeputyExpensesByMonthSupport.items,
+        month: findDeputyExpensesByMonthSupport.month,
       );
 
       final List<ExpenseModel> expenses = response.data['dados']

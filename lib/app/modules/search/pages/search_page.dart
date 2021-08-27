@@ -15,7 +15,9 @@ import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/sel
 import 'package:brasil_transparente_flutter/app/modules/search/pages/widgets/selectable_modal_widget.dart';
 
 class SearchPage extends GetView<SearchController> {
-  const SearchPage({Key? key}) : super(key: key);
+  final formKey = GlobalKey<FormState>();
+
+  SearchPage({Key? key}) : super(key: key);
 
   Widget _renderTitle() {
     return Container(
@@ -34,10 +36,10 @@ class SearchPage extends GetView<SearchController> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Form(
-        key: controller.formKey,
+        key: formKey,
         child: Column(
           children: <Widget>[
-            InputSearchWidget(controller: controller.nameController),
+            const InputSearchWidget(),
             _renderTitle(),
             _renderSelectableStates(),
             _renderSelectablePoliticalParties(),
@@ -54,16 +56,14 @@ class SearchPage extends GetView<SearchController> {
             StringResource.selectState,
         onTap: () {
           BtModalWidget.bottomSheet(
-            content: Obx(
-              () => SelectableModalWidget(
-                isLoading: StatesController.to.isLoading,
-                isError: StatesController.to.isError,
-                items: StatesController.to.states,
-                title: StringResource.states,
-                handleSelect: StatesController.to.handleSelectState,
-                reload: StatesController.to.handleGetStates,
-                showPropName: 'initials',
-              ),
+            content: SelectableModalWidget(
+              isLoading: StatesController.to.isLoading,
+              isError: StatesController.to.isError,
+              items: StatesController.to.states,
+              title: StringResource.states,
+              handleSelect: StatesController.to.handleSelectState,
+              reload: StatesController.to.handleGetStates,
+              showPropName: 'initials',
             ),
           );
         },
@@ -78,21 +78,19 @@ class SearchPage extends GetView<SearchController> {
             StringResource.selectThePoliticalParty,
         onTap: () {
           BtModalWidget.bottomSheet(
-            content: Obx(
-              () => SelectableModalWidget(
-                isLoading: PoliticalPartiesController.to.isLoading,
-                isError: PoliticalPartiesController.to.isError,
-                items: PoliticalPartiesController.to.politicalParties,
-                title: StringResource.politicalParties,
-                handleSelect:
-                    PoliticalPartiesController.to.handleSelectPoliticalParty,
-                nextPage: PoliticalPartiesController.to.nextPage,
-                lastPage: PoliticalPartiesController.to.lastPage,
-                refresh: PoliticalPartiesController.to.refresh,
-                reload: PoliticalPartiesController.to.reload,
-                hasPagination: true,
-                showPropName: 'initials',
-              ),
+            content: SelectableModalWidget(
+              isLoading: PoliticalPartiesController.to.isLoading,
+              isError: PoliticalPartiesController.to.isError,
+              items: PoliticalPartiesController.to.politicalParties,
+              title: StringResource.politicalParties,
+              handleSelect:
+                  PoliticalPartiesController.to.handleSelectPoliticalParty,
+              nextPage: PoliticalPartiesController.to.nextPage,
+              lastPage: PoliticalPartiesController.to.lastPage,
+              refresh: PoliticalPartiesController.to.refresh,
+              reload: PoliticalPartiesController.to.reload,
+              hasPagination: true,
+              showPropName: 'initials',
             ),
           );
         },

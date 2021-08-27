@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 
 // Bt
+import 'package:brasil_transparente_flutter/app/modules/search/controllers/search_controller.dart';
 import 'package:brasil_transparente_flutter/app/resources/string_resource.dart';
 import 'package:brasil_transparente_flutter/app/helpers/text_helper.dart';
 import 'package:brasil_transparente_flutter/app/themes/bt_color_theme.dart';
 
 class InputSearchWidget extends StatelessWidget {
-  final TextEditingController controller;
-
-  const InputSearchWidget({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  const InputSearchWidget({Key? key}) : super(key: key);
 
   Widget _renderContent() {
     return TextField(
       autocorrect: false,
-      controller: controller,
+      controller: SearchController.to.nameController,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.done,

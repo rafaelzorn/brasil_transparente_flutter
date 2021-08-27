@@ -22,7 +22,7 @@ class BtPages {
     ),
     GetPage(
       name: BtRoutes.search,
-      page: () => const SearchPage(),
+      page: () => SearchPage(),
       binding: SearchBinding(),
     ),
     GetPage(

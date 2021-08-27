@@ -7,10 +7,9 @@ import 'package:brasil_transparente_flutter/app/modules/search/controllers/state
 import 'package:brasil_transparente_flutter/app/modules/search/controllers/political_parties_controller.dart';
 
 class SearchController extends GetxController {
-  final formKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
+  static SearchController get to => Get.find();
 
-  SearchController();
+  final TextEditingController nameController = TextEditingController();
 
   void search() {
     Get.back();
@@ -19,8 +18,7 @@ class SearchController extends GetxController {
       'name': nameController.text,
       'siglaUf': StatesController.to.selectedState.initials ?? '',
       'siglaPartido':
-          PoliticalPartiesController.to.selectedPoliticalParty.initials ??
-              '',
+          PoliticalPartiesController.to.selectedPoliticalParty.initials ?? '',
     };
 
     DeputiesController.to.handleFindDeputies(
