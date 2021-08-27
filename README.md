@@ -13,7 +13,7 @@ This project was created in order to better understand how the GetX package work
 
 ## Preview
 
-<img src="./preview.gif" height="500">
+<img src="./preview.gif" height="600">
 
 ![Brasil Transparente Flutter](./preview.png)
 
